@@ -3,8 +3,7 @@ import axios from 'axios';
 const url = "https://covid19.mathdro.id/api";
 
 // for Cards component
-export const fetchData = async ( country ) => {
-
+export const fetchData = async (country) => {
     try {
         let changeableUrl = url;
         if (country) {
@@ -13,8 +12,8 @@ export const fetchData = async ( country ) => {
         const response = await axios.get(changeableUrl);
         const data = response.data; // data is an object here
         const { confirmed, recovered, deaths, lastUpdate } = data;
-
-        return { confirmed, recovered, deaths, lastUpdate };
+        
+        return  { confirmed, recovered, deaths, lastUpdate };
 
     } catch (err) {
         console.log(err)
@@ -22,7 +21,7 @@ export const fetchData = async ( country ) => {
 };
 
 // for Chart component
-export const FetchDailyData = async () => {
+export const fetchDailyData = async () => {
     try {
         const { data } = await axios.get(`${url}/daily`) //data is an array here
         // line 29-33 is returning an array with new objects containing the info confirmed, deaths, date
@@ -37,6 +36,7 @@ export const FetchDailyData = async () => {
     }
 };
 
+// for CountryPicker component
 export const fetchCountries = async () => {
     try {
         const { countries } = await axios.get(`${url}/countries`)
