@@ -7,21 +7,25 @@ import React, { useState, useEffect } from "react";
 function App() {
 
   const [data, setData] = useState({});
-  const fetchedData = fetchData();
+  const [country, setCountry] = useState("");
 
-  useEffect(() => 
-      setData({ data: fetchedData })
-  );
-  
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let data_obj = await fetchData();
+      setData(data_obj)
+    }
+    fetchMyAPI()
+  },[])
+
   // testing purposes
   return (
     <div className="App"> 
       <Cards 
-        confirmed={{value: 19000}}
-        recovered={{value: 9000}}
-        deaths={{value: 9000}}
-        lastUpdate="22-05-2020"
-        country="Singapore"
+        confirmed={data.confirmed}
+        recovered={data.recovered}
+        deaths={data.deaths}
+        lastUpdate={data.lastUpdate}
+        country={country}
         />
     </div>
   );
