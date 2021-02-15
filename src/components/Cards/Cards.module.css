@@ -1,32 +1,38 @@
+/* !important in CSS means 'this is important' and can only be placed at the end of the line; 
+What it does is that it tells the IDE to apply the !important rule and ignore all subsequent rules.
+Based on stackoverflow, !important can help to "force" your CSS rule to work  
+*/
+
 .container {
   margin: 50px 0px;
 }
 
 .card {
-  margin: 0 2% !important;
+  margin: 0 2% !important; 
 }
 
 .infected {
-  background-color: rgba(102, 179, 255, 0.5) !important;
+  background-color: rgba(100, 180, 255, 0.5) !important;
   border-bottom: 10px solid rgba(0, 0, 255, 0.5);
 }
 
 .recovered {
-  background-color: rgba(191, 242, 202, 0.5) !important;
+  background-color: rgba(190, 240, 200, 0.5) !important;
   border-bottom: 10px solid rgba(0, 255, 0, 0.5);
 }
 
 .deaths {
-  background-color: rgba(237, 178, 178, 0.5) !important;
+  background-color: rgba(240, 180, 180, 0.5) !important;
   border-bottom: 10px solid rgba(255, 0, 0, 0.5);
 }
 
 .active {
-  background-color: rgba(237, 199, 152, 0.5) !important;
-  border-bottom: 10px solid rgba(242, 234, 0, 0.5);
+  background-color: rgba(240, 200, 150, 0.5) !important;
+  border-bottom: 10px solid rgba(240, 235, 0, 0.5);
 }
 
-@media (max-width: 770px) {
+/* CSS Code for Mobile responsiveness */ 
+@media (max-width: 768px) {
   .card {
     margin: 2% 0 !important;
   }

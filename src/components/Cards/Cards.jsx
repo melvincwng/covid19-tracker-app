@@ -46,7 +46,7 @@ function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
                         component={Card}
                         xs={12}
                         md={2}
-                        className={cn(styles.Card, cardDetail.style)}
+                        className={cn(styles.Card, cardDetail.style)} //apparently can delete cn(styles.Card)
                         style={{ margin: "0px 23.675px", padding: "12px" }}
                       >
                           <CardContent>

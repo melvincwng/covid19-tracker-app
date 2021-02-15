@@ -3,6 +3,7 @@ import './App.css';
 import Cards from './components/Cards/Cards';
 import { fetchData } from './api/index';
 import React, { useState, useEffect } from "react";
+import styles from './components/Cards/Cards.module.css';
 
 function App() {
 

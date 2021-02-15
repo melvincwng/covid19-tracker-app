@@ -24,7 +24,7 @@ export const fetchData = async (country) => {
 export const fetchDailyData = async () => {
     try {
         const { data } = await axios.get(`${url}/daily`) //data is an array here
-        // line 29-33 is returning an array with new objects containing the info confirmed, deaths, date
+        // line 28-32 is returning an array with new objects containing the info confirmed, deaths, date
         const modifiedData = data.map((dailyData) => ({
             confirmed: dailyData.confirmed.total,
             deaths: dailyData.deaths.total,
