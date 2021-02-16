@@ -18,7 +18,6 @@ function App() {
     fetchMyAPI()
   },[])
 
-  // testing purposes
   return (
     <div className="App"> 
       <Cards 

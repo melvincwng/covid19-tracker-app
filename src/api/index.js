@@ -12,9 +12,9 @@ export const fetchData = async (country) => {
         const response = await axios.get(changeableUrl);
         const data = response.data; // data is an object here
         const { confirmed, recovered, deaths, lastUpdate } = data;
+        console.log({ confirmed, recovered, deaths, lastUpdate })
         
         return  { confirmed, recovered, deaths, lastUpdate };
-
     } catch (err) {
         console.log(err)
     }
@@ -30,7 +30,7 @@ export const fetchDailyData = async () => {
             deaths: dailyData.deaths.total,
             date: dailyData.reportDate,
         }));
-
+        return modifiedData;
     } catch (err) {
         console.log(err)
     }
@@ -41,7 +41,6 @@ export const fetchCountries = async () => {
     try {
         const { countries } = await axios.get(`${url}/countries`)
         return countries.map((country) => country.name);
-
     } catch (err) {
         console.log(err)
     }
