@@ -21,7 +21,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
         datasets: [
             {
                 label: 'Infected',
-                data: dailyData.map((dailyData) => (dailyData.confirmed)),
+                data: dailyData.map((dailyData) => dailyData.confirmed),
                 fill: true,
                 borderColor:'rgb(0, 0, 255)'
             },
@@ -34,6 +34,20 @@ function Chart ({ confirmed, recovered, deaths, country }) {
             },
         ],
     }
+
+    const line_options = {
+        scales: {
+          yAxes: [
+            {
+                ticks: {
+                    userCallback: function(value, index, values) {
+                        return value.toLocaleString();   // this helps to add commas to y-axis
+                    }
+                }
+            },
+          ],
+        },
+      };
     
     const bar_data = {
         labels: ["Infected", "Recovered", "Active", "Deaths"],
@@ -71,12 +85,23 @@ function Chart ({ confirmed, recovered, deaths, country }) {
 
     // this options variable is for the bar-charts
     // can refer to https://www.chartjs.org/docs/latest/configuration/title.html for more info:
-    const options = {
-        title: { display: true, text: `Current situation in ${country}`}
+    const bar_options = {
+        title: { display: true, text: `Current situation in ${country}`},
+        scales: {
+            yAxes: [
+              {
+                  ticks: {
+                      userCallback: function(value, index, values) {
+                          return value.toLocaleString();   // this helps to convert the add commas to y-axis
+                      }
+                  }
+              },
+            ],
+          },
     }
 
-    const lineChart = dailyData.length ? <Line data={line_data}></Line> : null;
-    const barChart = country ? <Bar data={bar_data} options={options}></Bar>: null;
+    const lineChart = dailyData.length ? <Line data={line_data} options={line_options}></Line> : null;
+    const barChart = country ? <Bar data={bar_data} options={bar_options}></Bar>: null;
 
     return (
         <div className={styles.container}>{ country ? barChart : lineChart }</div>
@@ -84,3 +109,13 @@ function Chart ({ confirmed, recovered, deaths, country }) {
 }
 
 export default Chart;
+
+// KIV - this code is supposed to make the numbers in tooltip formatted with commas.
+/* tooltips: {
+    callbacks: {
+        label: function (tooltipItem, data) {
+          var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return parseInt(tooltipValue).toLocaleString();
+        }
+      }
+    }, */
