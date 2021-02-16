@@ -4,6 +4,7 @@ import { Line, Bar } from 'react-chartjs-2';
 import styles from './Chart.module.css';
 
 function Chart ({ confirmed, recovered, deaths, country }) {
+
     const [dailyData, setDailyData] = useState([]);
     
     useEffect(() => {
@@ -21,7 +22,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
         datasets: [
             {
                 label: 'Infected',
-                data: dailyData.map((dailyData) => dailyData.confirmed),
+                data: dailyData.map((dailyData) => (dailyData.confirmed)),
                 fill: true,
                 borderColor:'rgb(0, 0, 255)'
             },
@@ -49,13 +50,19 @@ function Chart ({ confirmed, recovered, deaths, country }) {
         },
       };
     
-    const bar_data = {
+    // the variable const bar_data (line 60 - 91) has been causing me a lot of bugs
+    // Long story short when the Chart component is first rendered, data is an empty object
+    // hence data.confirmed will be undefined and undefined is being passed in as props to Charts component
+    // which you cannot get the value property of an undefined item 
+    // That is what the error kept saying cannot read value property of undefined
+    // hence to fix this, have to use ternary operator (see logic below)
+    const bar_data = confirmed ? {
         labels: ["Infected", "Recovered", "Active", "Deaths"],
         datasets: [
             {
                 label: "People",
                 data: [
-                    confirmed.value, 
+                    confirmed.value, // this was the part causing errors (line 64)
                     recovered.value, 
                     confirmed.value - recovered.value - deaths.value , 
                     deaths.value
@@ -81,7 +88,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
                 ], 
             },
         ],
-    }
+    } : null // this should fix the bug
 
     // this options variable is for the bar-charts
     // can refer to https://www.chartjs.org/docs/latest/configuration/title.html for more info:
@@ -101,8 +108,9 @@ function Chart ({ confirmed, recovered, deaths, country }) {
     }
 
     const lineChart = dailyData.length ? <Line data={line_data} options={line_options}></Line> : null;
-    const barChart = country ? <Bar data={bar_data} options={bar_options}></Bar>: null;
-
+    const barChart = confirmed ? <Bar data={bar_data} options={bar_options}></Bar>: null; 
+    // generate bar chart if confirmed is not an empty object (aka like {value: some-num, type: example})
+    
     return (
         <div className={styles.container}>{ country ? barChart : lineChart }</div>
     );

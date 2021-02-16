@@ -9,7 +9,7 @@ import Chart from './components/Chart/Chart';
 function App() {
 
   const [data, setData] = useState({});
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState();
 
   // useEffect will automatically run after the components here are first rendered onto the screen.
   useEffect(() => {

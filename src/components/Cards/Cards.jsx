@@ -5,7 +5,7 @@ import CountUp from "react-countup";
 import cn from "classnames";
 
 function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
-    // at the start, the app will render a component with empty values
+    // at the start, the app will render a component with empty/undefined values
     if (!confirmed) {
         return "Loading data...";
     } else {
