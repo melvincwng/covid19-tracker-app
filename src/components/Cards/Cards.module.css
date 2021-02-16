@@ -21,19 +21,28 @@ Based on stackoverflow, !important can help to "force" your CSS rule to work
   border-bottom: 10px solid rgba(0, 255, 0, 0.5);
 }
 
-.deaths {
-  background-color: rgba(240, 180, 180, 0.5) !important;
-  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
-}
-
 .active {
   background-color: rgba(240, 200, 150, 0.5) !important;
   border-bottom: 10px solid rgba(240, 235, 0, 0.5);
 }
 
+.deaths {
+  background-color: rgba(240, 180, 180, 0.5) !important;
+  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+}
+
 /* CSS Code for Mobile responsiveness */ 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .card {
     margin: 2% 0 !important;
   }
+
+  .container {
+    margin: 50px 0px;
+  }
+  
+  .card {
+    margin: 0 2% !important; 
+  }
+  
 }

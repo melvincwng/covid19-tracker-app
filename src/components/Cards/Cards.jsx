@@ -5,9 +5,9 @@ import CountUp from "react-countup";
 import cn from "classnames";
 
 function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
-    // if no confirmed cases, return the following
+    // at the start, the app will render a component with empty values
     if (!confirmed) {
-        return "No confirmed cases";
+        return "Loading data...";
     } else {
         const active = confirmed.value - recovered.value - deaths.value;
         let cardDetails = [
@@ -46,7 +46,7 @@ function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
                         component={Card}
                         xs={12}
                         md={2}
-                        className={cn(styles.Card, cardDetail.style)} //apparently can delete cn(styles.Card)
+                        className={cn(cardDetail.style)} 
                         style={{ margin: "0px 23.675px", padding: "12px" }}
                       >
                           <CardContent>

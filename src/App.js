@@ -3,17 +3,17 @@ import './App.css';
 import Cards from './components/Cards/Cards';
 import { fetchData } from './api/index';
 import React, { useState, useEffect } from "react";
-import styles from './components/Cards/Cards.module.css';
 
 function App() {
 
   const [data, setData] = useState({});
   const [country, setCountry] = useState("");
 
+  // useEffect will automatically run after the components here are first rendered onto the screen.
   useEffect(() => {
     async function fetchMyAPI() {
-      let data_obj = await fetchData();
-      setData(data_obj)
+      let data_object = await fetchData();
+      setData(data_object)
     }
     fetchMyAPI()
   },[])
