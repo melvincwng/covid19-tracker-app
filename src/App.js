@@ -1,8 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import Cards from './components/Cards/Cards';
-import { fetchData } from './api/index';
 import React, { useState, useEffect } from "react";
+import { fetchData } from './api/index';
+import Cards from './components/Cards/Cards';
+import Chart from './components/Chart/Chart';
+
+
+
 
 function App() {
 
@@ -25,6 +27,12 @@ function App() {
         recovered={data.recovered}
         deaths={data.deaths}
         lastUpdate={data.lastUpdate}
+        country={country}
+        />
+      <Chart 
+        confirmed={data.confirmed}
+        recovered={data.recovered}
+        deaths={data.deaths}
         country={country}
         />
     </div>
