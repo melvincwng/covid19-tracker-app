@@ -4,7 +4,7 @@ import { FormControl, NativeSelect } from '@material-ui/core';
 import { fetchCountries } from './../../api/index';
 
 function CountryPicker ({ handleSelectedCountry }) {
-    const [fetchedCountries, setFetchedCountries] = useState(['Singapore', 'Thailand', 'My']);
+    const [fetchedCountries, setFetchedCountries] = useState([]);
     console.log(fetchedCountries)
 
     useEffect(() => {
@@ -30,4 +30,3 @@ function CountryPicker ({ handleSelectedCountry }) {
 };
 
 export default CountryPicker;
-// {fetchedCountries ? fetchedCountries.map((country) => <option value={country}>{country}</option>) : null}
