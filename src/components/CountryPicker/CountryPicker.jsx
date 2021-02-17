@@ -18,7 +18,7 @@ function CountryPicker ({ handleSelectedCountry }) {
         <FormControl className={styles.formControl}>
             <NativeSelect defaultValue="">
                 <option value="">Global</option>
-                {fetchCountries.map((country) => <option value={country}>{country}</option>)}
+                {fetchedCountries.map((country) => <option value={country}>{country}</option>)}
             </NativeSelect>
         </FormControl>
     );
