@@ -14,6 +14,9 @@ function CountryPicker ({ handleSelectedCountry }) {
         fetchMyAPI();
     }, []);
 
+    // FormControl component is a material UI component/container that encapsulates items or components of a form
+    // In this case, it is used to wrap the NativeSelect material UI component, which is a drop-down bar with <options></options>
+    // Similar to <select></select> dropdown bar with <options></options> in HTML
     return (
         <FormControl className={styles.formControl}>
             <NativeSelect defaultValue="">
