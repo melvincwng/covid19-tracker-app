@@ -48,6 +48,33 @@ function Chart ({ confirmed, recovered, deaths, country }) {
             },
           ],
         },
+
+        //According to chartjs official docs, "the label callback can change the text that displays on the
+        // screen for a given data point". In this case, this section is code is applicable since I wish
+        // to format the number displayed in each tooltip to contain the comma separator every 3 digits.
+        // the 'data' parameter in line 58 actually refers to line_data (try to understand the logic)
+        // cause later on, in line 59, we will use line_data to access the datasets key/property
+        // line_data.datasets is actually an array containing two objects (1 obj at index 0, 1 obj at index 1)
+        // the object at index 0 of the array aka line_data.datasets[0] will have many tooltips, 
+        // each individually attached to a datapoint in data (line_data.datasets[0].data).
+        // This is the same logic for the object at index 1 of the array line_data.datasets
+        // hence tooltipItem.datasetIndex means what is its dataset index of the tooltipItem (see below)
+        // aka does the tooltip item belong to dataset index 0 (line_data.datasets[0]) or dataset index 1 (line_data.datasets[1])
+        // then subsequently once we know whether the tooltipItem's datasetIndex is 0 or 1 then
+        // we access the data property which is a mapped array with many values where...
+        // each tooltipItem will be assigned an individual value in this mapped array and hence have an index
+        // hence in line 73 where we ...data[tooltipItem.index] => we will get tooltipValue
+        // to grab the label in line 72 is the same logic as above & .toLocaleString() helps to format a number with commas.
+        
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) { 
+                    let label = data.datasets[tooltipItem.datasetIndex].label
+                    let tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return `${label}: ${tooltipValue.toLocaleString()}`; 
+                }
+              }
+            },
       };
     
     // the variable const bar_data (line 60 - 91) has been causing me a lot of bugs
@@ -56,6 +83,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
     // which you cannot get the value property of an undefined item 
     // That is what the error kept saying cannot read value property of undefined
     // hence to fix this, have to use ternary operator (see logic below)
+
     const bar_data = confirmed ? {
         labels: ["Infected", "Recovered", "Active", "Deaths"],
         datasets: [
@@ -64,7 +92,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
                 data: [
                     confirmed.value, // this was the part causing errors (line 64)
                     recovered.value, 
-                    confirmed.value - recovered.value - deaths.value , 
+                    confirmed.value - recovered.value - deaths.value, 
                     deaths.value
                 ],
                 backgroundColor: [
@@ -105,6 +133,15 @@ function Chart ({ confirmed, recovered, deaths, country }) {
               },
             ],
           },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) {  // data parameter refers to bar_data
+                    let label = data.datasets[tooltipItem.datasetIndex].label
+                    let tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return `${label}: ${tooltipValue.toLocaleString()}`;
+                }
+              }
+            },
     }
 
     const lineChart = dailyData.length ? <Line data={line_data} options={line_options}></Line> : null;
@@ -117,13 +154,3 @@ function Chart ({ confirmed, recovered, deaths, country }) {
 }
 
 export default Chart;
-
-// KIV - this code is supposed to make the numbers in tooltip formatted with commas.
-/* tooltips: {
-    callbacks: {
-        label: function (tooltipItem, data) {
-          var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-          return parseInt(tooltipValue).toLocaleString();
-        }
-      }
-    }, */
