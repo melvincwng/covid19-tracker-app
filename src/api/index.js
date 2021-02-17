@@ -38,8 +38,10 @@ export const fetchDailyData = async () => {
 // for CountryPicker component
 export const fetchCountries = async () => {
     try {
-        const { countries } = await axios.get(`${url}/countries`)
-        return countries.map((country) => country.name);
+        const response  = await axios.get(`${url}/countries`)
+        const countries_data = response.data //countries_data will contain {countries: Array(192 countries)}
+        const countries_array = countries_data.countries //countries_arr will contain the array of countries
+        return countries_array.map((country) => country.name);
     } catch (err) {
         console.log(err)
     }

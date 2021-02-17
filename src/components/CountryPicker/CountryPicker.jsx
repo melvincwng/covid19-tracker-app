@@ -4,14 +4,15 @@ import { FormControl, NativeSelect } from '@material-ui/core';
 import { fetchCountries } from './../../api/index';
 
 function CountryPicker ({ handleSelectedCountry }) {
-    const [ fetchedCountries, setFetchedCountries ] = useState([]);
+    const [fetchedCountries, setFetchedCountries] = useState(['Singapore', 'Thailand', 'My']);
+    console.log(fetchedCountries)
 
     useEffect(() => {
         async function fetchMyAPI() {
             let fetched_country_names_array = await fetchCountries();
             setFetchedCountries(fetched_country_names_array); // FYI, setSomething() will cause component to render again.
         }
-        fetchMyAPI();
+        fetchMyAPI()
     }, []);
 
     // FormControl component is a material UI component/container that encapsulates items or components of a form
@@ -22,10 +23,11 @@ function CountryPicker ({ handleSelectedCountry }) {
         <FormControl className={styles.formControl}>
             <NativeSelect defaultValue="" onChange={(e) => handleSelectedCountry(e.target.value)}>
                 <option value="">Global</option>
-                {fetchedCountries.map((country) => <option value={country}>{country}</option>)}
+                { fetchedCountries.map((country) => <option value={country}>{country}</option>) }
             </NativeSelect>
         </FormControl>
     );
 };
 
 export default CountryPicker;
+// {fetchedCountries ? fetchedCountries.map((country) => <option value={country}>{country}</option>) : null}
