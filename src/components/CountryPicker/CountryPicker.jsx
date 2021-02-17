@@ -9,7 +9,7 @@ function CountryPicker ({ handleSelectedCountry }) {
     useEffect(() => {
         async function fetchMyAPI() {
             let fetched_country_names_array = await fetchCountries();
-            setFetchedCountries(fetched_country_names_array);
+            setFetchedCountries(fetched_country_names_array); // FYI, setSomething() will cause component to render again.
         }
         fetchMyAPI();
     }, []);
@@ -17,9 +17,10 @@ function CountryPicker ({ handleSelectedCountry }) {
     // FormControl component is a material UI component/container that encapsulates items or components of a form
     // In this case, it is used to wrap the NativeSelect material UI component, which is a drop-down bar with <options></options>
     // Similar to <select></select> dropdown bar with <options></options> in HTML
+
     return (
         <FormControl className={styles.formControl}>
-            <NativeSelect defaultValue="">
+            <NativeSelect defaultValue="" onChange={(e) => handleSelectedCountry(e.target.value)}>
                 <option value="">Global</option>
                 {fetchedCountries.map((country) => <option value={country}>{country}</option>)}
             </NativeSelect>
