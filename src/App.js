@@ -27,7 +27,7 @@ function App() {
         lastUpdate={data.lastUpdate}
         country={country}
         />
-      <CountryPicker />
+      <CountryPicker /> 
       <Chart 
         confirmed={data.confirmed}
         recovered={data.recovered}
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; //still need to implement logic for the handleSelectedCountry function here

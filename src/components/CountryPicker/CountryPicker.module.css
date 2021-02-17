@@ -1,0 +1,5 @@
+.formControl {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 35px !important;
+}
