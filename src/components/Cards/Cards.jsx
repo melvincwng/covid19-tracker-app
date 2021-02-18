@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Cards.module.css';
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
-import cn from "classnames";
 
 function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
     // at the start, the app will render a component with empty/undefined values
@@ -46,14 +45,14 @@ function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
                         component={Card}
                         xs={12}
                         md={2}
-                        className={cn(cardDetail.style)} 
+                        className={cardDetail.style}
                         style={{ margin: "0px 23.675px", padding: "12px" }}
                       >
                           <CardContent>
-                            <Typography color="textPrimary" gutterBottom>
+                            <Typography color="textPrimary" className={styles.font} gutterBottom>
                                 <b>{cardDetail.text}</b>
                             </Typography>
-                            <Typography variant="h5">
+                            <Typography variant="h5" className={styles.font}>
                                 <CountUp
                                 start={0}
                                 end={cardDetail.value}
@@ -61,15 +60,15 @@ function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
                                 separator=","
                                 />
                             </Typography>
-                            <Typography color="textPrimary">Last Updated at : </Typography>
-                            <Typography color="textSecondary" variant="body2">
+                            <Typography color="textPrimary" className={styles.font}>Last Updated at : </Typography>
+                            <Typography color="textSecondary" variant="body2" className={styles.font}>
                                 {new Date(lastUpdate).toDateString()}
                             </Typography>
-                            <Typography color="textSecondary" variant="body2">
+                            <Typography color="textSecondary" variant="body2" className={styles.font}>
                                 {new Date(lastUpdate).toLocaleTimeString()}
                             </Typography>
-                            <Typography variant="body2">{cardDetail.bottomText}</Typography>
-                            <Typography color="textPrimary"> {country} </Typography>
+                            <Typography variant="body2" className={styles.font}>{cardDetail.bottomText}</Typography>
+                            <Typography color="textPrimary" className={styles.font}> {country} </Typography>
                           </CardContent>
                       </Grid>
                     ))}

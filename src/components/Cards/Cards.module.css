@@ -3,6 +3,10 @@ What it does is that it tells the IDE to apply the !important rule and ignore al
 Based on stackoverflow, !important can help to "force" your CSS rule to work  
 */
 
+/* free fonts from google fonts */
+/* Possible contenders: Pangolin, Reenie Beanie, Rock Salt, Homemade Apple - in order */
+@import url(https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pangolin&family=Reenie+Beanie&family=Rock+Salt&display=swap);
+
 .container {
   margin: 50px 0px;
 }
@@ -29,6 +33,10 @@ Based on stackoverflow, !important can help to "force" your CSS rule to work
 .deaths {
   background-color: rgba(240, 180, 180, 0.5) !important;
   border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+}
+
+.font {
+  font-family: 'Pangolin', cursive !important;
 }
 
 /* CSS Code for Mobile responsiveness */ 

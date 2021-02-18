@@ -35,7 +35,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
             },
         ],
     }
-
+    
     const line_options = {
         scales: {
           yAxes: [
@@ -43,10 +43,12 @@ function Chart ({ confirmed, recovered, deaths, country }) {
                 ticks: {
                     userCallback: function(value, index, values) {
                         return value.toLocaleString();   // this helps to add commas to y-axis
-                    }
+                    },
+                fontFamily: 'Pangolin',
                 }
             },
           ],
+          xAxes: [{ticks: {fontFamily:'Pangolin'}}],
         },
 
         //According to chartjs official docs, "the label callback can change the text that displays on the
@@ -75,6 +77,12 @@ function Chart ({ confirmed, recovered, deaths, country }) {
                 }
               }
             },
+
+        legend: {
+            labels: { 
+                fontFamily: 'Pangolin'
+            }
+        }
       };
     
     // the variable const bar_data (line 60 - 91) has been causing me a lot of bugs
@@ -121,17 +129,19 @@ function Chart ({ confirmed, recovered, deaths, country }) {
     // this options variable is for the bar-charts
     // can refer to https://www.chartjs.org/docs/latest/configuration/title.html for more info:
     const bar_options = {
-        title: { display: true, text: `Current situation in ${country}`},
+        title: { display: true, text: `Current situation in ${country}`, fontFamily:'Pangolin'},
         scales: {
             yAxes: [
               {
                   ticks: {
                       userCallback: function(value, index, values) {
                           return value.toLocaleString();   // this helps to convert the add commas to y-axis
-                      }
+                      },
+                      fontFamily: 'Pangolin',
                   }
               },
             ],
+            xAxes: [{ticks: {fontFamily:'Pangolin'}}],
           },
         tooltips: {
             callbacks: {
@@ -142,6 +152,11 @@ function Chart ({ confirmed, recovered, deaths, country }) {
                 }
               }
             },
+        legend: {
+            labels: { 
+                fontFamily: 'Pangolin'
+            }
+        }
     }
 
     const lineChart = dailyData.length ? <Line data={line_data} options={line_options}></Line> : null;
