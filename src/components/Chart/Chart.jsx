@@ -149,7 +149,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
     // generate bar chart if confirmed is not an empty object (aka like {value: some-num, type: example})
     
     return (
-        <div className={styles.container}>{ country ? barChart : lineChart }</div>
+        <div className={styles.container} data-testid="testing-chart">{ country ? barChart : lineChart }</div>
     );
 }
 
