@@ -12,7 +12,6 @@ export const fetchData = async (country) => {
         const response = await axios.get(changeableUrl);
         const data = response.data; // data is an object here
         const { confirmed, recovered, deaths, lastUpdate } = data;
-        console.log(lastUpdate)
         
         return  { confirmed, recovered, deaths, lastUpdate };
     } catch (err) {

@@ -39,7 +39,7 @@ function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
         return (
             <div className={styles.container}>
                 <Grid container spacing={3} justify="center">
-                    {cardDetails.map((cardDetail) => (
+                    {cardDetails.map((cardDetail, idx) => (
                         <Grid
                         item
                         component={Card}
@@ -47,6 +47,7 @@ function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
                         md={2}
                         className={cardDetail.style}
                         style={{ margin: "0px 23.675px", padding: "12px" }}
+                        key={idx}
                       >
                           <CardContent>
                             <Typography color="textPrimary" className={styles.font} gutterBottom>
