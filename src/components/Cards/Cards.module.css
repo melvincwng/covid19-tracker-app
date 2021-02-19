@@ -44,5 +44,4 @@ Based on stackoverflow, !important can help to "force" your CSS rule to work
   .card {
     margin: 2% 0 !important;
   }
-  
 }

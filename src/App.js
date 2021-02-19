@@ -4,6 +4,7 @@ import Cards from './components/Cards/Cards';
 import Chart from './components/Chart/Chart';
 import CountryPicker from './components/CountryPicker/CountryPicker';
 import styles from './App.module.css';
+import CovidHeaderImage from './images/COVID19-header.jpg'
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
   }
 
   return (
-    <div className={styles.container}> 
+    <div className={styles.container}>
+      <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>
       <Cards 
         confirmed={data.confirmed}
         recovered={data.recovered}

@@ -4,11 +4,16 @@
     display: flex;
     justify-content: center;
     width: 85%;
+    background-image: url('../../images/COVID19-chart.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 @media only screen and (max-width: 768px) {
     .container {
       width: 125%;
+      background-size: 25%;
     }
   }
 

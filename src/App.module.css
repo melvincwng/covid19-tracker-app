@@ -1,6 +1,8 @@
-/* html {
-  background-image: url();
-} */
+body {
+  background-image: url('./images/COVID19-bg.jpg');
+  background-repeat: repeat;
+  background-size: 100%;
+} 
 
 .container {
   display: flex;
@@ -8,8 +10,16 @@
   align-items: center;
 }
 
+.image {
+  width: 400px;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     margin: 0 15%;
+  }
+
+  .image {
+    width: 100%;
   }
 }
