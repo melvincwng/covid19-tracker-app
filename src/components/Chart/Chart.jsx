@@ -44,7 +44,7 @@ function Chart ({ confirmed, recovered, deaths, country }) {
                     userCallback: function(value, index, values) {
                         return value.toLocaleString();   // this helps to add commas to y-axis
                     },
-                fontFamily: 'Pangolin',
+                    fontFamily: 'Pangolin',
                 }
             },
           ],

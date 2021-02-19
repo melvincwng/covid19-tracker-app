@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <div className="App"> 
+    <div className={styles.container}> 
       <Cards 
         confirmed={data.confirmed}
         recovered={data.recovered}
