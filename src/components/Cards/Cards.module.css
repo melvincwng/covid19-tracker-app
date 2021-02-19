@@ -5,6 +5,8 @@ Based on stackoverflow, !important can help to "force" your CSS rule to work
 
 /* free fonts from google fonts */
 /* Possible contenders: Pangolin, Reenie Beanie, Rock Salt, Homemade Apple - in order */
+
+/* To blend background image & background color together -> use 'background-blend-mode: multiply'; */
 @import url(https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pangolin&family=Reenie+Beanie&family=Rock+Salt&display=swap);
 
 .container {
@@ -18,21 +20,25 @@ Based on stackoverflow, !important can help to "force" your CSS rule to work
 .infected {
   background-color: rgba(100, 180, 255, 0.5) !important;
   border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+  background-image: url('../../images/blue-line.jpg');
 }
 
 .recovered {
   background-color: rgba(190, 240, 200, 0.5) !important;
   border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+  background-image: url('../../images/green-line.jpg');
 }
 
 .active {
   background-color: rgba(240, 200, 150, 0.5) !important;
   border-bottom: 10px solid rgba(240, 235, 0, 0.5);
+  background-image: url('../../images/yellow-line.jpg');
 }
 
 .deaths {
   background-color: rgba(240, 180, 180, 0.5) !important;
   border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+  background-image: url('../../images/red-line.jpg');
 }
 
 .font {
