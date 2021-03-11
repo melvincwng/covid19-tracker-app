@@ -10,6 +10,7 @@ function NavigationBar() {
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#login">Login</Nav.Link>
+          <Nav.Link href="#register">Register</Nav.Link>
           <Nav.Link href="#articles">Articles</Nav.Link>
           <Nav.Link href="#about">About</Nav.Link>
         </Nav>
