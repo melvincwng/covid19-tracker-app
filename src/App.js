@@ -7,7 +7,7 @@ import styles from './App.module.css';
 import CovidHeaderImage from './images/COVID19-header.jpg'
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from './components/NavigationBar/NavigationBar'
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
 
