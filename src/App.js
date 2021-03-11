@@ -7,6 +7,7 @@ import styles from './App.module.css';
 import CovidHeaderImage from './images/COVID19-header.jpg'
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from './components/NavigationBar/NavigationBar'
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 function App() {
 
@@ -33,22 +34,17 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <NavigationBar />
-      <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>
-      <Cards 
-        confirmed={data.confirmed}
-        recovered={data.recovered}
-        deaths={data.deaths}
-        lastUpdate={data.lastUpdate}
-        country={country}
-        />
-      <CountryPicker handleSelectedCountry={handleSelectedCountry}/> 
-      <Chart 
-        confirmed={data.confirmed}
-        recovered={data.recovered}
-        deaths={data.deaths}
-        country={country}
-        />
+      <BrowserRouter>
+        <NavigationBar />
+        <Route path="/" exact render={() => <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>} />
+        <Route path="/" exact render={() => <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />} />
+        <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
+        <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
+        <Route path="/login" exact render={() => <h1>Login</h1>} />
+        <Route path="/register" exact render={() => <h1>Register</h1>} />
+        <Route path="/articles" exact render={() => <h1>Articles</h1>} />
+        <Route path="/about" exact render={() => <h1>About</h1>} />
+      </BrowserRouter>
     </div>
   );
 }
