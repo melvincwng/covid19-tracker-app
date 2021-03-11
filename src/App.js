@@ -5,6 +5,8 @@ import Chart from './components/Chart/Chart';
 import CountryPicker from './components/CountryPicker/CountryPicker';
 import styles from './App.module.css';
 import CovidHeaderImage from './images/COVID19-header.jpg'
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavigationBar from './components/NavigationBar/NavigationBar'
 
 function App() {
 
@@ -31,6 +33,7 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <NavigationBar />
       <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>
       <Cards 
         confirmed={data.confirmed}
