@@ -44,6 +44,8 @@ function About(){
             <div>{body3}</div>
             <br></br>
             <div>{body4}</div>
+            <br></br>
+            <div>If you are interested in my portfolio, please visit my website at <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a></div>
         </div>
 
     
