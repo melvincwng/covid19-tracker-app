@@ -8,6 +8,7 @@ import CovidHeaderImage from './images/COVID19-header.jpg'
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import { BrowserRouter, Route } from "react-router-dom";
+import About from './components/About/About';
 
 function App() {
 
@@ -41,9 +42,8 @@ function App() {
         <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
         <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
         <Route path="/login" exact render={() => <h1>Login</h1>} />
-        <Route path="/register" exact render={() => <h1>Register</h1>} />
         <Route path="/articles" exact render={() => <h1>Articles</h1>} />
-        <Route path="/about" exact render={() => <h1>About</h1>} />
+        <Route path="/about" exact component={() => <About />} />
       </BrowserRouter>
     </div>
   );
