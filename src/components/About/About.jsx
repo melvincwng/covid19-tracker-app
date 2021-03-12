@@ -9,7 +9,7 @@ function About(){
 
     const fetchAboutProject = async () => {
         try {
-            const data = await axios.get(url);
+            const data = await axios.get(url); //data is an object here, and inside it, it has a key/property called 'data'. And data.data will give us an array, [{title: ..., body: ..., body1: ... etcs}]
             return [data.data[0].title, data.data[0].body, data.data[0].body2, data.data[0].body3, data.data[0].body4]
         } catch (err) {
             console.log(err)
@@ -30,7 +30,6 @@ function About(){
     const body3 = aboutData[3];
     const body4 = aboutData[4];
     
-
     return(
         <div className={styles.container}>
             <h1>{title}</h1>
