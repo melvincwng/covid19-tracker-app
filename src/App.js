@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import { BrowserRouter, Route } from "react-router-dom";
 import About from './components/About/About';
+import Articles from './components/Articles/Articles';
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
         <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
         <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
         <Route path="/login" exact render={() => <h1>Login</h1>} />
-        <Route path="/articles" exact render={() => <h1>Articles</h1>} />
+        <Route path="/articles" exact render={() => <Articles />} />
         <Route path="/about" exact component={() => <About />} />
       </BrowserRouter>
     </div>
