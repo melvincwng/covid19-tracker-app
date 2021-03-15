@@ -30,15 +30,18 @@ function Articles() {
 
     //article.postDate will return a date string.
     // To convert the date string into a readable date, refer to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse &  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+
     const articlesContainer = articles.map((article) => 
             <div key={article._id}>
                 <h3>{article.title}</h3>
-                <div>{article.body}</div>
+                <div className={styles.limitText}>{article.body}</div>
                 <div className={styles.fontsize}>{article.authorName}</div>
                 <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
+                <a href={`/articles/${article._id}`} target="_blank" rel="noopener noreferrer"><button>Read more</button></a>
                 <br></br>
+                <br></br> 
             </div>
-    );
+    ).reverse(); // we use .reverse() here to reverse the array so the article posts are listed from most-recent to most-oldest
 
     const articlesContainerHeader = <h1>Articles</h1>;
     
