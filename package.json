@@ -10,7 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
-    "netlify-cli": "^3.10.11",
+    "netlify-cli": "^3.10.12",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-chartjs-2": "^2.11.1",

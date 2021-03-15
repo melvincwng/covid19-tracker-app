@@ -45,13 +45,13 @@ function About(){
             <br></br>
             <div>{body4}</div>
             <br></br>
-            <div>If you are interested in my portfolio, please visit my website at: <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a></div>
         </div>
 
+    const aboutProjectFooter = <div>If you are interested in my portfolio, please visit my website at: <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a></div>
     
     return(
         <div className={styles.container}>
-            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : aboutProject}
+            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{aboutProject} {aboutProjectFooter}</div> }
         </div>
     );
 }
