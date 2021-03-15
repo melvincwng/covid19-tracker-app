@@ -32,18 +32,17 @@ function Articles() {
     // To convert the date string into a readable date, refer to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse &  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     const articlesContainer = articles.map((article) => 
             <div>
-                <h1>{article.title}</h1>
-                {article.body}
+                <h3>{article.title}</h3>
+                <div>{article.body}</div>
+                <div>{article.authorName}</div>
+                <div>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
                 <br></br>
-                {article.authorName}
-                <br></br>
-                {(new Date(article.postDate)).toLocaleDateString('en-GB')}
             </div>
     );
     
     return(
         <div className={styles.container}>
-            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : articlesContainer}
+            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{<h1>Articles</h1>} {articlesContainer}</div>}
         </div>
     );
 }
