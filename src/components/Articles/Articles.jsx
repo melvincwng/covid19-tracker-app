@@ -31,11 +31,11 @@ function Articles() {
     //article.postDate will return a date string.
     // To convert the date string into a readable date, refer to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse &  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     const articlesContainer = articles.map((article) => 
-            <div>
+            <div key={article._id}>
                 <h3>{article.title}</h3>
                 <div>{article.body}</div>
-                <div>{article.authorName}</div>
-                <div>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
+                <div className={styles.fontsize}>{article.authorName}</div>
+                <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
                 <br></br>
             </div>
     );
