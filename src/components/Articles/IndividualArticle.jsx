@@ -33,7 +33,7 @@ function IndividualArticle(props) {
       </div>
 
     return (
-        <div>{singleArticleContainer}</div>
+        <div className={styles.container}>{singleArticleContainer}</div>
       );
 }
 
