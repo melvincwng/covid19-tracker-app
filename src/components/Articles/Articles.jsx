@@ -39,10 +39,12 @@ function Articles() {
                 <br></br>
             </div>
     );
+
+    const articlesContainerHeader = <h1>Articles</h1>;
     
     return(
         <div className={styles.container}>
-            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{<h1>Articles</h1>} {articlesContainer}</div> }
+            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{articlesContainerHeader} {articlesContainer}</div> }
         </div>
     );
 }
