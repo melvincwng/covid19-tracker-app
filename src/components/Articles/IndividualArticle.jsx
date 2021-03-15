@@ -26,6 +26,7 @@ function IndividualArticle(props) {
         setArticle(articleObject);
       }
       fetchMyAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const singleArticleContainer = 
