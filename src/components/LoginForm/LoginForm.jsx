@@ -32,7 +32,7 @@ function LoginForm() {
                 </ErrorMessage>
         
                 
-                <Field name="password" type="text" placeholder="Password" className={styles.fieldTwo}/>
+                <Field name="password" type="password" placeholder="Password" className={styles.fieldTwo}/>
                 <ErrorMessage name="password">
                     {msg => <div className={styles.errorMessage}>{msg}</div>}
                 </ErrorMessage>
