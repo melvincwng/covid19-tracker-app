@@ -11,6 +11,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import About from './components/About/About';
 import Articles from './components/Articles/Articles';
 import IndividualArticle from './components/Articles/IndividualArticle';
+import LoginForm from './components/LoginForm/LoginForm';
 
 function App() {
 
@@ -43,7 +44,7 @@ function App() {
         <Route path="/" exact render={() => <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />} />
         <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
         <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
-        <Route path="/login" exact render={() => <h1>Login</h1>} />
+        <Route path="/login" exact component={LoginForm} />
         <Route path="/articles" exact render={() => <Articles />} />
         <Route path="/articles/:id" exact component={IndividualArticle} />
         <Route path="/about" exact component={() => <About />} />
