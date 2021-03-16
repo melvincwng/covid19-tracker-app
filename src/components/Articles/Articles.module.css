@@ -18,7 +18,21 @@
 }
 
 .limitText {
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
     overflow: hidden;
-    white-space: nowrap;
 }
+
+/* Alternative CSS code for .limitText:
+    .limitText {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    This will cause the body of the article to be condensed into ONE line and then
+    truncate it with '...', while hiding the overflowing words. However, if you want
+    more lines to appear & then end off with the '...' at the end, use the code above it instead
+    Refer to https://css-tricks.com/almanac/properties/l/line-clamp/ for more information
+*/ 
