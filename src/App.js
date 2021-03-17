@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { fetchData } from './api/index';
 import Cards from './components/Cards/Cards';
 import Chart from './components/Chart/Chart';
@@ -12,11 +12,18 @@ import About from './components/About/About';
 import Articles from './components/Articles/Articles';
 import IndividualArticle from './components/Articles/IndividualArticle';
 import LoginForm from './components/LoginForm/LoginForm';
+import { UserContext } from './UserContext';
 
 function App() {
-
   const [data, setData] = useState({});
   const [country, setCountry] = useState("");
+  const [ user, setUser ] = useState(null);
+
+  //useMemo is a react hook which, when the variables user & setUser in the dependency array changes,
+  //useMemo will automatically run again to return the new values of user & setUser in an object form
+  //which will then update the 'value' constant/variable; 'value' constant stores the { user, setUser } object
+  //which subsequently the new 'value' constant is passed into our UserContext component at the value attribute - line 49
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   // useEffect will automatically run after the components here are first rendered onto the screen.
   useEffect(() => {
@@ -39,15 +46,17 @@ function App() {
   return (
     <div className={styles.container}>
       <BrowserRouter>
-        <NavigationBar />
-        <Route path="/" exact render={() => <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>} />
-        <Route path="/" exact render={() => <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />} />
-        <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
-        <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
-        <Route path="/login" exact component={LoginForm} />
-        <Route path="/articles" exact render={() => <Articles />} />
-        <Route path="/articles/:id" exact component={IndividualArticle} />
-        <Route path="/about" exact component={() => <About />} />
+        <UserContext.Provider value={value}>
+          <NavigationBar />
+          <Route path="/" exact render={() => <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>} />
+          <Route path="/" exact render={() => <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />} />
+          <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
+          <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
+          <Route path="/login" exact component={LoginForm} />
+          <Route path="/articles" exact render={() => <Articles />} />
+          <Route path="/articles/:id" exact component={IndividualArticle} />
+          <Route path="/about" exact component={() => <About />} />
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );

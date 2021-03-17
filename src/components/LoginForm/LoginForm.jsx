@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from './LoginForm.module.css';
 import axios from 'axios';
+import { UserContext } from './../../UserContext';
 
 const url = 'https://covid19-tracker-app-express.herokuapp.com/users/login';
 
 function LoginForm() {
     const [ disabled, setDisabled ] = useState(false); //to prevent users from clicking multiple times
+    const { user, setUser }= useContext(UserContext);
 
     return (
         <Formik
@@ -24,7 +26,8 @@ function LoginForm() {
                 async function fetchMyAPI() {
                     try {
                         const loginOutcome = await axios.post(url, values) //loginoutcome is the response object
-                        alert(loginOutcome.data[0]);
+                        alert(loginOutcome.data[0]); //loginOutcome.data[0] contains the string message
+                        setUser(loginOutcome.data[1]); //loginOutcome.data[1] contains the user document/object
                         setDisabled(false);
                         window.location.href = '/' //after clicking 'OK' on alert box, it redirects user to home-page, refer to link for more info: https://stackoverflow.com/questions/33622057/redirect-after-alert-box
                     } catch (err) {
