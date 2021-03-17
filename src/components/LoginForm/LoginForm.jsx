@@ -5,7 +5,7 @@ import styles from './LoginForm.module.css';
 import axios from 'axios';
 import { UserContext } from './../../UserContext';
 
-const url = `${process.env.REACT_APP_API_URL}/users/login`;
+const url = "https://covid19-tracker-app-express.herokuapp.com/users/login";
 
 function LoginForm() {
     const [ disabled, setDisabled ] = useState(false); //to prevent users from clicking multiple times
@@ -37,7 +37,7 @@ function LoginForm() {
                     } catch (err) {
                         // Refer to this link for more info on err.response: https://stackoverflow.com/questions/39153080/how-can-i-get-the-status-code-from-an-http-error-in-axios
                         // Main idea, when we receive a response from the server (that contains an error object), the error object will contain the response property, that has the data we need
-                        alert(err.response.data);
+                        alert(err.response.data)
                         setDisabled(false);
                     }
                 }
