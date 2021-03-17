@@ -15,10 +15,10 @@ function LoginForm() {
             validationSchema={Yup.object({
                 username: Yup.string()
                 .required('This field is required.')
-                .min(3, 'Your username must have at least 3 characters.'),
+                .min(3, 'Username must have at least 3 characters.'),
                 password: Yup.string()
                 .required('This field is required.')
-                .min(8, 'Your password must have at least 8 characters.'),
+                .min(8, 'Password must have at least 8 characters.'),
             })}
             onSubmit={(values, { setSubmitting }) => {
                 async function fetchMyAPI() {
