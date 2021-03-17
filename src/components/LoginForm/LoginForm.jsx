@@ -23,8 +23,9 @@ function LoginForm() {
             onSubmit={(values, { setSubmitting }) => {
                 async function fetchMyAPI() {
                     try {
-                        const loginOutcome = await axios.post(url, values)
-                        alert(loginOutcome.data);
+                        const loginOutcome = await axios.post(url, values) //loginoutcome is the response object
+                        alert(loginOutcome.data[0]);
+                        setDisabled(false);
                         window.location.href = '/' //after clicking 'OK' on alert box, it redirects user to home-page, refer to link for more info: https://stackoverflow.com/questions/33622057/redirect-after-alert-box
                     } catch (err) {
                         // Refer to this link for more info on err.response: https://stackoverflow.com/questions/39153080/how-can-i-get-the-status-code-from-an-http-error-in-axios
