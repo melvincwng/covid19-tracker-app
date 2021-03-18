@@ -24,12 +24,6 @@ function Logout() {
     function handleSubmit(e) {
         e.preventDefault();
         setDisabled(true);
-        // mocking the axios post request to backend (to allow user to logout), which takes a couple of seconds
-        /* setTimeout(function() {
-            alert('You have logged out!');
-            setDisabled(false);
-        }
-        , 3000); */
         fetchMyAPI();
     }
 
