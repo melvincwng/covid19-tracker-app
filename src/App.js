@@ -7,7 +7,7 @@ import styles from './App.module.css';
 import CovidHeaderImage from './images/COVID19-header.jpg'
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from './components/NavigationBar/NavigationBar'
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import About from './components/About/About';
 import Articles from './components/Articles/Articles';
 import IndividualArticle from './components/Articles/IndividualArticle';
@@ -88,4 +88,4 @@ function App() {
 }
 
 export default App; 
-// <Route render={() => <h1>Not found</h1>} />
+// <Route render={() => <h1>Not found</h1>} /> for switch component later on
