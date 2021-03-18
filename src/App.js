@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, Fragment } from "react";
 import { fetchData } from './api/index';
 import Cards from './components/Cards/Cards';
 import Chart from './components/Chart/Chart';
@@ -41,7 +41,7 @@ function App() {
   // More information refer to: https://stackoverflow.com/questions/64668671/react-hooks-context-state-is-undefined-when-refreshing-the-page
   
   // Step 1. Create a key to name your data in local storage
-  const USER_DATA_KEY_IN_LOCALSTORAGE = 'user_daaaaazaaaazata';
+  const USER_DATA_KEY_IN_LOCALSTORAGE = 'user_data';
 
   // Step 2. Retrieve userData from local storage on startup
   // More information on window.localStorage, refer to: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
@@ -69,18 +69,25 @@ function App() {
       <BrowserRouter>
         <UserContext.Provider value={value}>
           <NavigationBar />
-          <Route path="/" exact render={() => <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>} />
-          <Route path="/" exact render={() => <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />} />
-          <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
-          <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
-          {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
-          {user && <Route path="/logout" exact render={() => <h1>Can logout only if user is logged in</h1>} />}
-          {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
-          {!user && <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Error 403: Forbidden</h1>} />}
-          {!user && <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
-          <Route path="/articles" exact render={() => <Articles />} />
-          <Route path="/articles/:id" exact component={IndividualArticle} />
-          <Route path="/about" exact component={() => <About />} />
+          <Switch>
+            <Route path="/" exact render={() =>
+              <Fragment>
+                <img src={CovidHeaderImage} alt="COVID-19 Header" className={styles.image} ></img>
+                <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />
+                <CountryPicker handleSelectedCountry={handleSelectedCountry}/>
+                <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>
+              </Fragment>
+            } />
+            {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
+            {user && <Route path="/logout" exact render={() => <h1>Can logout only if user is logged in</h1>} />}
+            {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
+            {!user && <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Error 403: Forbidden</h1>} />}
+            {!user && <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
+            <Route path="/articles" exact render={() => <Articles />} />
+            <Route path="/articles/:id" exact component={IndividualArticle} />
+            <Route path="/about" exact component={() => <About />} />
+            <Route render={() => <h1 className={styles.forbidden}>Error 404: Page not found</h1>} /> 
+          </Switch>
         </UserContext.Provider>
       </BrowserRouter>
     </div>
@@ -88,4 +95,13 @@ function App() {
 }
 
 export default App; 
-// <Route render={() => <h1>Not found</h1>} /> for switch component later on
+
+// Notes:
+// Line 74 - <Fragment></Fragment> component can be used to help render multiple components
+// Refer to: https://stackoverflow.com/questions/37342997/render-multiple-components-in-react-router for more info
+
+// Line 89 - <Route render={() => <h1 className={styles.forbidden}>Error 404: Page not found</h1>} />;
+// If you put all the Route components in a Switch component,
+// and if the 'path' attribute for the route component is not stated (line 89)
+// When no other matches above are found, the path will always match that particular Route component (line 89)
+// Refer to: https://ultimatecourses.com/blog/react-router-not-found-component for more info
