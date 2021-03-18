@@ -41,7 +41,7 @@ function App() {
   // More information refer to: https://stackoverflow.com/questions/64668671/react-hooks-context-state-is-undefined-when-refreshing-the-page
   
   // Step 1. Create a key to name your data in local storage
-  const USER_DATA_KEY_IN_LOCALSTORAGE = 'user_data';
+  const USER_DATA_KEY_IN_LOCALSTORAGE = 'user_daaaaazaaaazata';
 
   // Step 2. Retrieve userData from local storage on startup
   // More information on window.localStorage, refer to: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
@@ -73,7 +73,7 @@ function App() {
           <Route path="/" exact render={() => <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />} />
           <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
           <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
-          <Route path="/login" exact component={LoginForm} />
+          {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
           {user && <Route path="/logout" exact render={() => <h1>Can logout only if user is logged in</h1>} />}
           {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
           {!user && <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Error 403: Forbidden</h1>} />}
