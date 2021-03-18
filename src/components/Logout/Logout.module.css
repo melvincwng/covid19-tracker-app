@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pangolin&family=Reenie+Beanie&family=Rock+Salt&display=swap);
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pangolin', cursive !important;
+}
+
+.button {
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+      text-align: center;
+    }
+  }

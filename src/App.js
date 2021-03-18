@@ -13,6 +13,7 @@ import Articles from './components/Articles/Articles';
 import IndividualArticle from './components/Articles/IndividualArticle';
 import LoginForm from './components/LoginForm/LoginForm';
 import { UserContext } from './UserContext';
+import Logout from './components/Logout/Logout';
 
 function App() {
   const [data, setData] = useState({});
@@ -79,7 +80,7 @@ function App() {
               </Fragment>
             } />
             {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
-            {user && <Route path="/logout" exact render={() => <h1>Can logout only if user is logged in</h1>} />}
+            {user && <Route path="/logout" exact component={Logout} />}
             {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
             {!user && <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Error 403: Forbidden</h1>} />}
             {!user && <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
