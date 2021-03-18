@@ -37,7 +37,7 @@ function App() {
   // After logging in, and then refreshing the page or going to another section of the website,
   // the React states do not persist. This essentially means the user state (line 20) which should be
   // containing a valid user (since user has logged in) will be gone. Hence, upon refresh, the userContext disappears
-  // To fix this, use the solution below (lines 43 - 56)
+  // To fix this, use the solution below (lines 43 - 56). We need to save the user state in localstorage & retrieve it on component load.
   // More information refer to: https://stackoverflow.com/questions/64668671/react-hooks-context-state-is-undefined-when-refreshing-the-page
   
   // Step 1. Create a key to name your data in local storage
@@ -50,7 +50,7 @@ function App() {
     setUser(JSON.parse(userDataString)); // then at the start, we are actually doing setUser(null)
   }, []);
 
-  // Step 3. Update userData in local storage when it changes.
+  // Step 3. Update userData in local storage when it changes (e.g. when we enter correct username/password & clicked Login -> in our LoginForm component, it will setUser(user), hence the user variable in app.js will contain an actual user object, and hence useEffect at line 54 will run again due to 'user' put being in its dependency array)
   useEffect(() => {
     window.localStorage.setItem(USER_DATA_KEY_IN_LOCALSTORAGE, JSON.stringify(user));
   }, [user]);
