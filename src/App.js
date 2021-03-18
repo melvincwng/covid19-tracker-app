@@ -18,11 +18,11 @@ function App() {
   const [data, setData] = useState({});
   const [country, setCountry] = useState("");
   const [ user, setUser ] = useState(null);
-
+  
   //useMemo is a react hook which, when the variables user & setUser in the dependency array changes,
   //useMemo will automatically run again to return the new values of user & setUser in an object form
   //which will then update the 'value' constant/variable; 'value' constant stores the { user, setUser } object
-  //which subsequently the new 'value' constant is passed into our UserContext component at the value attribute - line 49
+  //which subsequently the new 'value' constant is passed into our UserContext component at the value attribute - line 60
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   // useEffect will automatically run after the components here are first rendered onto the screen.
@@ -33,6 +33,27 @@ function App() {
     }
     fetchMyAPI()
   },[])
+
+  // After logging in, and then refreshing the page or going to another section of the website,
+  // the React states do not persist. This essentially means the user state (line 20) which should be
+  // containing a valid user (since user has logged in) will be gone. Hence, upon refresh, the userContext disappears
+  // To fix this, use the solution below (lines 43 - 56)
+  // More information refer to: https://stackoverflow.com/questions/64668671/react-hooks-context-state-is-undefined-when-refreshing-the-page
+  
+  // Step 1. Create a key to name your data in local storage
+  const USER_DATA_KEY_IN_LOCALSTORAGE = 'user_data';
+
+  // Step 2. Retrieve userData from local storage on startup
+  // More information on window.localStorage, refer to: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+  useEffect(() => {
+    const userDataString = window.localStorage.getItem(USER_DATA_KEY_IN_LOCALSTORAGE); //in this line, we are trying to get an item with the key USER_DATA_KEY in our local storage, but since our local storage doesn't have such an item, it will return null
+    setUser(JSON.parse(userDataString)); // then at the start, we are actually doing setUser(null)
+  }, []);
+
+  // Step 3. Update userData in local storage when it changes.
+  useEffect(() => {
+    window.localStorage.setItem(USER_DATA_KEY_IN_LOCALSTORAGE, JSON.stringify(user));
+  }, [user]);
 
   //implementing logic for the handleSelectedCountry function here
   //what handleSelectedCountry does is that it takes into a parameter country
@@ -53,6 +74,8 @@ function App() {
           <Route path="/" exact render={() => <CountryPicker handleSelectedCountry={handleSelectedCountry}/>} />
           <Route path="/" exact render={() => <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>} />
           <Route path="/login" exact component={LoginForm} />
+          {user && <Route path="/logout" exact render={() => <h1>Can logout only if user is logged in</h1>} />}
+          {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
           <Route path="/articles" exact render={() => <Articles />} />
           <Route path="/articles/:id" exact component={IndividualArticle} />
           <Route path="/about" exact component={() => <About />} />
