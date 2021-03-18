@@ -80,9 +80,8 @@ function App() {
               </Fragment>
             } />
             {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
-            {user && <Route path="/logout" exact component={Logout} />}
+            {user ? <Route path="/logout" exact component={Logout} /> : <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Logged out!</h1>} />}
             {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
-            {!user && <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Error 403: Forbidden</h1>} />}
             {!user && <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
             <Route path="/articles" exact render={() => <Articles />} />
             <Route path="/articles/:id" exact component={IndividualArticle} />
