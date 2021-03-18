@@ -33,7 +33,7 @@ function LoginForm() {
                         alert(loginOutcome.data[0]); //loginOutcome.data[0] contains the string message
                         setUser(loginOutcome.data[1]); //loginOutcome.data[1] contains the user document/object
                         setDisabled(false);
-                        //window.location.href = '/' //after clicking 'OK' on alert box, it redirects user to home-page, refer to link for more info: https://stackoverflow.com/questions/33622057/redirect-after-alert-box
+                        window.location.href = '/' //after clicking 'OK' on alert box, it redirects user to home-page, refer to link for more info: https://stackoverflow.com/questions/33622057/redirect-after-alert-box
                     } catch (err) {
                         // Refer to this link for more info on err.response: https://stackoverflow.com/questions/39153080/how-can-i-get-the-status-code-from-an-http-error-in-axios
                         // Main idea, when we receive a response from the server (that contains an error object), the error object will contain the response property, that has the data we need

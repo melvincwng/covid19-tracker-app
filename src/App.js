@@ -7,7 +7,7 @@ import styles from './App.module.css';
 import CovidHeaderImage from './images/COVID19-header.jpg'
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from './components/NavigationBar/NavigationBar'
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import About from './components/About/About';
 import Articles from './components/Articles/Articles';
 import IndividualArticle from './components/Articles/IndividualArticle';
@@ -76,6 +76,8 @@ function App() {
           <Route path="/login" exact component={LoginForm} />
           {user && <Route path="/logout" exact render={() => <h1>Can logout only if user is logged in</h1>} />}
           {user && <Route path="/admin" exact render={() => <h1>Admin features should appear here only if user is logged in</h1>} />}
+          {!user && <Route path="/logout" exact render={() => <h1 className={styles.forbidden}>Error 403: Forbidden</h1>} />}
+          {!user && <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
           <Route path="/articles" exact render={() => <Articles />} />
           <Route path="/articles/:id" exact component={IndividualArticle} />
           <Route path="/about" exact component={() => <About />} />
@@ -86,3 +88,4 @@ function App() {
 }
 
 export default App; 
+// <Route render={() => <h1>Not found</h1>} />
