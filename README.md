@@ -2,6 +2,8 @@
 
 This web application showcases various COVID-19 related statistics such as number of infections, number of recoveries, number of active cases and numbers of deaths, both globally and locally (within a particular country). 
 
+It also provide access to medical articles about COVID-19, which users can read to increase their awareness & knowledge about the disease.
+
 ## Languages/Tools used:
 HTML, CSS, Javascript, React JS (front-end framework), Material UI library, react-countup library, react-chartjs-2 library, Two APIs used: mathdroid/covid-19-api & melvincwng/covid19-tracker-app-express
 
