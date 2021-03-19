@@ -34,17 +34,19 @@ function Admin() {
         fetchMyAPI();
     }
 
+    // line 43 encType="multipart/form-data" -> This attribute is required for forms dealing with file uploads -> Source: https://www.w3schools.com/tags/att_form_enctype.asp
+    // also remember in the 'name' attributes for the input tags -> it must match accordingly to the Model Schema, as written in the backend, if not there will be errors.
     return(
         <div className={styles.container}>
             <h1 className={styles.underline}>Admin Features</h1>
             <h3>Create new article:</h3>
-            <form className={styles.form} id="form">
+            <form className={styles.form} id="form" encType="multipart/form-data"> 
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" placeholder="Add a catchy title..."></input>
                 <label for="body" className={styles.spacing}>Body:</label>
                 <textarea type="text" id="body" name="body" placeholder="Write your article here..."></textarea>
-                <label for="image" className={styles.spacing}>Select an image:</label>
-                <input type="file" id="image" name="image" accept="image/jpg, image/jpeg, image/png"></input>
+                <label for="articleImage" className={styles.spacing}>Select an image:</label>
+                <input type="file" id="articleImage" name="articleImage" accept="image/jpg, image/jpeg, image/png"></input>
                 <label for="authorName" className={styles.spacing}>Author Name:</label>
                 <input type="text" id="authorName" name="authorName" placeholder="Your name..."></input>
                 <input type="submit" value="Submit" className={styles.button} onClick={handleSubmit}></input>
