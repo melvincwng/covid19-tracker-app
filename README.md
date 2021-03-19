@@ -3,7 +3,7 @@
 This web application showcases various COVID-19 related statistics such as number of infections, number of recoveries, number of active cases and numbers of deaths, both globally and locally (within a particular country). 
 
 ## Languages/Tools used:
-HTML, CSS, Javascript, React JS (front-end framework), Material UI library, react-countup library, react-chartjs-2 library, API used: mathdroid/covid-19-api
+HTML, CSS, Javascript, React JS (front-end framework), Material UI library, react-countup library, react-chartjs-2 library, Two APIs used: mathdroid/covid-19-api & my own express.js/node.js API connected with MongoDB+Mongooe
 
 ## Art & Design:
 Artwork created by Melvin Ng
