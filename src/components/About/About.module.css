@@ -16,4 +16,7 @@
 .underline {
     text-decoration: underline;
     text-decoration-thickness: 3px;
+    text-decoration-skip-ink: none;
 }
+
+/*text-decoration-skip-ink: none is for those alphabets like 'g','p','y', which can cut the line*/

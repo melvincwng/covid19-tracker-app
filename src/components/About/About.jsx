@@ -36,7 +36,6 @@ function About(){
 
     const aboutProject = 
         <div>
-            <h1 className={styles.underline}>{title}</h1>
             <div>{body}</div>
             <br></br>
             <div>{body2}</div>
@@ -47,11 +46,12 @@ function About(){
             <br></br>
         </div>
 
+    const aboutProjectHeader = <h1 className={styles.underline}>{title}</h1>
     const aboutProjectFooter = <div>If you are interested in my portfolio, please visit my website at: <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a></div>
     
     return(
         <div className={styles.container}>
-            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{aboutProject} {aboutProjectFooter}</div> }
+            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{aboutProjectHeader} {aboutProject} {aboutProjectFooter}</div> }
         </div>
     );
 }
