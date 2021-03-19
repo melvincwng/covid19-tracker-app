@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Admin.module.css';
 import axios from 'axios';
 import { UserContext } from './../../UserContext';
@@ -7,12 +7,15 @@ const url = "https://covid19-tracker-app-express.herokuapp.com/articles";
 
 function Admin() {
     const { user, setUser } = useContext(UserContext);
+    const [ disabled, setDisabled ] = useState(false);
 
     function handleSubmit(e) {
         async function fetchMyAPI() {
             try {
                 const articleOutcome = await axios.post(url, formData, { withCredentials: true });
-                console.log(articleOutcome);
+                alert(articleOutcome.data);
+                setDisabled(false);
+                window.location.href = '/articles'
             } catch (err) {
                 console.log(err)
             }
@@ -25,12 +28,12 @@ function Admin() {
         // For more info, refer to https://stackoverflow.com/questions/25040479/formdata-created-from-an-existing-form-seems-empty-when-i-log-it
         // and refer to https://developer.mozilla.org/en-US/docs/Web/API/FormData/entries
         e.preventDefault();
+        setDisabled(true);
         let formElement = document.getElementById("form");
         let formData = new FormData(formElement); 
         /*for (let [key, value] of formData.entries()) { 
             console.log(key, value);
         }*/
-        console.log(formData)
         fetchMyAPI();
     }
 
@@ -50,7 +53,7 @@ function Admin() {
                 <input type="file" id="articleImage" name="articleImage" accept="image/jpg, image/jpeg, image/png"></input>
                 <label for="authorName" className={styles.spacing}>Author Name:</label>
                 <input type="text" id="authorName" name="authorName" placeholder="Your name..." required></input>
-                <input type="submit" value="Submit" className={styles.button}></input>
+                <input type="submit" value="Submit" disabled={disabled} className={styles.button}></input>
             </form>
         </div>
     );
