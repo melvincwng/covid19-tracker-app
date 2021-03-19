@@ -24,6 +24,11 @@
     overflow: hidden;
 }
 
+.underline {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
 /* Alternative CSS code for .limitText:
     .limitText {
         text-overflow: ellipsis;

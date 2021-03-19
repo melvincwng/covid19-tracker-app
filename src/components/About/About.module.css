@@ -12,3 +12,8 @@
     align-items: center;
     height: inherit;
 }
+
+.underline {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}

@@ -43,7 +43,7 @@ function Articles() {
             </div>
     ).reverse(); // we use .reverse() here to reverse the array so the article posts are listed from most-recent to most-oldest
 
-    const articlesContainerHeader = <h1>Articles</h1>;
+    const articlesContainerHeader = <h1 className={styles.underline}>Articles</h1>;
     
     return(
         <div className={styles.container}>
