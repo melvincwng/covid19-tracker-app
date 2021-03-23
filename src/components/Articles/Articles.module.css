@@ -29,6 +29,10 @@
     text-decoration-thickness: 3px;
 }
 
+.button {
+    margin-right: 5px;
+}
+
 /* Alternative CSS code for .limitText:
     .limitText {
         text-overflow: ellipsis;
