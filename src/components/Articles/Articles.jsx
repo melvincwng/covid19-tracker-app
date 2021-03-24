@@ -30,6 +30,16 @@ function Articles() {
         fetchMyAPI();
     }, []); 
 
+    //WIP for handleEdit function
+    async function handleEdit(e) {
+        try {
+            e.preventDefault();
+            alert('Editing article');
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     async function handleDelete(e) {
         try {
             e.preventDefault();
@@ -56,6 +66,7 @@ function Articles() {
                 <div className={styles.fontsize}>{article.authorName}</div>
                 <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
                 <a href={`/articles/${article._id}`} target="_blank" rel="noopener noreferrer"><button className={styles.button}>Read more</button></a>
+                { user && <button type="submit" value={article._id} onClick={handleEdit} className={styles.button}>Edit</button> }
                 { user &&  <button type="submit" value={article._id} onClick={handleDelete} className={styles.button}>Delete</button> }
                 <br></br>
                 <br></br> 
