@@ -68,7 +68,7 @@ function Articles() {
                 <div className={styles.fontsize}>{article.authorName}</div>
                 <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
                 <a href={`/articles/${article._id}`} target="_blank" rel="noopener noreferrer"><button className={styles.button}>Read more</button></a>
-                { user && <a href={`/articles/edit/${article._id}`} target="_blank" rel="noopener noreferrer"><button type="submit" value={article._id} onClick={handleEdit} className={styles.button}>Edit</button></a> }
+                { user && <a href={`/edit/${article._id}`} target="_blank" rel="noopener noreferrer"><button type="submit" value={article._id} onClick={handleEdit} className={styles.button}>Edit</button></a> }
                 { user &&  <button type="submit" value={article._id} onClick={handleDelete} className={styles.button}>Delete</button> }
                 <br></br>
                 <br></br> 
