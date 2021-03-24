@@ -85,6 +85,7 @@ function App() {
             {user ? <Route path="/admin" exact component={Admin} /> : <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
             <Route path="/articles" exact render={() => <Articles />} />
             <Route path="/articles/:id" exact component={IndividualArticle} />
+            { user ? <Route path="/articles/edit/:id" exact render={() => <h1>Editting...</h1>} /> : <Route path="/articles/edit/:id" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} /> }
             <Route path="/about" exact component={() => <About />} />
             <Route render={() => <h1 className={styles.forbidden}>Error 404: Page not found</h1>} /> 
           </Switch>

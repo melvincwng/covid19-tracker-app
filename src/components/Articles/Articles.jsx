@@ -34,6 +34,8 @@ function Articles() {
     async function handleEdit(e) {
         try {
             e.preventDefault();
+            let divContainer = document.getElementById("test")
+            console.log(divContainer.innerHTML)
             alert('Editing article');
         } catch (err) {
             console.log(err)
@@ -61,12 +63,12 @@ function Articles() {
 
     const articlesContainer = articles.map((article) => 
             <div key={article._id}>
-                <h3>{article.title}</h3>
+                <h3 id="test">{article.title}</h3>
                 <div className={styles.limitText}>{article.body}</div>
                 <div className={styles.fontsize}>{article.authorName}</div>
                 <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
                 <a href={`/articles/${article._id}`} target="_blank" rel="noopener noreferrer"><button className={styles.button}>Read more</button></a>
-                { user && <button type="submit" value={article._id} onClick={handleEdit} className={styles.button}>Edit</button> }
+                { user && <a href={`/articles/edit/${article._id}`} target="_blank" rel="noopener noreferrer"><button type="submit" value={article._id} onClick={handleEdit} className={styles.button}>Edit</button></a> }
                 { user &&  <button type="submit" value={article._id} onClick={handleDelete} className={styles.button}>Delete</button> }
                 <br></br>
                 <br></br> 
