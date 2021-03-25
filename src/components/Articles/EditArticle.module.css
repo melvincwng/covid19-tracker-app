@@ -6,20 +6,11 @@
     font-family: 'Pangolin', cursive !important;
 }
 
-.fontsize {
-    font-size: 0.8rem;
-}
-
 .loader {
     display: flex;
     justify-content: center;
     align-items: center;
     height: inherit;
-}
-
-/* Line 21-23 preserves the line-breaks or white-spaces in the textarea */
-.whitespace {
-    white-space: pre-wrap;
 }
 
 .form {
