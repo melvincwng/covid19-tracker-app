@@ -8,6 +8,7 @@ function EditArticle(props) {
     const url = `https://covid19-tracker-app-express.herokuapp.com/articles/${articleID}`;
     const [ article, setArticle ] = useState({});
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ disabled, setDisabled ] = useState(false);
 
     const fetchIndividualArticle = async () => {
         try {
@@ -29,9 +30,23 @@ function EditArticle(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
+        async function fetchMyAPI() {
+            try {
+                const editedArticleOutcome = await axios.put(url, formData, { withCredentials: true });
+                console.log(editedArticleOutcome)
+                //alert('Article edited!');
+                //setDisabled(false);
+                //window.location.href = '/articles'
+            } catch (err) {
+                console.log(err)
+            }
+        }
         e.preventDefault();
-        console.log(article)
+        setDisabled(true);
+        let formElement = document.getElementById("form");
+        let formData = new FormData(formElement);
+        fetchMyAPI();
     }
     
     function handleTitleChange(e) {
@@ -55,7 +70,7 @@ function EditArticle(props) {
             <textarea type="text" id="body" name="body" value={article.body} onChange={handleBodyChange} placeholder="Write your article here..." required></textarea>
             <label for="authorName" className={styles.spacing}>Author Name:</label>
             <input type="text" id="authorName" name="authorName" value={article.authorName} onChange={handleNameChange} placeholder="Your name..." required></input>
-            <input type="submit" value="Submit" className={styles.button}></input>            
+            <input type="submit" value="Update" disabled={disabled} className={styles.button}></input>            
         </form>
 
     return (
