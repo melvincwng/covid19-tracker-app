@@ -15,6 +15,7 @@ import LoginForm from './components/LoginForm/LoginForm';
 import { UserContext } from './UserContext';
 import Logout from './components/Logout/Logout'; 
 import Admin from './components/Admin/Admin';
+import EditArticle from './components/Articles/EditArticle';
 
 function App() {
   const [data, setData] = useState({});
@@ -85,7 +86,7 @@ function App() {
             {user ? <Route path="/admin" exact component={Admin} /> : <Route path="/admin" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} />}
             <Route path="/articles" exact render={() => <Articles />} />
             <Route path="/articles/:id" exact component={IndividualArticle} />
-            { user ? <Route path="/edit/:id" exact render={() => <h1>Editting...</h1>} /> : <Route path="/edit/:id" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} /> }
+            { user ? <Route path="/edit/:id" exact component={EditArticle} /> : <Route path="/edit/:id" exact render={() => <h1 className={styles.forbidden}>Error 401: You are not authorized to access this page</h1>} /> }
             <Route path="/about" exact component={() => <About />} />
             <Route render={() => <h1 className={styles.forbidden}>Error 404: Page not found</h1>} /> 
           </Switch>
