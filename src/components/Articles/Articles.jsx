@@ -30,18 +30,6 @@ function Articles() {
         fetchMyAPI();
     }, []); 
 
-    //WIP for handleEdit function
-    async function handleEdit(e) {
-        try {
-            e.preventDefault();
-            let divContainer = document.getElementById("test")
-            console.log(divContainer.innerHTML)
-            alert('Editing article');
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     async function handleDelete(e) {
         try {
             e.preventDefault();
@@ -63,7 +51,7 @@ function Articles() {
 
     const articlesContainer = articles.map((article) => 
             <div key={article._id}>
-                <h3 id="test">{article.title}</h3>
+                <h3>{article.title}</h3>
                 <div className={styles.limitText}>{article.body}</div>
                 <div className={styles.fontsize}>{article.authorName}</div>
                 <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
