@@ -32,7 +32,7 @@ function IndividualArticle(props) {
     const singleArticleContainer = 
       <div>
         <h3>{article.title}</h3>
-        <div>{article.body}</div>
+        <div className={styles.whitespace}>{article.body}</div>
         <div className={styles.fontsize}>{article.authorName}</div>
         <div className={styles.fontsize}>{(new Date(article.postDate)).toLocaleDateString('en-GB')}</div>
       </div>
