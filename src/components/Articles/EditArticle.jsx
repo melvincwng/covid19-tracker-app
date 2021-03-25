@@ -33,11 +33,10 @@ function EditArticle(props) {
     function handleSubmit(e) {
         async function fetchMyAPI() {
             try {
-                const editedArticleOutcome = await axios.put(url, formData, { withCredentials: true });
-                console.log(editedArticleOutcome)
-                //alert('Article edited!');
-                //setDisabled(false);
-                //window.location.href = '/articles'
+                await axios.put(url, convertedFormData, { withCredentials: true });
+                alert('Article edited!');
+                setDisabled(false);
+                window.location.href = '/articles'
             } catch (err) {
                 console.log(err)
             }
@@ -46,7 +45,15 @@ function EditArticle(props) {
         setDisabled(true);
         let formElement = document.getElementById("form");
         let formData = new FormData(formElement);
-        fetchMyAPI();
+        //There was a bug here whereby formData object was not working apparently with axios.put() request... 
+        //When fetchMyAPI() was called -> originally was axios.put(url, formData, { withCredentials: true }) -> However, what happened here was that even request was handled successfully, the response (article) returned was the old article and not the newly updated one...(bug)
+        //Instead of using a FormData object, I tried replacing it with a JS object instead e.g. { title: "test", body:"test", authorName: "test" } -> it solved the bug & the article does update accordingly
+        //Hence for that rationale, I implemented lines 54-57 to convert the FormData object (line 49) to a JS object, then put it in the axios.put() request instead of the formData object
+        let convertedFormData = {} 
+        for (let [key, value] of formData.entries()) { 
+            convertedFormData[key] = value
+        }
+        fetchMyAPI(); 
     }
     
     function handleTitleChange(e) {
