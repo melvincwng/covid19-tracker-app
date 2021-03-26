@@ -33,6 +33,25 @@
     margin-right: 5px;
 }
 
+/* Line 37-53 helps to shift the 'Delete' button to the same line as 'Read more' & 'Edit' buttons in small phones of varying sizes*/
+@media only screen and (max-width: 360px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .container {
+        width: 110%;
+    }
+}
+
 /* Alternative CSS code for .limitText:
     .limitText {
         text-overflow: ellipsis;
