@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-CI=true npm test
+CI=true npm test 
+# need to change the command from 'npm test' to 'CI=true npm test' so that the test scripts will run & then exit to allow changes to be committed.
+# previously, if I didn't change line 4 and hence still use 'npm test', what happens is that when you commit, the pre-commit git hook with husky will run
+# to activate & run the test scripts, however the test scripts will not exit after running finish > and this prevents the code from being committed.
+# TLDR: hence simple solution, change from 'npm test' to 'CI= true npm test'
