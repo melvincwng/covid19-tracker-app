@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 
 function Cards ({ confirmed, recovered, deaths, lastUpdate, country }) {
-    // at the start, the app will render a component with empty/undefined values
+    // At the start, the app will render a component with empty/undefined values
     if (!confirmed) {
         return "Loading data...";
     } else {
