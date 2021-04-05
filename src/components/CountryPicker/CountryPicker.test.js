@@ -5,7 +5,7 @@ import MockAdapter from "axios-mock-adapter";
 const mockAxios = new MockAdapter(axios);
 
 describe("CountryPicker component", () => {
-  const countryData = {countries: ["Malaysia", "Albania", "Thailand"]};
+  const countryData = {countries: [{name: "Malaysia"}, {name: "Albania"}, {name:"Thailand"}]};
 
   beforeEach(() => {
     mockAxios.reset();
