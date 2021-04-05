@@ -46,7 +46,7 @@ function LoginForm() {
                 setSubmitting(false);
             }}
         >
-            <Form className={styles.form}>
+            <Form className={styles.form} data-testid="login-form">
                 <h1>Login</h1>
                 
                 <Field name="username" type="text" placeholder="Username" className={styles.fieldOne}/>
