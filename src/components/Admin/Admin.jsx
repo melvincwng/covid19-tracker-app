@@ -44,7 +44,7 @@ function Admin() {
         <div className={styles.container}>
             <h1 className={styles.underline}>Admin Features</h1>
             <h3>Create new article:</h3>
-            <form className={styles.form} id="form" encType="multipart/form-data" onSubmit={handleSubmit}> 
+            <form className={styles.form} id="form" encType="multipart/form-data" onSubmit={handleSubmit} data-testid="for-form-testing"> 
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" placeholder="Add a catchy title..." required></input>
                 <label for="body" className={styles.spacing}>Body:</label>
