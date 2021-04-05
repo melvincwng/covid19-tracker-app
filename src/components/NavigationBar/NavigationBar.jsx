@@ -11,7 +11,7 @@ function NavigationBar() {
     const { user, setUser }= useContext(UserContext);  // object destructuring done here
     
     return(
-      <Navbar bg="transparent" expand="lg" className={styles.navbar}>
+      <Navbar bg="transparent" expand="lg" className={styles.navbar} data-testid="test-navbar">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
