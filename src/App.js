@@ -68,7 +68,7 @@ function App() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="test-app">
       <BrowserRouter>
         <UserContext.Provider value={value}>
           <NavigationBar />
