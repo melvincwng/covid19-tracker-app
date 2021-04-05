@@ -69,7 +69,7 @@ function EditArticle(props) {
     }
 
     const singleArticleContainer = 
-        <form className={styles.form} id="form" encType="multipart/form-data" onSubmit={handleSubmit}>
+        <form className={styles.form} id="form" encType="multipart/form-data" onSubmit={handleSubmit} data-testid="edit-article-form">
             <h3>Edit article</h3>
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" value={article.title} onChange={handleTitleChange} placeholder="Add a catchy title..." required></input>
