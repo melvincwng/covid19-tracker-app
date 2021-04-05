@@ -53,5 +53,11 @@
   "devDependencies": {
     "axios-mock-adapter": "^1.19.0",
     "husky": "^6.0.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "./src/reportWebVitals.js",
+      "./src/index.js"
+    ]
   }
 }

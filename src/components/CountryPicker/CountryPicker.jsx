@@ -19,7 +19,7 @@ function CountryPicker ({ handleSelectedCountry }) {
     // Similar to <select></select> dropdown bar with <options></options> in HTML
 
     return (
-        <FormControl className={styles.formControl}>
+        <FormControl className={styles.formControl} data-testid="country">
             <NativeSelect defaultValue="" onChange={(e) => handleSelectedCountry(e.target.value)} className={styles.font}>
                 <option value="">Global</option>
                 { fetchedCountries.map((country) => <option value={country} key={country}>{country}</option>) }
