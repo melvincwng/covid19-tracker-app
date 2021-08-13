@@ -1,6 +1,7 @@
 import Cards from "./Cards";
 import { render } from "@testing-library/react";
 
+// test was skipped to deploy the app into production after fixing the 'recovered' and 'active' cases
 test.skip("should display info", () => {
   const { getAllByText } = render(
     <Cards
