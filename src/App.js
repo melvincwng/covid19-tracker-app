@@ -79,6 +79,7 @@ function App() {
                 <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />
                 <CountryPicker handleSelectedCountry={handleSelectedCountry}/>
                 <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>
+                <footer className={styles.footer}>*As of 4<sup>th</sup> Aug 2021, Johns Hopkins University CSSE is no longer maintaining data for recovered & active cases</footer>
               </Fragment>
             } />
             {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
@@ -92,7 +93,6 @@ function App() {
           </Switch>
         </UserContext.Provider>
       </BrowserRouter>
-      <footer className={styles.footer}>*As of 4<sup>th</sup> Aug 2021, Johns Hopkins University CSSE is no longer maintaining data for recovered & active cases</footer>
     </div>
   );
 }
