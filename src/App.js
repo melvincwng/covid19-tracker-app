@@ -92,6 +92,7 @@ function App() {
           </Switch>
         </UserContext.Provider>
       </BrowserRouter>
+      <footer className={styles.footer}>*As of 4<sup>th</sup> Aug 2021, Johns Hopkins University CSSE is no longer maintaining data for recovered & active cases</footer>
     </div>
   );
 }
