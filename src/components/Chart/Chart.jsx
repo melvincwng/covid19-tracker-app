@@ -92,41 +92,79 @@ function Chart({ confirmed, recovered, deaths, country }) {
   // That is what the error kept saying cannot read value property of undefined
   // hence to fix this, have to use ternary operator (see logic below)
 
-  const bar_data = confirmed
-    ? {
-        labels: ["Infected", "Recovered", "Active", "Deaths"],
-        datasets: [
-          {
-            label: "People",
-            data: [
-              confirmed.value, // this was the part causing errors (line 64)
-              0, // originally this line was 'recovered.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
-              0, // originally this line was 'confirmed.value - recovered.value - deaths.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
-              deaths.value,
-            ],
-            backgroundColor: [
-              "rgba(0, 0, 255, 0.6)",
-              "rgba(0, 255, 0, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(255, 0, 0, 0.6)",
-            ],
-            borderColor: [
-              "rgba(0, 0, 255, 1)",
-              "rgba(0, 255, 0, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(255, 0, 0, 1)",
-            ],
-            borderWidth: 1,
-            hoverBackgroundColor: [
-              "rgba(0, 80, 160)",
-              "rgba(30, 100, 50)",
-              "rgba(200, 150, 0)",
-              "rgba(255, 50, 50)",
-            ],
-          },
-        ],
-      }
-    : null; // this should fix the bug
+  // As of 14/08/2021, I am using another API for Singapore's data: https://github.com/apify/covid-19 (https://github.com/apify/covid-19/tree/master/singapore)
+  // Hence you will realize the logic to extract & display Singapore's data is separated out from the rest of the world.
+
+  const bar_data =
+    confirmed && country !== "Singapore"
+      ? {
+          labels: ["Infected", "Recovered*", "Active*", "Deaths"],
+          datasets: [
+            {
+              label: "People",
+              data: [
+                confirmed.value, // this was the part causing errors (line 64)
+                0, // originally this line was 'recovered.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
+                0, // originally this line was 'confirmed.value - recovered.value - deaths.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
+                deaths.value,
+              ],
+              backgroundColor: [
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(255, 206, 86, 0.6)",
+                "rgba(255, 0, 0, 0.6)",
+              ],
+              borderColor: [
+                "rgba(0, 0, 255, 1)",
+                "rgba(0, 255, 0, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(255, 0, 0, 1)",
+              ],
+              borderWidth: 1,
+              hoverBackgroundColor: [
+                "rgba(0, 80, 160)",
+                "rgba(30, 100, 50)",
+                "rgba(200, 150, 0)",
+                "rgba(255, 50, 50)",
+              ],
+            },
+          ],
+        }
+      : confirmed && country === "Singapore" // Singapore's bar-chart data
+      ? {
+          labels: ["Infected", "Recovered**", "Active**", "Deaths"],
+          datasets: [
+            {
+              label: "People",
+              data: [
+                confirmed.value, // this was the part causing errors (line 64)
+                recovered.value, // used another backend covid19 API ONLY for Singapore
+                confirmed.value - recovered.value - deaths.value, //  used another backend covid19 API ONLY for Singapore
+                deaths.value,
+              ],
+              backgroundColor: [
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(255, 206, 86, 0.6)",
+                "rgba(255, 0, 0, 0.6)",
+              ],
+              borderColor: [
+                "rgba(0, 0, 255, 1)",
+                "rgba(0, 255, 0, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(255, 0, 0, 1)",
+              ],
+              borderWidth: 1,
+              hoverBackgroundColor: [
+                "rgba(0, 80, 160)",
+                "rgba(30, 100, 50)",
+                "rgba(200, 150, 0)",
+                "rgba(255, 50, 50)",
+              ],
+            },
+          ],
+        }
+      : null; // this should fix the bug
 
   // this options variable is for the bar-charts
   // can refer to https://www.chartjs.org/docs/latest/configuration/title.html for more info:

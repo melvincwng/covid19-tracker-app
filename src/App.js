@@ -79,7 +79,11 @@ function App() {
                 <Cards confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} lastUpdate={data.lastUpdate} country={country} />
                 <CountryPicker handleSelectedCountry={handleSelectedCountry}/>
                 <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>
-                <footer className={styles.footer}>*As of 4<sup>th</sup> Aug 2021, Johns Hopkins University CSSE is no longer maintaining data for recovered & active cases</footer>
+                <footer className={styles.footer}>
+                  *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer maintaining data for recovered & active cases
+                  <br></br>
+                  **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" className={styles.fontColor}>JHU CSSE's API</a>
+                  </footer>
               </Fragment>
             } />
             {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}

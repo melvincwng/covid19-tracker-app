@@ -1,10 +1,10 @@
 @import url(https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pangolin&family=Reenie+Beanie&family=Rock+Salt&display=swap);
 
 body {
-  background-image: url('./images/COVID19-bg.jpg');
+  background-image: url("./images/COVID19-bg.jpg");
   background-repeat: repeat;
   background-size: 100%;
-} 
+}
 
 .container {
   display: flex;
@@ -17,14 +17,18 @@ body {
 }
 
 .forbidden {
-  font-family: 'Pangolin', cursive !important;
+  font-family: "Pangolin", cursive !important;
 }
 
 .footer {
-  font-family: 'Pangolin', cursive !important;
+  font-family: "Pangolin", cursive !important;
   font-size: 14px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
+}
+
+.fontColor {
+  color: black;
 }
 
 @media only screen and (max-width: 768px) {

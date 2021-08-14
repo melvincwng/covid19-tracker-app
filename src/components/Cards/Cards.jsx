@@ -12,32 +12,64 @@ function Cards({ confirmed, recovered, deaths, lastUpdate, country }) {
     // and 'active'. Source: https://github.com/CSSEGISandData/COVID-19/issues/4465
     // Hence line 14 is commented out as a result...
     // const active = confirmed.value - recovered.value - deaths.value;
-    let cardDetails = [
-      {
-        style: styles.infected,
-        text: "Infected",
-        value: confirmed.value,
-        bottomText: "Number of infected cases from COVID-19",
-      },
-      {
-        style: styles.recovered,
-        text: "Recovered*",
-        value: 0,
-        bottomText: "Number of recovered cases from COVID-19",
-      },
-      {
-        style: styles.active,
-        text: "Active*",
-        value: 0,
-        bottomText: "Number of active cases of COVID-19",
-      },
-      {
-        style: styles.deaths,
-        text: "Deaths",
-        value: deaths.value,
-        bottomText: "Number of deaths from COVID-19",
-      },
-    ];
+
+    // As of 14/08/2021, I am using another API for Singapore's data: https://github.com/apify/covid-19 (https://github.com/apify/covid-19/tree/master/singapore)
+    // Hence you will realize the logic to extract & display Singapore's data is separated out from the rest of the world.
+    let cardDetails =
+      country !== "Singapore"
+        ? [
+            {
+              style: styles.infected,
+              text: "Infected",
+              value: confirmed.value,
+              bottomText: "Number of infected cases from COVID-19",
+            },
+            {
+              style: styles.recovered,
+              text: "Recovered*",
+              value: 0,
+              bottomText: "Number of recovered cases from COVID-19",
+            },
+            {
+              style: styles.active,
+              text: "Active*",
+              value: 0,
+              bottomText: "Number of active cases of COVID-19",
+            },
+            {
+              style: styles.deaths,
+              text: "Deaths",
+              value: deaths.value,
+              bottomText: "Number of deaths from COVID-19",
+            },
+          ]
+        : [
+            // Singapore's data
+            {
+              style: styles.infected,
+              text: "Infected",
+              value: confirmed.value,
+              bottomText: "Number of infected cases from COVID-19",
+            },
+            {
+              style: styles.recovered,
+              text: "Recovered**",
+              value: recovered.value,
+              bottomText: "Number of recovered cases from COVID-19",
+            },
+            {
+              style: styles.active,
+              text: "Active**",
+              value: confirmed.value - recovered.value - deaths.value,
+              bottomText: "Number of active cases of COVID-19",
+            },
+            {
+              style: styles.deaths,
+              text: "Deaths",
+              value: deaths.value,
+              bottomText: "Number of deaths from COVID-19",
+            },
+          ];
 
     // add ternary operator/condition here so that if cardDetail.value is true => render an actual card with countup feature
     // else if cardDetail.value == false (0) => render a actual with a '-' sign
