@@ -80,9 +80,9 @@ function App() {
                 <CountryPicker handleSelectedCountry={handleSelectedCountry}/>
                 <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>
                 <footer className={styles.footer}>
-                  *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer maintaining data for recovered & active cases
+                  *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer maintaining data for recovered & active cases
                   <br></br>
-                  **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" className={styles.fontColor}>JHU CSSE's API</a>
+                  **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a>
                   </footer>
               </Fragment>
             } />
