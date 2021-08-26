@@ -24,11 +24,29 @@ body {
   font-family: "Pangolin", cursive !important;
   font-size: 14px;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .fontColor {
   color: black;
+}
+
+.fontAwesome {
+  transition: 0.5s;
+  margin-right: 5%;
+}
+
+.fontAwesomeNoMargin {
+  transition: 0.5s;
+}
+
+.fontAwesome:hover,
+.fontAwesomeNoMargin:hover {
+  transform: scale(1.4, 1.4);
+}
+
+.line {
+  margin: 12px 0;
 }
 
 @media only screen and (max-width: 768px) {

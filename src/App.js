@@ -16,6 +16,11 @@ import { UserContext } from './UserContext';
 import Logout from './components/Logout/Logout'; 
 import Admin from './components/Admin/Admin';
 import EditArticle from './components/Articles/EditArticle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faItchIo } from '@fortawesome/free-brands-svg-icons'
+
+
 
 function App() {
   const [data, setData] = useState({});
@@ -67,6 +72,18 @@ function App() {
     setCountry(country);
   }
 
+  function openGithubLink() {
+    window.open('https://github.com/melvincwng')
+  }
+
+  function openItchLink() {
+    window.open('https://melvinng.itch.io/')
+  }
+
+  function openCoffeeLink() {
+    window.open('https://www.buymeacoffee.com/melvincwng')
+  }
+
   return (
     <div className={styles.container} data-testid="test-app">
       <BrowserRouter>
@@ -83,7 +100,14 @@ function App() {
                   *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer maintaining data for recovered & active cases
                   <br></br>
                   **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a>
-                  </footer>
+                  <hr className={styles.line}></hr>
+                  <span>
+                      <FontAwesomeIcon icon={faGithub} size="2x" className={styles.fontAwesome} onClick={openGithubLink}/> 
+                      <FontAwesomeIcon icon={faItchIo} size="2x" className={styles.fontAwesome} onClick={openItchLink}/>
+                      <FontAwesomeIcon icon={faCoffee} size="2x" className={styles.fontAwesomeNoMargin} onClick={openCoffeeLink}/>
+                  </span>
+                  <div>&copy; 2021 Melvin Ng</div>
+                </footer>
               </Fragment>
             } />
             {user ? <Route path="/login" exact render={() => <h1 className={styles.forbidden}>Logged in!</h1>} /> :  <Route path="/login" exact component={LoginForm} />}
