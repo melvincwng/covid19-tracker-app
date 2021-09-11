@@ -99,7 +99,7 @@ function App() {
                 <footer className={styles.footer}>
                   *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer maintaining data for recovered & active cases
                   <br></br>
-                  **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a>
+                  {/* **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a> - Commented out till further notice */}
                   <hr className={styles.line}></hr>
                   <span>
                       <FontAwesomeIcon icon={faGithub} size="2x" className={styles.fontAwesome} onClick={openGithubLink}/> 

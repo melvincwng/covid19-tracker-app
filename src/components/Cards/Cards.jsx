@@ -15,6 +15,9 @@ function Cards({ confirmed, recovered, deaths, lastUpdate, country }) {
 
     // As of 14/08/2021, I am using another API for Singapore's data: https://github.com/apify/covid-19 (https://github.com/apify/covid-19/tree/master/singapore)
     // Hence you will realize the logic to extract & display Singapore's data is separated out from the rest of the world.
+
+    // As of 11/09/2021, Apify Covid-19 API has issues...
+    // Hence, we will revert to using JHU CSSE API instead, while commenting out the previous implementation using Apify Covid-19...
     let cardDetails =
       country !== "Singapore"
         ? [
@@ -45,6 +48,7 @@ function Cards({ confirmed, recovered, deaths, lastUpdate, country }) {
           ]
         : [
             // Singapore's data
+            // Revert to JHU CSSE again (11/09/2021)
             {
               style: styles.infected,
               text: "Infected",
@@ -53,14 +57,14 @@ function Cards({ confirmed, recovered, deaths, lastUpdate, country }) {
             },
             {
               style: styles.recovered,
-              text: "Recovered**",
-              value: recovered.value,
+              text: "Recovered*",
+              value: 0,
               bottomText: "Number of recovered cases from COVID-19",
             },
             {
               style: styles.active,
-              text: "Active**",
-              value: confirmed.value - recovered.value - deaths.value,
+              text: "Active*",
+              value: 0,
               bottomText: "Number of active cases of COVID-19",
             },
             {

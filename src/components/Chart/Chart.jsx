@@ -95,6 +95,7 @@ function Chart({ confirmed, recovered, deaths, country }) {
   // As of 14/08/2021, I am using another API for Singapore's data: https://github.com/apify/covid-19 (https://github.com/apify/covid-19/tree/master/singapore)
   // Hence you will realize the logic to extract & display Singapore's data is separated out from the rest of the world.
 
+  // UPDATE - As of 11/09/2021 - Since Apify Covid19 API is broken, we will revert back to using JHU CSSE API for Singapore's data
   const bar_data =
     confirmed && country !== "Singapore"
       ? {
@@ -130,16 +131,16 @@ function Chart({ confirmed, recovered, deaths, country }) {
             },
           ],
         }
-      : confirmed && country === "Singapore" // Singapore's bar-chart data
+      : confirmed && country === "Singapore" // Singapore's bar-chart data -> reverted to use JHU CSSE API since Apify is broken.
       ? {
-          labels: ["Infected", "Recovered**", "Active**", "Deaths"],
+          labels: ["Infected", "Recovered*", "Active*", "Deaths"],
           datasets: [
             {
               label: "People",
               data: [
                 confirmed.value, // this was the part causing errors (line 64)
-                recovered.value, // used another backend covid19 API ONLY for Singapore
-                confirmed.value - recovered.value - deaths.value, //  used another backend covid19 API ONLY for Singapore
+                0, // used another backend covid19 API ONLY for Singapore (used to be 'recovered.value')
+                0, //  used another backend covid19 API ONLY for Singapore (used to be 'confirmed.value - recovered.value - deaths.value')
                 deaths.value,
               ],
               backgroundColor: [
