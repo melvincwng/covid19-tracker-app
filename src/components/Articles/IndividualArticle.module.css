@@ -1,23 +1,28 @@
 @import url(https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pangolin&family=Reenie+Beanie&family=Rock+Salt&display=swap);
 
 .container {
-    justify-content: center;
-    width: 80%;
-    font-family: 'Pangolin', cursive !important;
+  justify-content: center;
+  width: 80%;
+  font-family: "Pangolin", cursive !important;
 }
 
 .fontsize {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
 }
 
 /* Line 21-23 preserves the line-breaks or white-spaces in the textarea */
 .whitespace {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
+}
+
+.image {
+  width: 100%;
+  height: auto;
 }
