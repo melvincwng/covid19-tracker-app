@@ -7,7 +7,7 @@ function IndividualArticle(props) {
   const articleID = props.match.params.id;
   const url = `https://covid19-tracker-app-express.herokuapp.com/articles/${articleID}`;
   const [article, setArticle] = useState({});
-  const [imageBaseUrl, setImageBaseUrl] = useState("")
+  const [imageBaseUrl, setImageBaseUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchIndividualArticle = async () => {
@@ -16,7 +16,10 @@ function IndividualArticle(props) {
       await setIsLoading(false);
       return article.data; //article.data gives us the whole article object
     } catch (err) {
-      console.log(err);
+      // if user tries to access via URL an non-existent article/article ID -> return an error 404 object with the message below:
+      const error404Object = { errorMessage: "Error 404: Page not found" };
+      await setIsLoading(false);
+      return error404Object;
     }
   };
 
@@ -27,24 +30,32 @@ function IndividualArticle(props) {
       setArticle(articleObject);
 
       // Some articles will not have articleImages... while some will have. Hence need to put if statement here...
-      if (articleObject.articleImage) {
-        setImageBaseUrl(`https://covid19-tracker-app-express.herokuapp.com/images/${articleObject.articleImage}`);
+      if (articleObject?.articleImage) {
+        setImageBaseUrl(
+          `https://covid19-tracker-app-express.herokuapp.com/images/${articleObject.articleImage}`
+        );
       }
     }
     fetchMyAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const singleArticleContainer = (
+  const singleArticleContainer = !article?.errorMessage ? (
     <div>
-      <h3>{article.title}</h3>
-      <div className={styles.whitespace}>{article.body}</div>
-      {imageBaseUrl === "" ? "" : <img src={imageBaseUrl} alt="" className={styles.image}></img>}
-      <div className={styles.fontsize}>{article.authorName}</div>
+      <h3>{article?.title}</h3>
+      <div className={styles.whitespace}>{article?.body}</div>
+      {imageBaseUrl === "" ? (
+        ""
+      ) : (
+        <img src={imageBaseUrl} alt="" className={styles.image}></img>
+      )}
+      <div className={styles.fontsize}>{article?.authorName}</div>
       <div className={styles.fontsize}>
-        {new Date(article.postDate).toLocaleDateString("en-GB")}
+        {new Date(article?.postDate).toLocaleDateString("en-GB")}
       </div>
     </div>
+  ) : (
+    <h1 className={styles.forbidden}>Error 404: Page not found</h1>
   );
 
   return (
