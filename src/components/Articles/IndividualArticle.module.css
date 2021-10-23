@@ -4,6 +4,7 @@
   justify-content: center;
   width: 80%;
   font-family: "Pangolin", cursive !important;
+  word-wrap: break-word;
 }
 
 .fontsize {
