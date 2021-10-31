@@ -1,9 +1,8 @@
 import Cards from "./Cards";
 import { render } from "@testing-library/react";
 
-// test was skipped to deploy the app into production after fixing the 'recovered' and 'active' cases
-test.skip("should display info", () => {
-  const { getAllByText } = render(
+test("should display info", () => {
+  const { getAllByText, getByText } = render(
     <Cards
       confirmed={{ value: 0 }}
       recovered={{ value: 0 }}
@@ -15,10 +14,10 @@ test.skip("should display info", () => {
   // getAllByText returns an array, hence to access the individual cards we do
   // [0] for infected card, [1] for recovered card, [2] for active card, [3] for death card
 
-  expect(getAllByText("0")[0]).toBeInTheDocument();
-  expect(getAllByText("0")[1]).toBeInTheDocument();
-  expect(getAllByText("0")[2]).toBeInTheDocument();
-  expect(getAllByText("0")[3]).toBeInTheDocument();
+  expect(getByText("Infected")).toBeInTheDocument();
+  expect(getByText("Recovered*")).toBeInTheDocument();
+  expect(getByText("Active*")).toBeInTheDocument();
+  expect(getByText("Deaths")).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[0]).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[1]).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[2]).toBeInTheDocument();
