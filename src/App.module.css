@@ -27,6 +27,12 @@ body {
   margin-top: 20px;
 }
 
+.footerTwo {
+  font-family: "Pangolin", cursive !important;
+  font-size: 13px;
+  text-align: center;
+}
+
 .fontColor {
   color: black;
 }

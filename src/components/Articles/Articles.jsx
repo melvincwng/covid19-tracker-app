@@ -116,7 +116,7 @@ function Articles() {
       {isLoading ? (
         <div></div>
       ) : (
-        <footer className={stylesTwo.footer}>
+        <footer className={stylesTwo.footerTwo}>
           *As of 4<sup>th</sup> Aug 2021,{" "}
           <a
             href="https://github.com/CSSEGISandData/COVID-19"
