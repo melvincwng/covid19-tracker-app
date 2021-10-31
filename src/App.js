@@ -130,19 +130,19 @@ function App() {
                       Johns Hopkins University CSSE
                     </a>{" "}
                     is no longer collecting & maintaining certain COVID-19
-                    related data. Hence, certain features of this web
-                    application may not be available.
+                    related data. Hence, certain features of this web app may
+                    not be available.
                     {/* **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a> - Commented out till further notice */}
                     <br></br>
                     <b>
-                      **Medical Disclaimer: All content and information on this
+                      **Medical Disclaimer: All content & information on this
                       website is for informational/educational purposes only,
                       and does not constitute as medical advice.
                     </b>
                     <br></br>
                     <b>
                       **Always seek the advice of your own physician or other
-                      qualified healthcare provider if you have any questions
+                      qualified healthcare provider if you have questions
                       regarding any medical condition or treatment.
                     </b>
                     <hr className={styles.line}></hr>

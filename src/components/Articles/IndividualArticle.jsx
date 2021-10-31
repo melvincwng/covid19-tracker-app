@@ -89,14 +89,14 @@ function IndividualArticle(props) {
           Hence, certain features of this web app may not be available.
           <br></br>
           <b>
-            **Medical Disclaimer: All content and information on this website is
+            **Medical Disclaimer: All content & information on this website is
             for informational/educational purposes only, and does not constitute
             as medical advice.
           </b>
           <br></br>
           <b>
             **Always seek the advice of your own physician or other qualified
-            healthcare provider if you have any questions regarding any medical
+            healthcare provider if you have questions regarding any medical
             condition or treatment.
           </b>
           <hr className={stylesTwo.line}></hr>
