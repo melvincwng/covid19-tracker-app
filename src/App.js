@@ -97,10 +97,12 @@ function App() {
                 <CountryPicker handleSelectedCountry={handleSelectedCountry}/>
                 <Chart confirmed={data.confirmed} recovered={data.recovered} deaths={data.deaths} country={country}/>
                 <footer className={styles.footer}>
-                  *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer collecting & maintaining certain COVID-19 related data.
-                  <br></br>
-                  *Hence, certain features of this web application may not be available.
+                  *As of 4<sup>th</sup> Aug 2021, <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Johns Hopkins University CSSE</a> is no longer collecting & maintaining certain COVID-19 related data. Hence, certain features of this web application may not be available.
                   {/* **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a> - Commented out till further notice */}
+                  <br></br>
+                  <b>**Medical Disclaimer: All content and information on this website is for informational/educational purposes only, and does not constitute as medical advice.</b>
+                  <br></br>
+                  <b>**Always seek the advice of your own physician or other qualified healthcare provider if you have any questions regarding any medical condition or treatment.</b>
                   <hr className={styles.line}></hr>
                   <span>
                       <FontAwesomeIcon icon={faGithub} size="2x" className={styles.fontAwesome} onClick={openGithubLink}/> 
