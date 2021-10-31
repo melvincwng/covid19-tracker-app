@@ -1,59 +1,136 @@
-import React, { useState, useEffect }  from 'react';
-import styles from './About.module.css';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import styles from "./About.module.css";
+import axios from "axios";
 import Loader from "react-loader-spinner";
+import stylesTwo from "../../App.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
+import { openGithubLink, openItchLink, openCoffeeLink } from "../../App";
 
 const url = "https://covid19-tracker-app-express.herokuapp.com/about";
 
-function About(){
-    const [ aboutData, setAboutData ] = useState([]);
-    const [ isLoading, setIsLoading ] = useState(false);
+function About() {
+  const [aboutData, setAboutData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const fetchAboutProject = async () => {
-        try {
-            const data = await axios.get(url); //data is an object here, and inside it, it has a key/property called 'data'. And data.data will give us an array, [{title: ..., body: ..., body1: ... etcs}]
-            await setIsLoading(false);
-            return [data.data[0].title, data.data[0].body, data.data[0].body2, data.data[0].body3, data.data[0].body4]
-        } catch (err) {
-            console.log(err)
-        }
+  const fetchAboutProject = async () => {
+    try {
+      const data = await axios.get(url); //data is an object here, and inside it, it has a key/property called 'data'. And data.data will give us an array, [{title: ..., body: ..., body1: ... etcs}]
+      await setIsLoading(false);
+      return [
+        data.data[0].title,
+        data.data[0].body,
+        data.data[0].body2,
+        data.data[0].body3,
+        data.data[0].body4,
+      ];
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    useEffect(() => {
-        async function fetchMyAPI() {
-            await setIsLoading(true);
-            let data_array = await fetchAboutProject();
-            setAboutData(data_array)
-        }
-        fetchMyAPI();
-    }, []);
+  useEffect(() => {
+    async function fetchMyAPI() {
+      await setIsLoading(true);
+      let data_array = await fetchAboutProject();
+      setAboutData(data_array);
+    }
+    fetchMyAPI();
+  }, []);
 
-    const title = aboutData[0];
-    const body = aboutData[1];
-    const body2 = aboutData[2];
-    const body3 = aboutData[3];
-    const body4 = aboutData[4];
+  const title = aboutData[0];
+  const body = aboutData[1];
+  const body2 = aboutData[2];
+  const body3 = aboutData[3];
+  const body4 = aboutData[4];
 
-    const aboutProject = 
+  const aboutProject = (
+    <div>
+      <div>{body}</div>
+      <br></br>
+      <div>{body2}</div>
+      <br></br>
+      <div>{body3}</div>
+      <br></br>
+      <div>{body4}</div>
+      <br></br>
+    </div>
+  );
+
+  const aboutProjectHeader = <h1 className={styles.underline}>{title}</h1>;
+  const aboutProjectFooter = (
+    <div>
+      If you are interested in my portfolio, please visit my website at:{" "}
+      <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a>
+    </div>
+  );
+
+  return (
+    <div className={styles.container}>
+      {isLoading ? (
+        <div className={styles.loader}>
+          <Loader type="TailSpin" color="black" height={80} width={80} />
+        </div>
+      ) : (
         <div>
-            <div>{body}</div>
-            <br></br>
-            <div>{body2}</div>
-            <br></br>
-            <div>{body3}</div>
-            <br></br>
-            <div>{body4}</div>
-            <br></br>
+          {aboutProjectHeader} {aboutProject} {aboutProjectFooter}
         </div>
-
-    const aboutProjectHeader = <h1 className={styles.underline}>{title}</h1>
-    const aboutProjectFooter = <div>If you are interested in my portfolio, please visit my website at: <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a></div>
-    
-    return(
-        <div className={styles.container}>
-            { isLoading ? <div className={styles.loader}><Loader type="TailSpin" color="black" height={80} width={80} /></div> : <div>{aboutProjectHeader} {aboutProject} {aboutProjectFooter}</div> }
-        </div>
-    );
+      )}
+      <br></br>
+      {isLoading ? (
+        <div></div>
+      ) : (
+        <footer className={stylesTwo.footer}>
+          *As of 4<sup>th</sup> Aug 2021,{" "}
+          <a
+            href="https://github.com/CSSEGISandData/COVID-19"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={stylesTwo.fontColor}
+          >
+            Johns Hopkins University CSSE
+          </a>{" "}
+          is no longer collecting & maintaining certain COVID-19 related data.
+          Hence, certain features of this web app may not be available.
+          <br></br>
+          <b>
+            **Medical Disclaimer: All content and information on this website is
+            for informational/educational purposes only, and does not constitute
+            as medical advice.
+          </b>
+          <br></br>
+          <b>
+            **Always seek the advice of your own physician or other qualified
+            healthcare provider if you have any questions regarding any medical
+            condition or treatment.
+          </b>
+          <hr className={stylesTwo.line}></hr>
+          <span>
+            <FontAwesomeIcon
+              icon={faGithub}
+              size="2x"
+              className={stylesTwo.fontAwesome}
+              onClick={openGithubLink}
+            />
+            <FontAwesomeIcon
+              icon={faItchIo}
+              size="2x"
+              className={stylesTwo.fontAwesome}
+              onClick={openItchLink}
+            />
+            <FontAwesomeIcon
+              icon={faCoffee}
+              size="2x"
+              className={stylesTwo.fontAwesomeNoMargin}
+              onClick={openCoffeeLink}
+            />
+          </span>
+          <div>&copy; 2021 Melvin Ng</div>
+        </footer>
+      )}
+    </div>
+  );
 }
 
 export default About;
