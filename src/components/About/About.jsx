@@ -61,7 +61,7 @@ function About() {
   const aboutProjectHeader = <h1 className={styles.underline}>{title}</h1>;
   const aboutProjectFooter = (
     <div>
-      If you are interested in my portfolio, please visit my website at:{" "}
+      If you are interested in my other projects/portfolio, please visit my website at:{" "}
       <a href="https://melvincwng.github.io/">https://melvincwng.github.io/</a>
     </div>
   );

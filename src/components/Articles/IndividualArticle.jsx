@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./IndividualArticle.module.css";
 import axios from "axios";
 import Loader from "react-loader-spinner";
+import stylesTwo from "../../App.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
+import { openGithubLink, openItchLink, openCoffeeLink } from "../../App";
 
 function IndividualArticle(props) {
   const articleID = props.match.params.id;
@@ -66,6 +71,57 @@ function IndividualArticle(props) {
         </div>
       ) : (
         singleArticleContainer
+      )}
+      {isLoading ? (
+        <div></div>
+      ) : (
+        <footer className={stylesTwo.footer}>
+          *As of 4<sup>th</sup> Aug 2021,{" "}
+          <a
+            href="https://github.com/CSSEGISandData/COVID-19"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={stylesTwo.fontColor}
+          >
+            Johns Hopkins University CSSE
+          </a>{" "}
+          is no longer collecting & maintaining certain COVID-19 related data.
+          Hence, certain features of this web app may not be available.
+          <br></br>
+          <b>
+            **Medical Disclaimer: All content and information on this website is
+            for informational/educational purposes only, and does not constitute
+            as medical advice.
+          </b>
+          <br></br>
+          <b>
+            **Always seek the advice of your own physician or other qualified
+            healthcare provider if you have any questions regarding any medical
+            condition or treatment.
+          </b>
+          <hr className={stylesTwo.line}></hr>
+          <span>
+            <FontAwesomeIcon
+              icon={faGithub}
+              size="2x"
+              className={stylesTwo.fontAwesome}
+              onClick={openGithubLink}
+            />
+            <FontAwesomeIcon
+              icon={faItchIo}
+              size="2x"
+              className={stylesTwo.fontAwesome}
+              onClick={openItchLink}
+            />
+            <FontAwesomeIcon
+              icon={faCoffee}
+              size="2x"
+              className={stylesTwo.fontAwesomeNoMargin}
+              onClick={openCoffeeLink}
+            />
+          </span>
+          <div>&copy; 2021 Melvin Ng</div>
+        </footer>
       )}
     </div>
   );
