@@ -28,6 +28,15 @@ function Extras() {
       {isLoading ? (
         ""
       ) : (
+        <div data-testid="description">
+          This chart/table showcases the percentage of people (in each country)
+          who are either <b>a) fully vaccinated</b> or{" "}
+          <b>b) partially vaccinated</b>.
+        </div>
+      )}
+      {isLoading ? (
+        ""
+      ) : (
         <iframe
           src="https://ourworldindata.org/explorers/coronavirus-data-explorer?zoomToSelection=true&facet=none&pickerSort=desc&pickerMetric=location&Metric=People+vaccinated+%28by+dose%29&Interval=7-day+rolling+average&Relative+to+Population=true&Color+by+test+positivity=false&country=ARE~PRT~CUB~CHL~SGP~CHN~IND~USA~IDN~PAK~BRA~NGA~BGD~RUS~MEX~JPN~ETH~PHL~EGY~VNM~TUR~IRN~DEU~THA~GBR~CAN~FRA~ITA~OWID_WRL~SRB&hideControls=true"
           loading="lazy"

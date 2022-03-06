@@ -6,6 +6,7 @@ describe("Extras component", () => {
     const { getByText, getByTestId } = render(<Extras />);
 
     await waitFor(() => getByText("Extras"));
+    expect(getByTestId("description")).toBeInTheDocument();
     expect(getByTestId("vaccination-charts")).toBeInTheDocument();
     expect(getByTestId("footer")).toBeInTheDocument();
   });
