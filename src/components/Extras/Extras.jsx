@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./About.module.css";
-import axios from "axios";
+import styles from "./Extras.module.css";
 import Loader from "react-loader-spinner";
 import stylesTwo from "../../App.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,70 +7,14 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
 import { openGithubLink, openItchLink, openCoffeeLink } from "../../App";
 
-const url = "https://covid19-tracker-app-express.herokuapp.com/about";
-
-function About() {
-  const [aboutData, setAboutData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchAboutProject = async () => {
-    try {
-      const data = await axios.get(url); //data is an object here, and inside it, it has a key/property called 'data'. And data.data will give us an array, [{title: ..., body: ..., body1: ... etcs}]
-      await setIsLoading(false);
-      return [
-        data.data[0].title,
-        data.data[0].body,
-        data.data[0].body2,
-        data.data[0].body3,
-        data.data[0].body4,
-      ];
-    } catch (err) {
-      console.log(err);
-    }
-  };
+function Extras() {
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchMyAPI() {
-      await setIsLoading(true);
-      let data_array = await fetchAboutProject();
-      setAboutData(data_array);
-    }
-    fetchMyAPI();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, []);
-
-  const title = aboutData[0];
-  const body = aboutData[1];
-  const body2 = aboutData[2];
-  const body3 = aboutData[3];
-  const body4 = aboutData[4];
-
-  const aboutProject = (
-    <div>
-      <div>{body}</div>
-      <br></br>
-      <div>{body2}</div>
-      <br></br>
-      <div>{body3}</div>
-      <br></br>
-      <div>{body4}</div>
-      <br></br>
-    </div>
-  );
-
-  const aboutProjectHeader = <h1 className={styles.underline}>{title}</h1>;
-  const aboutProjectFooter = (
-    <div>
-      If you are interested in my other projects/portfolio, please visit my
-      website at:{" "}
-      <a
-        href="https://melvincwng.github.io/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        https://melvincwng.github.io/
-      </a>
-    </div>
-  );
 
   return (
     <div className={styles.container}>
@@ -80,15 +23,39 @@ function About() {
           <Loader type="TailSpin" color="black" height={80} width={80} />
         </div>
       ) : (
+        <h1 className={styles.underline}>Extras</h1>
+      )}
+      {isLoading ? (
+        ""
+      ) : (
+        <iframe
+          src="https://ourworldindata.org/explorers/coronavirus-data-explorer?zoomToSelection=true&facet=none&pickerSort=desc&pickerMetric=location&Metric=People+vaccinated+%28by+dose%29&Interval=7-day+rolling+average&Relative+to+Population=true&Color+by+test+positivity=false&country=ARE~PRT~CUB~CHL~SGP~CHN~IND~USA~IDN~PAK~BRA~NGA~BGD~RUS~MEX~JPN~ETH~PHL~EGY~VNM~TUR~IRN~DEU~THA~GBR~CAN~FRA~ITA~OWID_WRL~SRB&hideControls=true"
+          loading="lazy"
+          style={{ width: "100%", height: "600px", border: "0px none" }}
+          title="vaccination-charts"
+          data-testid="vaccination-charts"
+        ></iframe>
+      )}
+      {isLoading ? (
+        ""
+      ) : (
         <div>
-          {aboutProjectHeader} {aboutProject} {aboutProjectFooter}
+          References: <br></br>
+          Mathieu, E., Ritchie, H., Ortiz-Ospina, E. et al.{" "}
+          <a
+            href="https://doi.org/10.1038/s41562-021-01122-8"
+            rel="noreferrer noopener"
+            target="_blank"
+            className={styles.citation}
+          >
+            A global database of COVID-19 vaccinations. Nat Hum Behav (2021)
+          </a>
         </div>
       )}
-      <br></br>
       {isLoading ? (
-        <div></div>
+        ""
       ) : (
-        <footer className={stylesTwo.footer}>
+        <footer className={stylesTwo.footer} data-testid="footer">
           *As of 4<sup>th</sup> Aug 2021,{" "}
           <a
             href="https://github.com/CSSEGISandData/COVID-19"
@@ -140,4 +107,4 @@ function About() {
   );
 }
 
-export default About;
+export default Extras;

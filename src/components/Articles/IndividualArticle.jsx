@@ -120,7 +120,7 @@ function IndividualArticle(props) {
               onClick={openCoffeeLink}
             />
           </span>
-          <div>&copy; 2021 Melvin Ng</div>
+          <div>&copy; 2022 Melvin Ng</div>
         </footer>
       )}
     </div>

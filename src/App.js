@@ -8,6 +8,7 @@ import CovidHeaderImage from "./images/COVID19-header.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Extras from "./components/Extras/Extras";
 import About from "./components/About/About";
 import Articles from "./components/Articles/Articles";
 import IndividualArticle from "./components/Articles/IndividualArticle";
@@ -166,7 +167,7 @@ function App() {
                         onClick={openCoffeeLink}
                       />
                     </span>
-                    <div>&copy; 2021 Melvin Ng</div>
+                    <div>&copy; 2022 Melvin Ng</div>
                   </footer>
                 </Fragment>
               )}
@@ -218,6 +219,7 @@ function App() {
               />
             )}
             <Route path="/about" exact component={() => <About />} />
+            <Route path="/extras" exact component={() => <Extras />} />
             <Route
               render={() => (
                 <h1 className={styles.forbidden}>Error 404: Page not found</h1>

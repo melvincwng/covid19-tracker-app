@@ -20,6 +20,7 @@ function NavigationBar() {
             { user && <Nav.Link href="/admin">Admin</Nav.Link> }
             <Nav.Link href="/articles">Articles</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/extras">Extras</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
