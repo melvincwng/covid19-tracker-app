@@ -88,8 +88,13 @@ function App() {
     setCountry(country);
   }
 
+  const atExtrasPage = window.location.pathname === "/extras";
+
   return (
-    <div className={styles.container} data-testid="test-app">
+    <div
+      className={atExtrasPage ? styles.extrasContainer : styles.container}
+      data-testid="test-app"
+    >
       <BrowserRouter>
         <UserContext.Provider value={value}>
           <NavigationBar />
