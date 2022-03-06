@@ -31,7 +31,7 @@ function Extras() {
         <div data-testid="description">
           This chart/table showcases the percentage of people (in each country)
           who are either <b>a) fully vaccinated</b> or{" "}
-          <b>b) partially vaccinated</b>.
+          <b>b) partially vaccinated</b> [1,2].
         </div>
       )}
       {isLoading ? (
@@ -48,9 +48,10 @@ function Extras() {
       {isLoading ? (
         ""
       ) : (
-        <div>
-          References: <br></br>
-          Mathieu, E., Ritchie, H., Ortiz-Ospina, E. et al.{" "}
+        <div style={{ wordWrap: "break-word" }}>
+          References:
+          <br></br>
+          [1] Mathieu, E., Ritchie, H., Ortiz-Ospina, E. et al.{" "}
           <a
             href="https://doi.org/10.1038/s41562-021-01122-8"
             rel="noreferrer noopener"
@@ -59,6 +60,28 @@ function Extras() {
           >
             A global database of COVID-19 vaccinations. Nat Hum Behav (2021)
           </a>
+          <br></br>
+          [2] Hannah Ritchie, Edouard Mathieu, Lucas Rodés-Guirao, Cameron
+          Appel, Charlie Giattino, Esteban Ortiz-Ospina, Joe Hasell, Bobbie
+          Macdonald, Diana Beltekian and Max Roser (2020) - Coronavirus Pandemic
+          (COVID-19). Published online at{" "}
+          <a
+            href="https://ourworldindata.org/"
+            rel="noreferrer noopener"
+            target="_blank"
+            className={styles.citation}
+          >
+            OurWorldInData.org.
+          </a>{" "}
+          Retrieved from: [Online Resource] -{" "}
+          <a
+            href="https://ourworldindata.org/coronavirus"
+            rel="noreferrer noopener"
+            target="_blank"
+            className={styles.citation}
+          >
+            https://ourworldindata.org/coronavirus
+          </a>{" "}
         </div>
       )}
       {isLoading ? (
