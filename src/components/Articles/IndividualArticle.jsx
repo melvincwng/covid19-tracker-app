@@ -19,6 +19,18 @@ function IndividualArticle(props) {
     try {
       const article = await axios.get(url); //article is an object here with 'data' attribute => article.data gives us the whole article object
       await setIsLoading(false);
+      /**
+       * 3 scenarios can happen when trying to fetch an individual article:
+       *    a) We fetch an article that exists/still exists and is not deleted (returns a valid article object with 'data' key, containing valid article data),
+       *    b) We fetch an article that previously existed but then got deleted (this scenario returns an article obj with 'data' key = null instead of throwing error), and
+       *    c) We fetch an article that does not exist at all (this one throw err object from backend covid19-tracker-app-express repo)
+       *
+       * ISSUE: Specifically for scenario B --> Since, it doesn't throw error, it results in a page showing 'Invalid Date' instead
+       * SOLUTION: To fix this issue, when article.data === null, we make it throw an error exception --> this results in showing the 'Error 404: Page not found' message
+       */
+      if (article.data === null) {
+        throw new Error({ errorMessage: "Error 404: Page not found" });
+      }
       return article.data; //article.data gives us the whole article object
     } catch (err) {
       // if user tries to access via URL an non-existent article/article ID -> return an error 404 object with the message below:
