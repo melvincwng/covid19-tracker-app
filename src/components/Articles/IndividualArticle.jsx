@@ -86,7 +86,7 @@ function IndividualArticle(props) {
       )}
       {isLoading ? (
         <div></div>
-      ) : (
+      ) : !article?.errorMessage ? (
         <footer className={stylesTwo.footer}>
           *As of 4<sup>th</sup> Aug 2021,{" "}
           <a
@@ -134,6 +134,8 @@ function IndividualArticle(props) {
           </span>
           <div>&copy; 2022 Melvin Ng</div>
         </footer>
+      ) : (
+        <div></div>
       )}
     </div>
   );
