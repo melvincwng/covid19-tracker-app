@@ -73,5 +73,6 @@ export const fetchCountries = async () => {
     return countries_array.map((country) => country.name);
   } catch (err) {
     console.log(err);
+    return [];
   }
 };
