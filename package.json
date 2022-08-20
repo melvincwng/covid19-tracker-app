@@ -57,7 +57,8 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.19.0",
-    "husky": "^6.0.0"
+    "husky": "^6.0.0",
+    "jest": "^26.6.0"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
