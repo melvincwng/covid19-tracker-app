@@ -60,7 +60,7 @@ function LoginForm() {
                     {msg => <div className={styles.errorMessage}>{msg}</div>}
                 </ErrorMessage>
         
-                <button type="submit" disabled={disabled} className={styles.button}>Log In</button>
+                <button type="submit" disabled={disabled} className={styles.button} data-testid="login-button">Log In</button>
             </Form>
      </Formik>
     );
