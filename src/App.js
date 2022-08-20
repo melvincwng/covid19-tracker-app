@@ -158,18 +158,21 @@ function App() {
                         size="2x"
                         className={styles.fontAwesome}
                         onClick={openGithubLink}
+                        data-testid="github-icon"
                       />
                       <FontAwesomeIcon
                         icon={faItchIo}
                         size="2x"
                         className={styles.fontAwesome}
                         onClick={openItchLink}
+                        data-testid="itch-icon"
                       />
                       <FontAwesomeIcon
                         icon={faCoffee}
                         size="2x"
                         className={styles.fontAwesomeNoMargin}
                         onClick={openCoffeeLink}
+                        data-testid="coffee-icon"
                       />
                     </span>
                     <div>&copy; 2022 Melvin Ng</div>
