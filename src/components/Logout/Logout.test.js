@@ -30,13 +30,13 @@ test("should render and display the Logout component on the screen, but fail to 
   axios.post.mockImplementationOnce(() => {
     throw new Error("An error has occurred during logout!");
   });
+  const consoleSpy = jest.spyOn(console, "log");
 
   const { getByTestId, debug } = render(
     <UserContext.Provider value={value}>
       <Logout />
     </UserContext.Provider>
   );
-  const consoleSpy = jest.spyOn(console, "log");
 
   expect(getByTestId("logout-form")).toBeInTheDocument();
   fireEvent.click(getByTestId("logout-button"));
