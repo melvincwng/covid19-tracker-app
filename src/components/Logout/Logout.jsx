@@ -39,7 +39,7 @@ function Logout() {
     return (
         <div className={styles.container} data-testid="logout-form">
             <h1>Are you sure you want to logout?</h1>
-            <button type="submit" disabled={disabled} onClick={handleSubmit} className={styles.button}>Yes, log out</button>
+            <button type="submit" disabled={disabled} onClick={handleSubmit} className={styles.button} data-testid="logout-button">Yes, log out</button>
         </div>
         
     );
