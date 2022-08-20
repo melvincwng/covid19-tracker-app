@@ -15,7 +15,7 @@
       2) https://stackoverflow.com/questions/59892304/cant-get-memoryrouter-to-work-with-testing-library-react
       3) https://stackoverflow.com/questions/51031761/how-to-mock-browserrouter-of-react-router-dom-using-jest
 
-  * Additional Notes One: mockImplementationOnce() for 'user' state doesn't seem to be working?
+  * Additional Notes One: mockImplementationOnce() for 'user' state doesn't seem to be working to set "truthy" values?
   * Maybe can consider other methods - e.g. mockImplementation() or research other ways to mock state in the future?
   * Only try to fix if got time in the future - Take note I commented out some imports/imported components, because mock 'user' state to true is not working
   * Hence, no point using those imports --> as they won't be able to be rendered until the mock user state to true issue get resolved (now is false user state by default)
@@ -28,6 +28,15 @@
   *   - Why so? Because the contents of the individual component will and should be subsequently tested in the individual component's unit test (e.g. Cards component --> test its content/behavior in Cards.test.jsx)
   *   - Reference: https://plainenglish.io/blog/testing-react-router-with-jest
   *   - Quoted frm the ref above: 'Unit tests for routing requests to desired components shouldn't test or depend on the content of the components. That's a separate behavior that should be tested in the unit tests of each individual component.'
+  * 
+  * Additional Notes Three: 
+  * If you encounter this error 'TypeError: Cannot read properties of undefined (reading '0')' --> checked on SOF many times, but unable to resolve this issue from online documentation/references
+  * Eventually self-discovered the solution: In the 'Arrange' phase (Recall Arrange, Act, Assert), need to mockImplementationOnce() all the different useState hooks (should have 3 in App.js I think)
+  * Basically need to "set up" the environment ready for the component to be tested during unit testing
+  * Yes, even though only managed to set up "falsey" values for the various useState hooks, and cannot set up "truthy" values (see Additional Notes One)
+  * It doesn't mean it's useless... because if you were to remove this "falsely" state values setup environment, these unit tests will break...
+  * Hence, this falsely values setup env in the 'Arrange' phase is important!
+  * 
  */
 
 import React from "react";
@@ -138,9 +147,7 @@ describe("App component", () => {
     const { debug, getByText } = render(<App />);
     debug();
     // Assert
-    expect(
-      getByText("Logged out!")
-    ).toBeInTheDocument();
+    expect(getByText("Logged out!")).toBeInTheDocument();
     // expect(getByText("LogoutPageMock")).toBeInTheDocument();
     // debug();
   });
