@@ -41,7 +41,7 @@ describe("Chart component", () => {
 
     const { getByTestId, debug } = render(<Chart {...props} />);
 
-    //debug();
     expect(getByTestId("testing-chart")).toBeInTheDocument();
+    // debug();
   });
 });
