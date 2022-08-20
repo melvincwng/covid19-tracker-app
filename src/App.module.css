@@ -50,6 +50,7 @@ body {
 .fontAwesome:hover,
 .fontAwesomeNoMargin:hover {
   transform: scale(1.4, 1.4);
+  cursor: pointer;
 }
 
 .line {
