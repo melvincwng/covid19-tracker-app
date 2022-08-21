@@ -65,7 +65,7 @@ describe("App component", () => {
   it("should render App component", () => {
     const { getByText, getByTestId, debug } = render(<App />);
     expect(getByTestId("test-app")).toBeInTheDocument();
-    debug();
+    // debug();
   });
 
   it("should render Homepage component in various mocked states", () => {
@@ -145,7 +145,7 @@ describe("App component", () => {
 
     // Act
     const { debug, getByText } = render(<App />);
-    debug();
+
     // Assert
     expect(getByText("Logged out!")).toBeInTheDocument();
     // expect(getByText("LogoutPageMock")).toBeInTheDocument();
