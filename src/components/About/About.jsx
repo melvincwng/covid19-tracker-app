@@ -8,7 +8,8 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
 import { openGithubLink, openItchLink, openCoffeeLink } from "../../App";
 
-const url = "https://covid19-tracker-app-express.herokuapp.com/about";
+const url = `${process.env.REACT_APP_BACKEND_API_URL}/about`;
+console.log("Testing -->", process.env.REACT_APP_BACKEND_API_URL);
 
 function About() {
   const [aboutData, setAboutData] = useState([]);
