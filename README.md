@@ -16,6 +16,6 @@ APIs used: mathdroid/covid-19-api & melvincwng/covid19-tracker-app-express
 Artwork created by Melvin Ng
 
 ## Live Demo:
-https://covid19sg.netlify.app/
+https://covid19-sg.netlify.app/
 
 <img src="https://github.com/melvincwng/covid19-tracker-app/blob/master/src/images/demo.JPG"/>

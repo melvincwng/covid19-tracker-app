@@ -7,7 +7,7 @@ const mockAxios = new MockAdapter(axios);
 describe("About component", () => {
   const aboutData = [
     {
-      title: "About COVID19sg",
+      title: "About Covid19-SG",
       body: "testing",
       body2: "testing1",
       body3: "testing12",
@@ -27,8 +27,8 @@ describe("About component", () => {
 
     const { getByText } = render(<About />);
 
-    await waitFor(() => getByText("About COVID19sg"));
-    expect(getByText("About COVID19sg")).toBeInTheDocument();
+    await waitFor(() => getByText("About Covid19-SG"));
+    expect(getByText("About Covid19-SG")).toBeInTheDocument();
     expect(getByText("testing")).toBeInTheDocument();
     expect(getByText("testing1")).toBeInTheDocument();
     expect(getByText("testing12")).toBeInTheDocument();
