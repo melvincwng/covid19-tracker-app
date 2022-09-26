@@ -20,7 +20,7 @@ describe("should render and display the EditArticle component on the screen", ()
   it("should render the EditArticle component & simulate submission of article edits", async () => {
     mockAxios
       .onGet(
-        "https://covid19-tracker-app-express.herokuapp.com/articles/605ad60b78d1010015f1337f"
+        `${process.env.REACT_APP_BACKEND_API_URL}/articles/605ad60b78d1010015f1337f`
       )
       .reply(200, individualArticleData);
 

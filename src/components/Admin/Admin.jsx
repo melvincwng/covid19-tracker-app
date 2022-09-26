@@ -3,7 +3,7 @@ import styles from './Admin.module.css';
 import axios from 'axios';
 import { UserContext } from './../../UserContext';
 
-const url = "https://covid19-tracker-app-express.herokuapp.com/articles";
+const url = `${process.env.REACT_APP_BACKEND_API_URL}/articles`;
 
 function Admin() {
     const { user, setUser } = useContext(UserContext);

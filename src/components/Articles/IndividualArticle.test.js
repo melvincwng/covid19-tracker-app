@@ -19,7 +19,7 @@ describe("IndividualArticle component", () => {
   it("should render the IndividualArticle component", async () => {
     mockAxios
       .onGet(
-        "https://covid19-tracker-app-express.herokuapp.com/articles/605ad60b78d1010015f1337f"
+        `${process.env.REACT_APP_BACKEND_API_URL}/articles/605ad60b78d1010015f1337f`
       )
       .reply(200, individualArticleData);
 
@@ -41,7 +41,7 @@ describe("IndividualArticle component", () => {
   it("should throw an error for the IndividualArticle component", async () => {
     mockAxios
       .onGet(
-        "https://covid19-tracker-app-express.herokuapp.com/articles/605ad60b78d1010015f1337f"
+        `${process.env.REACT_APP_BACKEND_API_URL}/articles/605ad60b78d1010015f1337f`
       )
       .reply(200, null);
 

@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 
 function EditArticle(props) {
   const articleID = props.match.params.id;
-  const url = `https://covid19-tracker-app-express.herokuapp.com/articles/${articleID}`;
+  const url = `${process.env.REACT_APP_BACKEND_API_URL}/articles/${articleID}`;
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);

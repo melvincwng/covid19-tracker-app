@@ -10,7 +10,7 @@ import { openGithubLink, openItchLink, openCoffeeLink } from "../../App";
 
 function IndividualArticle(props) {
   const articleID = props.match.params.id;
-  const url = `https://covid19-tracker-app-express.herokuapp.com/articles/${articleID}`;
+  const url = `${process.env.REACT_APP_BACKEND_API_URL}/articles/${articleID}`;
   const [article, setArticle] = useState({});
   const [imageBaseUrl, setImageBaseUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +49,7 @@ function IndividualArticle(props) {
       // Some articles will not have articleImages... while some will have. Hence need to put if statement here...
       if (articleObject?.articleImage) {
         setImageBaseUrl(
-          `https://covid19-tracker-app-express.herokuapp.com/images/${articleObject.articleImage}`
+          `${process.env.REACT_APP_BACKEND_API_URL}/images/${articleObject.articleImage}`
         );
       }
     }

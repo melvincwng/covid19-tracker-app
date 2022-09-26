@@ -9,7 +9,7 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
 import { openGithubLink, openItchLink, openCoffeeLink } from "../../App";
 
-const url = "https://covid19-tracker-app-express.herokuapp.com/articles";
+const url = `${process.env.REACT_APP_BACKEND_API_URL}/articles`;
 
 function Articles() {
   const [articles, setArticles] = useState([]);
@@ -41,7 +41,7 @@ function Articles() {
       let buttonElement = e.target;
       buttonElement.disabled = true; //cannot use the usual way of const [ disabled, setDisabled ] = useState(false) => because once you click a button, and setDisabled(true) => it will cause not only that button you click to be disabled, but also all the other delete buttons to be disabled as well.
       let articleID = e.target.value;
-      const deleteUrl = `https://covid19-tracker-app-express.herokuapp.com/articles/${articleID}`;
+      const deleteUrl = `${process.env.REACT_APP_BACKEND_API_URL}/articles/${articleID}`;
       await axios.delete(deleteUrl, { withCredentials: true });
       alert("Article deleted!");
       buttonElement.disabled = false;

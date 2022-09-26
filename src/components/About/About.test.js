@@ -22,7 +22,7 @@ describe("About component", () => {
   // Happy path
   it("should render the About component if the API call is successful", async () => {
     mockAxios
-      .onGet("https://covid19-tracker-app-express.herokuapp.com/about")
+      .onGet(`${process.env.REACT_APP_BACKEND_API_URL}/about`)
       .reply(200, aboutData);
 
     const { getByText } = render(<About />);
@@ -38,7 +38,7 @@ describe("About component", () => {
   // Unhappy path
   it("should not render the About component if the API call is not successful, and should instead console.log the error", async () => {
     mockAxios
-      .onGet("https://covid19-tracker-app-express.herokuapp.com/about")
+      .onGet(`${process.env.REACT_APP_BACKEND_API_URL}/about`)
       .networkErrorOnce();
 
     try {

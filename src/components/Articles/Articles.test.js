@@ -22,7 +22,7 @@ describe("Articles component", () => {
 
   it("should render the Articles component", async () => {
     mockAxios
-      .onGet("https://covid19-tracker-app-express.herokuapp.com/articles")
+      .onGet(`${process.env.REACT_APP_BACKEND_API_URL}/articles`)
       .reply(200, articlesData);
 
     const { getByText } = render(

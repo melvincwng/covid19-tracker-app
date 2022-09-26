@@ -5,7 +5,7 @@ import styles from './LoginForm.module.css';
 import axios from 'axios';
 import { UserContext } from './../../UserContext';
 
-const url = "https://covid19-tracker-app-express.herokuapp.com/users/login";
+const url = `${process.env.REACT_APP_BACKEND_API_URL}/users/login`;
 
 function LoginForm() {
     const [ disabled, setDisabled ] = useState(false); //to prevent users from clicking multiple times
