@@ -79,6 +79,16 @@ function App() {
     );
   }, [user]);
 
+  // Add useEffect to show users an alert message at the home page when APIs are down
+  // To comment out this useEffect when APIs are back up again (and uncomment back the useEffect if APIs are down again)
+  useEffect(() => {
+    const atHomePage = window.location.pathname === "/";
+    atHomePage &&
+      alert(
+        "mathdroid/covid-19-api - a JSON API dependency that serves data from John Hopkins University CSSE is DOWN at the moment... \n\nWe are trying to resolve the issue... \n\nPlease check back later 😔"
+      );
+  }, []);
+
   //implementing logic for the handleSelectedCountry function here
   //what handleSelectedCountry does is that it takes into a parameter country
   //and then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component

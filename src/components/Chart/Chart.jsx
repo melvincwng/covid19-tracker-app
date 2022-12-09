@@ -208,10 +208,14 @@ function Chart({ confirmed, recovered, deaths, country }) {
 
   const lineChart = dailyData.length ? (
     <Line data={line_data} options={line_options}></Line>
-  ) : null;
+  ) : (
+    <div style={{ height: "75px" }}>Loading...</div>
+  );
+
   const barChart = confirmed ? (
     <Bar data={bar_data} options={bar_options}></Bar>
   ) : null;
+
   // generate bar chart if confirmed is not an empty object (aka like {value: some-num, type: example})
 
   return (

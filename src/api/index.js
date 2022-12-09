@@ -26,6 +26,7 @@ export const fetchData = async (country) => {
     }
   } catch (err) {
     console.log(err);
+    return {};
   }
 };
 
@@ -42,6 +43,7 @@ export const fetchDailyData = async () => {
     return modifiedData;
   } catch (err) {
     console.log(err);
+    return [];
   }
 };
 
