@@ -5,25 +5,14 @@ const url = "https://covid19.mathdro.id/api";
 // for Cards component
 export const fetchData = async (country) => {
   try {
-    if (country === "Singapore") {
-      let changeableUrl = url;
-      if (country) {
-        changeableUrl = `${url}/countries/${country}`;
-      }
-      const response = await axios.get(changeableUrl);
-      const data = response.data; // data is an object here
-      const { confirmed, recovered, deaths, lastUpdate } = data;
-      return { confirmed, recovered, deaths, lastUpdate };
-    } else {
-      let changeableUrl = url;
-      if (country) {
-        changeableUrl = `${url}/countries/${country}`;
-      }
-      const response = await axios.get(changeableUrl);
-      const data = response.data; // data is an object here
-      const { confirmed, recovered, deaths, lastUpdate } = data;
-      return { confirmed, recovered, deaths, lastUpdate };
+    let changeableUrl = url;
+    if (country) {
+      changeableUrl = `${url}/countries/${country}`;
     }
+    const response = await axios.get(changeableUrl);
+    const data = response.data; // data is an object here
+    const { confirmed, recovered, deaths, lastUpdate } = data;
+    return { confirmed, recovered, deaths, lastUpdate };
   } catch (err) {
     console.log(err);
     return {};
