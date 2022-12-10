@@ -13,6 +13,7 @@ import About from "./components/About/About";
 import Articles from "./components/Articles/Articles";
 import IndividualArticle from "./components/Articles/IndividualArticle";
 import LoginForm from "./components/LoginForm/LoginForm";
+import NotificationBar from "./components/NotificationBar/NotificationBar";
 import { UserContext } from "./UserContext";
 import Logout from "./components/Logout/Logout";
 import Admin from "./components/Admin/Admin";
@@ -79,19 +80,6 @@ function App() {
     );
   }, [user]);
 
-  // Add useEffect to show users an alert message at the home page when APIs are down
-  // To comment out this useEffect when APIs are back up again (and uncomment back the useEffect if APIs are down again)
-  useEffect(() => {
-    const atHomePage = window.location.pathname === "/";
-    atHomePage &&
-      alert(
-        `mathdroid/covid-19-api - a JSON API external dependency that serves data from John Hopkins University CSSE is DOWN at the moment... 
-        \nWe are trying to resolve this issue... 
-        \nPlease check back the homepage at a later date 😔 
-        \nIn the meanwhile, you can still check out the other sections of the website 🙂`
-      );
-  }, []);
-
   //implementing logic for the handleSelectedCountry function here
   //what handleSelectedCountry does is that it takes into a parameter country
   //and then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component
@@ -101,6 +89,7 @@ function App() {
     setCountry(country);
   }
 
+  const atHomePage = window.location.pathname === "/";
   const atExtrasPage = window.location.pathname === "/extras";
 
   return (
@@ -110,6 +99,7 @@ function App() {
     >
       <BrowserRouter>
         <UserContext.Provider value={value}>
+          {atHomePage && <NotificationBar />}
           <NavigationBar />
           <Switch>
             <Route
@@ -151,7 +141,6 @@ function App() {
                     is no longer collecting & maintaining certain COVID-19
                     related data. Hence, certain features of this web app may
                     not be available.
-                    {/* **As of 14<sup>th</sup> Aug 2021, Singapore's data will be obtained from another backend API (<a href="https://github.com/apify/covid-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>Apify Covid-19 API</a>) instead of using <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener noreferrer" className={styles.fontColor}>JHU CSSE's API</a> - Commented out till further notice */}
                     <br></br>
                     <b>
                       **Medical Disclaimer: All content & information on this

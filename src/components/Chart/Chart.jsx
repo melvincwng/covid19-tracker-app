@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchDailyData } from "../../api";
 import { Line, Bar } from "react-chartjs-2";
 import styles from "./Chart.module.css";
+import Loader from "react-loader-spinner";
 
 function Chart({ confirmed, recovered, deaths, country }) {
   const [dailyData, setDailyData] = useState([]);
@@ -209,7 +210,7 @@ function Chart({ confirmed, recovered, deaths, country }) {
   const lineChart = dailyData.length ? (
     <Line data={line_data} options={line_options}></Line>
   ) : (
-    <div style={{ height: "75px" }}>Loading...</div>
+    <Loader type="TailSpin" color="black" height={80} width={80} />
   );
 
   const barChart = confirmed ? (

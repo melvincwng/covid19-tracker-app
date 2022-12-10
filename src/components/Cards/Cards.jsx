@@ -2,11 +2,12 @@ import React from "react";
 import styles from "./Cards.module.css";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
+import Loader from "react-loader-spinner";
 
 function Cards({ confirmed, recovered, deaths, lastUpdate, country }) {
-  // At the start, the app will render a component with empty/undefined values
+  // At the start, the app will render a Loading component
   if (!confirmed) {
-    return "Loading data...";
+    return <Loader type="TailSpin" color="black" height={80} width={80} />;
   } else {
     // As of 04/08/2021, John Hopkins University is no longer maintaining the data for 'recovered',
     // and 'active'. Source: https://github.com/CSSEGISandData/COVID-19/issues/4465

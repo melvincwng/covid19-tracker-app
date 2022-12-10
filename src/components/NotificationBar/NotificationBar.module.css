@@ -1,0 +1,8 @@
+@import url(https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Pangolin&family=Reenie+Beanie&family=Rock+Salt&display=swap);
+
+.notificationBar {
+  font-family: "Pangolin", cursive !important;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
+}
