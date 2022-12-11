@@ -30,8 +30,8 @@ export const fetchGlobalDataViaBackupAPI = async () => {
   try {
     let changeableURL = `${backupURL}/summary`;
     const response = await axios.get(changeableURL);
-    const data = response.data; // data is an object here
-    const { TotalConfirmed, TotalDeaths, Date } = data.Global;
+    const data = response.data || {}; // data is an object here
+    const { TotalConfirmed, TotalDeaths, Date } = data.Global || {};
     // Formatting the data to match the format of the data from the primary API
     const confirmed = { value: TotalConfirmed };
     const deaths = { value: TotalDeaths };
@@ -53,14 +53,14 @@ export const fetchCountryDataViaBackupAPI = async (selectedCountry) => {
     // A more stable approach is Solution B - /total/country/{country} endpoint (doesn't seem to cache...but we need to extract the last object in the array of objects returned from the API endpoint)
     let changeableURL = `${backupURL}/total/country/${selectedCountry}`;
     const response = await axios.get(changeableURL);
-    const data = response.data; // data is an array here
+    const data = response.data || []; // data is an array here
     const selectedCountryLatestCovidData = data.pop();
     console.log(
       "What is the selected country's latest COVID-19 data:",
       selectedCountryLatestCovidData
     );
     // Formatting the data to match the format of the data from the primary API
-    const { Confirmed, Deaths, Date } = selectedCountryLatestCovidData;
+    const { Confirmed, Deaths, Date } = selectedCountryLatestCovidData || {};
     const confirmed = { value: Confirmed };
     const deaths = { value: Deaths };
     const lastUpdate = Date;
@@ -75,7 +75,7 @@ export const fetchCountryDataViaBackupAPI = async (selectedCountry) => {
 export const fetchDailyData = async () => {
   try {
     const { data } = await axios.get(`${primaryURL}/daily`); //data is an array here
-    // line 74-78 is returning an array with new objects containing the info confirmed, deaths, date
+    // line 78-84 is returning an array with new objects containing the info confirmed, deaths, date
     const modifiedData = data.map((dailyData) => ({
       confirmed: dailyData.confirmed.total,
       deaths: dailyData.deaths.total,
@@ -91,11 +91,12 @@ export const fetchDailyData = async () => {
 // for Chart component - Backup API (To get daily data for line chart)
 export const fetchDailyDataViaBackupAPI = async () => {
   try {
-    const { data } = await axios.get(`${backupURL}/world`); //data is an array here
+    const response = await axios.get(`${backupURL}/world`);
+    const data = response.data || []; //data is an array here
     let sortedArrayByDate = data.sort((a, b) => {
       return new Date(a.Date) - new Date(b.Date);
     });
-    // We will be returning an array with new objects containing the info confirmed, deaths, date (reference to primary API's daily data format - line 74-78 in this file)
+    // We will be returning an array with new objects containing the info confirmed, deaths, date (reference to primary API's daily data format - line 78-84 in this file)
     const modifiedData = sortedArrayByDate.map((dailyData) => ({
       confirmed: dailyData.TotalConfirmed,
       deaths: dailyData.TotalDeaths,
@@ -126,7 +127,7 @@ export const fetchCountriesViaBackupAPI = async () => {
   try {
     let changeableURL = `${backupURL}/countries`;
     const response = await axios.get(changeableURL);
-    let countries_array = response.data; //countries_array OR response.data will straightaway contain an array of country objects - e.g. [ {"Country": "Senegal"...}, {"Country": "Serbia"...}, ... ]
+    let countries_array = response.data || []; //countries_array OR response.data will straightaway contain an array of country objects - e.g. [ {"Country": "Senegal"...}, {"Country": "Serbia"...}, ... ]
     // Sort the countries_array alphabetically since the API doesn't return the countries in alphabetical order
     countries_array.sort((a, b) => {
       if (a.Country < b.Country) return -1;
