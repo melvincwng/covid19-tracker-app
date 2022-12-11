@@ -15,7 +15,7 @@ function NotificationBar() {
       >
         mathdroid/covid-19-api
       </a>{" "}
-      - a JSON API external dependency that serves data from{" "}
+      - a JSON API that serves data from{" "}
       <a
         href="https://github.com/CSSEGISandData/COVID-19"
         target="_blank"
@@ -24,7 +24,7 @@ function NotificationBar() {
       >
         Johns Hopkins University CSSE
       </a>{" "}
-      is <b>DOWN</b> at the moment. As a result, we have migrated to another API
+      is <b>DOWN</b> at the moment.As a result, we have migrated to another API
       (
       <a
         href="https://covid19api.com/"
