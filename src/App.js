@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, Fragment } from "react";
-import { fetchData } from "./api/index";
+import { fetchData, fetchDataViaBackupAPI } from "./api/index";
 import Cards from "./components/Cards/Cards";
 import Chart from "./components/Chart/Chart";
 import CountryPicker from "./components/CountryPicker/CountryPicker";
@@ -48,7 +48,12 @@ function App() {
   // useEffect will automatically run after the components here are first rendered onto the screen.
   useEffect(() => {
     async function fetchMyAPI() {
-      const data_object = await fetchData();
+      let data_object = await fetchData();
+      // Check if data_object is empty or not, if its empty, it means first API call failed. Hence we call another API.
+      if (Object.keys(data_object).length === 0) {
+        data_object = await fetchDataViaBackupAPI();
+      }
+      console.log("COVID-19 Global Data - ", data_object);
       setData(data_object); //setData(...) will re-render the App component again with the new data value
     }
     fetchMyAPI();
