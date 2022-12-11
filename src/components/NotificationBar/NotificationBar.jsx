@@ -36,9 +36,17 @@ function NotificationBar() {
       </a>
       ).
       <br />
-      However, as covid19api.com is a rate-limited API, you might experience
-      some slowness or delays when selecting countries on the homepage
-      😔
+      However, as{" "}
+      <a
+        href="https://covid19api.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.fontColor}
+      >
+        covid19api.com
+      </a>{" "}
+      is a rate-limited API, you might experience some slowness or delays when
+      selecting countries on the homepage 😔
       <br />
       We apologize for any inconvenience caused. We will continue to monitor the
       situation and may revert back to the original API if the situation
