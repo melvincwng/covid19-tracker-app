@@ -37,8 +37,8 @@ function NotificationBar() {
       ).
       <br />
       However, as covid19api.com is a rate-limited API, you might experience
-      some slowness or delays when interacting with the various elements on the
-      homepage 😔
+      some slowness or delays when selecting certain countries on the homepage
+      😔
       <br />
       We apologize for any inconvenience caused. We will continue to monitor the
       situation and may revert back to the original API if the situation

@@ -182,11 +182,12 @@ function Chart({ confirmed, recovered, deaths, country }) {
     <Loader type="TailSpin" color="black" height={80} width={80} />
   );
 
+  // generate bar chart if confirmed is not an empty object (aka confirmed = {value: some-num, type: example})
   const barChart = confirmed ? (
     <Bar data={bar_data} options={bar_options}></Bar>
-  ) : null;
-
-  // generate bar chart if confirmed is not an empty object (aka like {value: some-num, type: example})
+  ) : (
+    <Loader type="TailSpin" color="black" height={80} width={80} />
+  );
 
   return (
     <div className={styles.container} data-testid="testing-chart">
