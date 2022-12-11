@@ -12,7 +12,8 @@ import axios from "axios";
 jest.mock("axios");
 
 // Write unit tests for all the functions in the index.js file
-describe("Tests for the various API calls in index.js", () => {
+// Happy paths
+describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
   it("should test fetchData", async () => {
     const mockResponse = {
       data: {
@@ -50,5 +51,239 @@ describe("Tests for the various API calls in index.js", () => {
     const mockFetchGlobalDataViaBackupAPI = await fetchGlobalDataViaBackupAPI();
 
     expect(mockFetchGlobalDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountryDataViaBackupAPI", async () => {
+    const mockResponse = {
+      data: [{ Confirmed: 100, Deaths: 10, Date: "2020-04-01T00:00:00Z" }],
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = {
+      confirmed: { value: mockResponse.data[0].Confirmed },
+      deaths: { value: mockResponse.data[0].Deaths },
+      lastUpdate: mockResponse.data[0].Date,
+    };
+
+    const mockFetchCountryDataViaBackupAPI = await fetchCountryDataViaBackupAPI(
+      "Thailand"
+    );
+
+    expect(mockFetchCountryDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyData", async () => {
+    const mockResponse = {
+      data: [
+        {
+          confirmed: { total: 100 },
+          deaths: { total: 10 },
+          reportDate: "2020-04-01T00:00:00Z",
+        },
+      ],
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [
+      {
+        confirmed: mockResponse.data[0].confirmed.total,
+        deaths: mockResponse.data[0].deaths.total,
+        date: mockResponse.data[0].reportDate,
+      },
+    ];
+
+    const mockFetchDailyData = await fetchDailyData();
+
+    expect(mockFetchDailyData).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyGlobalDataViaBackupAPI", async () => {
+    const mockResponse = {
+      data: [
+        { TotalConfirmed: 100, TotalDeaths: 10, Date: "2020-04-01T00:00:00Z" },
+      ],
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [
+      {
+        confirmed: mockResponse.data[0].TotalConfirmed,
+        deaths: mockResponse.data[0].TotalDeaths,
+        date: mockResponse.data[0].Date.slice(0, 10),
+      },
+    ];
+
+    const mockFetchDailyGlobalDataViaBackupAPI =
+      await fetchDailyGlobalDataViaBackupAPI();
+
+    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyCountryDataViaBackupAPI", async () => {
+    const mockResponse = {
+      data: [{ Confirmed: 100, Deaths: 10, Date: "2020-04-01T00:00:00Z" }],
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [
+      {
+        confirmed: mockResponse.data[0].Confirmed,
+        deaths: mockResponse.data[0].Deaths,
+        date: mockResponse.data[0].Date.slice(0, 10),
+      },
+    ];
+
+    const mockFetchDailyCountryDataViaBackupAPI =
+      await fetchDailyCountryDataViaBackupAPI("Thailand");
+
+    expect(mockFetchDailyCountryDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountries", async () => {
+    const mockResponse = {
+      data: {
+        countries: [{ name: "Thailand" }, { name: "Malaysia" }],
+      },
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = ["Thailand", "Malaysia"];
+
+    const mockFetchCountries = await fetchCountries();
+
+    expect(mockFetchCountries).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountriesViaBackupAPI", async () => {
+    const mockResponse = {
+      data: [
+        { Country: "Thailand" },
+        { Country: "Malaysia" },
+        { Country: "America" },
+        { Country: "Bangladesh" },
+      ],
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = ["America", "Bangladesh", "Malaysia", "Thailand"];
+
+    const mockFetchCountriesViaBackupAPI = await fetchCountriesViaBackupAPI();
+
+    expect(mockFetchCountriesViaBackupAPI).toEqual(expectedResponse);
+  });
+});
+
+// Unhappy paths
+describe("Tests for the various API calls in index.js (UNHAPPY PATHS)", () => {
+  it("should test fetchData error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const mockFetchData = await fetchData();
+
+    expect(mockFetchData).toEqual({});
+  });
+
+  it("should test fetchGlobalDataViaBackupAPI error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = {
+      confirmed: { value: undefined },
+      deaths: { value: undefined },
+      lastUpdate: undefined,
+    };
+
+    const mockFetchGlobalDataViaBackupAPI = await fetchGlobalDataViaBackupAPI();
+
+    expect(mockFetchGlobalDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountryDataViaBackupAPI error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = {
+      confirmed: { value: undefined },
+      deaths: { value: undefined },
+      lastUpdate: undefined,
+    };
+
+    const mockFetchCountryDataViaBackupAPI = await fetchCountryDataViaBackupAPI(
+      "Thailand"
+    );
+
+    expect(mockFetchCountryDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyData error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = [];
+
+    const mockFetchDailyData = await fetchDailyData();
+
+    expect(mockFetchDailyData).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyGlobalDataViaBackupAPI error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = [];
+
+    const mockFetchDailyGlobalDataViaBackupAPI =
+      await fetchDailyGlobalDataViaBackupAPI();
+
+    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyCountryDataViaBackupAPI error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = [
+      {
+        confirmed: undefined,
+        deaths: undefined,
+        date: undefined,
+      },
+    ];
+
+    const mockFetchDailyCountryDataViaBackupAPI =
+      await fetchDailyCountryDataViaBackupAPI("Thailand");
+
+    expect(mockFetchDailyCountryDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountries error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = [];
+
+    const mockFetchCountries = await fetchCountries();
+
+    expect(mockFetchCountries).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountriesViaBackupAPI error", async () => {
+    axios.get.mockImplementationOnce(() =>
+      Promise.reject(new Error("API failed"))
+    );
+
+    const expectedResponse = [];
+
+    const mockFetchCountriesViaBackupAPI = await fetchCountriesViaBackupAPI();
+
+    expect(mockFetchCountriesViaBackupAPI).toEqual(expectedResponse);
   });
 });
