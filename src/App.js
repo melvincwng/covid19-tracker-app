@@ -18,14 +18,15 @@ import Articles from "./components/Articles/Articles";
 import IndividualArticle from "./components/Articles/IndividualArticle";
 import LoginForm from "./components/LoginForm/LoginForm";
 import NotificationBar from "./components/NotificationBar/NotificationBar";
-import { UserContext } from "./UserContext";
 import Logout from "./components/Logout/Logout";
 import Admin from "./components/Admin/Admin";
 import EditArticle from "./components/Articles/EditArticle";
+import ToggleBetweenBarChartAndLineChart from "./components/ToggleBetweenBarChartAndLineChart/ToggleBetweenBarChartAndLineChart";
+import Loader from "react-loader-spinner";
+import { UserContext } from "./UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
-import Loader from "react-loader-spinner";
 
 export function openGithubLink() {
   window.open("https://github.com/melvincwng");
@@ -44,6 +45,7 @@ function App() {
   const [country, setCountry] = useState("");
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [chartView, setChartView] = useState("Line Chart");
 
   //useMemo is a react hook which, when the variables user & setUser in the dependency array changes,
   //useMemo will automatically run again to return the new values of user & setUser in an object form
@@ -91,15 +93,19 @@ function App() {
     );
   }, [user]);
 
-  //implementing logic for the handleSelectedCountry function here
-  //what handleSelectedCountry does is that it takes into a parameter country
-  //and then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component
+  // Implementing logic for the handleSelectedCountry function here (for CountryPicker component)
+  // What handleSelectedCountry does is that it takes into a parameter country
+  // And then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component
   async function handleSelectedCountry(country) {
     setIsLoading(true);
     let country_data_object = {};
     if (country) {
+      // chartView state change to "Bar Chart" if we select a country
+      setChartView("Bar Chart");
       country_data_object = await fetchCountryDataViaBackupAPI(country);
     } else {
+      // chartView state change to "Line Chart" if we select "Global" (as Global can be represented by a line chart)
+      setChartView("Line Chart");
       country_data_object = await fetchGlobalDataViaBackupAPI();
     }
     // Check if country_data_object is empty or not, if its empty, it means first API call failed. Hence we call another backup API.
@@ -109,6 +115,13 @@ function App() {
     setData(country_data_object);
     setCountry(country);
     setIsLoading(false);
+  }
+
+  // Implementing logic for the handleToggleChart function here (for ToggleBetweenBarChartAndLineChart component)
+  // What handleToggleChart does is that it takes into a parameter 'chartView'
+  // And then it toggles between the bar chart & line chart view
+  async function handleToggleChart(chartView) {
+    setChartView(chartView);
   }
 
   const atHomePage = window.location.pathname === "/";
@@ -166,6 +179,12 @@ function App() {
                       recovered={data.recovered}
                       deaths={data.deaths}
                       country={country}
+                      chartView={chartView}
+                    />
+                  )}
+                  {country && (
+                    <ToggleBetweenBarChartAndLineChart
+                      handleToggleChart={handleToggleChart}
                     />
                   )}
                   <footer className={styles.footer}>

@@ -1,7 +1,7 @@
 /**
  * As of 10/12/2022:
  * mathdroid/covid-19-api (fetchData/fetchDailyData/fetchCountries) --> API is down since 10/12/2022 (original primary API - reverted to backup API)
- * covid19api.com (fetchGlobalDataViaBackupAPI/fetchCountryDataViaBackupAPI/fetchDailyDataViaBackupAPI/fetchCountriesViaBackupAPI) --> API is up and running (backup API - now we are using this API as the "primary" API")
+ * covid19api.com (fetchGlobalDataViaBackupAPI/fetchCountryDataViaBackupAPI/fetchDailyGlobalDataViaBackupAPI/fetchCountriesViaBackupAPI) --> API is up and running (backup API - now we are using this API as the "primary" API")
  */
 import axios from "axios";
 
@@ -47,7 +47,7 @@ export const fetchGlobalDataViaBackupAPI = async () => {
   }
 };
 
-// for Cards component - Backup API (To get Country specific COVID-19 data)
+// for Cards component - Backup API (To get Country specific COVID-19 data --> actually it will be used for Cards + Chart components)
 export const fetchCountryDataViaBackupAPI = async (selectedCountry) => {
   try {
     // We can either use a) /summary endpoint OR b) /total/country/{country} endpoint
@@ -96,8 +96,8 @@ export const fetchDailyData = async () => {
   }
 };
 
-// for Chart component - Backup API (To get daily data for line chart)
-export const fetchDailyDataViaBackupAPI = async () => {
+// for Chart component - Backup API (To get daily data for Global's line chart)
+export const fetchDailyGlobalDataViaBackupAPI = async () => {
   try {
     const response = await axios.get(`${backupURL}/world`);
     const data = response.data || []; //data is an array here
@@ -114,6 +114,46 @@ export const fetchDailyDataViaBackupAPI = async () => {
   } catch (err) {
     console.log(err);
     return [];
+  }
+};
+
+// for Chart component - Backup API (To get daily data for individual country's line chart)
+export const fetchDailyCountryDataViaBackupAPI = async (country) => {
+  try {
+    const response = await axios.get(
+      `${backupURL}/total/dayone/country/${country}`
+    );
+    const data = response.data || []; //data is an array here
+    let sortedArrayByDate = data.sort((a, b) => {
+      return new Date(a.Date) - new Date(b.Date);
+    });
+    // We will be returning an array with new objects containing the info such as confirmed, deaths, date
+    let modifiedData = sortedArrayByDate.map((dailyData) => ({
+      confirmed: dailyData.Confirmed,
+      deaths: dailyData.Deaths,
+      date: dailyData.Date.slice(0, 10), //removing the time from the date string - e.g. 2022-12-11T00:00:00Z --> 2022-12-11
+    }));
+
+    modifiedData = modifiedData.length
+      ? modifiedData
+      : [
+          {
+            confirmed: undefined,
+            deaths: undefined,
+            date: undefined,
+          },
+        ];
+    return modifiedData;
+  } catch (err) {
+    console.log(err);
+    // Return an array with an object mapped to undefined values if there is an error
+    return [
+      {
+        confirmed: undefined,
+        deaths: undefined,
+        date: undefined,
+      },
+    ];
   }
 };
 

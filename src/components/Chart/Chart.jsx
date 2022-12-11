@@ -1,27 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { fetchDailyData, fetchDailyDataViaBackupAPI } from "../../api";
+import {
+  fetchDailyData,
+  fetchDailyGlobalDataViaBackupAPI,
+  fetchDailyCountryDataViaBackupAPI,
+} from "../../api";
 import { Line, Bar } from "react-chartjs-2";
 import styles from "./Chart.module.css";
 import Loader from "react-loader-spinner";
 
-function Chart({ confirmed, recovered, deaths, country }) {
+function Chart({ confirmed, recovered, deaths, country, chartView }) {
   const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
-    async function fetchMyAPI() {
-      let daily_data_array = await fetchDailyDataViaBackupAPI();
+    async function fetchMyAPIForLineChart() {
+      let daily_data_array = [];
+
+      if (!country) {
+        // On initial load, we are loading "Global", hence country === "". Thus we will fetch the global daily data to generate line-chart.
+        daily_data_array = await fetchDailyGlobalDataViaBackupAPI();
+      } else {
+        // If country is not empty, it means that we are loading a specific country. Hence, we will fetch the country daily data to generate line-chart.
+        daily_data_array = await fetchDailyCountryDataViaBackupAPI(country);
+      }
+
       // Check if daily_data_array is empty. If it is, it means that the first API call failed. Hence, we will try using a second API backup API call.
       if (daily_data_array.length === 0) {
         daily_data_array = await fetchDailyData();
       }
+
       console.log(
         "What is the daily data array for line_chart? - ",
         daily_data_array
       );
+
       setDailyData(daily_data_array);
     }
-    fetchMyAPI();
-  }, []);
+
+    chartView === "Line Chart" && fetchMyAPIForLineChart();
+    //chartView === "Bar Chart" && fetchMyAPIForBarChart();
+  }, [country, chartView]);
 
   // Visit react-chart-js on github to view and get a sense of how they implement their graphs
   // Can see their source codes on how they implemented their line or bar charts.
@@ -191,7 +208,13 @@ function Chart({ confirmed, recovered, deaths, country }) {
 
   return (
     <div className={styles.container} data-testid="testing-chart">
-      {country ? barChart : lineChart}
+      {country && chartView === "Bar Chart"
+        ? barChart
+        : country && chartView === "Line Chart"
+        ? lineChart
+        : !country
+        ? lineChart
+        : null}
     </div>
   );
 }
