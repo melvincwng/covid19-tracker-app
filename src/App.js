@@ -52,10 +52,10 @@ function App() {
   // useEffect will automatically run after the components here are first rendered onto the screen.
   useEffect(() => {
     async function fetchMyAPI() {
-      let data_object = await fetchData();
-      // Check if data_object is empty or not, if its empty, it means first API call failed. Hence we call another API.
+      let data_object = await fetchGlobalDataViaBackupAPI();
+      // Check if data_object is empty or not, if its empty, it means first API call failed. Hence we call another backup API.
       if (Object.keys(data_object).length === 0) {
-        data_object = await fetchGlobalDataViaBackupAPI();
+        data_object = await fetchData();
       }
       console.log("COVID-19 Global Data - ", data_object);
       setData(data_object); //setData(...) will re-render the App component again with the new data value
@@ -93,14 +93,15 @@ function App() {
   //what handleSelectedCountry does is that it takes into a parameter country
   //and then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component
   async function handleSelectedCountry(country) {
-    let country_data_object = await fetchData(country);
+    let country_data_object = {};
+    if (country) {
+      country_data_object = await fetchCountryDataViaBackupAPI(country);
+    } else {
+      country_data_object = await fetchGlobalDataViaBackupAPI();
+    }
     // Check if country_data_object is empty or not, if its empty, it means first API call failed. Hence we call another backup API.
     if (Object.keys(country_data_object).length === 0) {
-      if (country) {
-        country_data_object = await fetchCountryDataViaBackupAPI(country);
-      } else {
-        country_data_object = await fetchGlobalDataViaBackupAPI();
-      }
+      country_data_object = await fetchData(country);
     }
     setData(country_data_object);
     setCountry(country);

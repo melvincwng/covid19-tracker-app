@@ -8,10 +8,10 @@ function CountryPicker({ handleSelectedCountry }) {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let fetched_country_names_array = await fetchCountries();
-      // Check if fetched_country_names_array is empty. If it is, it means that the first API call failed. Hence, we will try using a second API call.
+      let fetched_country_names_array = await fetchCountriesViaBackupAPI();
+      // Check if fetched_country_names_array is empty. If it is, it means that the first API call failed. Hence, we will try using a second backup API call.
       if (fetched_country_names_array.length === 0) {
-        fetched_country_names_array = await fetchCountriesViaBackupAPI();
+        fetched_country_names_array = await fetchCountries();
       }
       console.log("COVID-19 Countries array - ", fetched_country_names_array);
       setFetchedCountries(fetched_country_names_array); // FYI, setSomething() will cause component to render again.

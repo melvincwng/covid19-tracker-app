@@ -9,10 +9,10 @@ function Chart({ confirmed, recovered, deaths, country }) {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let daily_data_array = await fetchDailyData();
-      // Check if daily_data_array is empty. If it is, it means that the first API call failed. Hence, we will try using a second API back-up API call.
+      let daily_data_array = await fetchDailyDataViaBackupAPI();
+      // Check if daily_data_array is empty. If it is, it means that the first API call failed. Hence, we will try using a second API backup API call.
       if (daily_data_array.length === 0) {
-        daily_data_array = await fetchDailyDataViaBackupAPI();
+        daily_data_array = await fetchDailyData();
       }
       console.log(
         "What is the daily data array for line_chart? - ",
