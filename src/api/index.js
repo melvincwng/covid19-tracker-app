@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const primaryURL = "https://covid19.mathdro.id/api";
-const backupURL = "https://api.covid19api.com/summary";
+const backupURL = "https://api.covid19api.com";
 
 // for Cards component
 export const fetchData = async (country) => {
@@ -23,7 +23,8 @@ export const fetchData = async (country) => {
 // for Cards component - Backup API (To get Global COVID-19 data)
 export const fetchDataViaBackupAPI = async () => {
   try {
-    const response = await axios.get(backupURL);
+    let changeableURL = `${backupURL}/summary`;
+    const response = await axios.get(changeableURL);
     const data = response.data; // data is an object here
     const { TotalConfirmed, TotalDeaths, Date } = data.Global;
     // Formatting the data to match the format of the data from the primary API
@@ -61,6 +62,25 @@ export const fetchCountries = async () => {
     const countries_data = response.data; //countries_data will contain {countries: Array(192 countries)}
     const countries_array = countries_data.countries; //countries_arr will contain the array of countries
     return countries_array.map((country) => country.name);
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+// for CountryPicker component - Backup API (To get array of countries)
+export const fetchCountriesViaBackupAPI = async () => {
+  try {
+    let changeableURL = `${backupURL}/countries`;
+    const response = await axios.get(changeableURL);
+    let countries_array = response.data; //countries_array OR response.data will straightaway contain an array of country objects - e.g. [ {"Country": "Senegal"...}, {"Country": "Serbia"...}, ... ]
+    // Sort the countries_array alphabetically since the API doesn't return the countries in alphabetical order
+    countries_array.sort((a, b) => {
+      if (a.Country < b.Country) return -1;
+      if (a.Country > b.Country) return 1;
+      return 0;
+    });
+    return countries_array.map((country) => country.Country); // Return an array of sorted country names
   } catch (err) {
     console.log(err);
     return [];
