@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchDailyData } from "../../api";
+import { fetchDailyData, fetchDailyDataViaBackupAPI } from "../../api";
 import { Line, Bar } from "react-chartjs-2";
 import styles from "./Chart.module.css";
 import Loader from "react-loader-spinner";
@@ -10,6 +10,14 @@ function Chart({ confirmed, recovered, deaths, country }) {
   useEffect(() => {
     async function fetchMyAPI() {
       let daily_data_array = await fetchDailyData();
+      // Check if daily_data_array is empty. If it is, it means that the first API call failed. Hence, we will try using a second API back-up API call.
+      if (daily_data_array.length === 0) {
+        daily_data_array = await fetchDailyDataViaBackupAPI();
+      }
+      console.log(
+        "What is the daily data array for line_chart? - ",
+        daily_data_array
+      );
       setDailyData(daily_data_array);
     }
     fetchMyAPI();
@@ -93,80 +101,41 @@ function Chart({ confirmed, recovered, deaths, country }) {
   // That is what the error kept saying cannot read value property of undefined
   // hence to fix this, have to use ternary operator (see logic below)
 
-  // As of 14/08/2021, I am using another API for Singapore's data: https://github.com/apify/covid-19 (https://github.com/apify/covid-19/tree/master/singapore)
-  // Hence you will realize the logic to extract & display Singapore's data is separated out from the rest of the world.
-
-  // UPDATE - As of 11/09/2021 - Since Apify Covid19 API is broken, we will revert back to using JHU CSSE API for Singapore's data
-  const bar_data =
-    confirmed && country !== "Singapore"
-      ? {
-          labels: ["Infected", "Recovered*", "Active*", "Deaths"],
-          datasets: [
-            {
-              label: "People",
-              data: [
-                confirmed.value, // this was the part causing errors (line 64)
-                0, // originally this line was 'recovered.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
-                0, // originally this line was 'confirmed.value - recovered.value - deaths.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
-                deaths.value,
-              ],
-              backgroundColor: [
-                "rgba(0, 0, 255, 0.6)",
-                "rgba(0, 255, 0, 0.6)",
-                "rgba(255, 206, 86, 0.6)",
-                "rgba(255, 0, 0, 0.6)",
-              ],
-              borderColor: [
-                "rgba(0, 0, 255, 1)",
-                "rgba(0, 255, 0, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(255, 0, 0, 1)",
-              ],
-              borderWidth: 1,
-              hoverBackgroundColor: [
-                "rgba(0, 80, 160)",
-                "rgba(30, 100, 50)",
-                "rgba(200, 150, 0)",
-                "rgba(255, 50, 50)",
-              ],
-            },
-          ],
-        }
-      : confirmed && country === "Singapore" // Singapore's bar-chart data -> reverted to use JHU CSSE API since Apify is broken.
-      ? {
-          labels: ["Infected", "Recovered*", "Active*", "Deaths"],
-          datasets: [
-            {
-              label: "People",
-              data: [
-                confirmed.value, // this was the part causing errors (line 64)
-                0, // used another backend covid19 API ONLY for Singapore (used to be 'recovered.value')
-                0, //  used another backend covid19 API ONLY for Singapore (used to be 'confirmed.value - recovered.value - deaths.value')
-                deaths.value,
-              ],
-              backgroundColor: [
-                "rgba(0, 0, 255, 0.6)",
-                "rgba(0, 255, 0, 0.6)",
-                "rgba(255, 206, 86, 0.6)",
-                "rgba(255, 0, 0, 0.6)",
-              ],
-              borderColor: [
-                "rgba(0, 0, 255, 1)",
-                "rgba(0, 255, 0, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(255, 0, 0, 1)",
-              ],
-              borderWidth: 1,
-              hoverBackgroundColor: [
-                "rgba(0, 80, 160)",
-                "rgba(30, 100, 50)",
-                "rgba(200, 150, 0)",
-                "rgba(255, 50, 50)",
-              ],
-            },
-          ],
-        }
-      : null; // this should fix the bug
+  const bar_data = confirmed
+    ? {
+        labels: ["Infected", "Recovered*", "Active*", "Deaths"],
+        datasets: [
+          {
+            label: "People",
+            data: [
+              confirmed.value, // this was the part causing errors (line 64)
+              0, // originally this line was 'recovered.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
+              0, // originally this line was 'confirmed.value - recovered.value - deaths.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
+              deaths.value,
+            ],
+            backgroundColor: [
+              "rgba(0, 0, 255, 0.6)",
+              "rgba(0, 255, 0, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(255, 0, 0, 0.6)",
+            ],
+            borderColor: [
+              "rgba(0, 0, 255, 1)",
+              "rgba(0, 255, 0, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(255, 0, 0, 1)",
+            ],
+            borderWidth: 1,
+            hoverBackgroundColor: [
+              "rgba(0, 80, 160)",
+              "rgba(30, 100, 50)",
+              "rgba(200, 150, 0)",
+              "rgba(255, 50, 50)",
+            ],
+          },
+        ],
+      }
+    : null; // this should fix the bug
 
   // this options variable is for the bar-charts
   // can refer to https://www.chartjs.org/docs/latest/configuration/title.html for more info:
