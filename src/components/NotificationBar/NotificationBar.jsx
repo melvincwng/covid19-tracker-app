@@ -56,8 +56,8 @@ function NotificationBar() {
       is a rate-limited API, you might experience some slowness or delays when
       selecting countries on the homepage.
       <br />
-      Please also take note that the{" "}
-      <b>data for some countries might not be available</b> as well. We
+      Please also take note that{" "}
+      <b>the data for some countries might not be available</b> as well. We
       apologize for any inconvenience caused 😔
       <br />
       We will continue to monitor the situation and may revert back to the
