@@ -10,11 +10,12 @@ function ToggleBetweenBarChartAndLineChart({ handleToggleChart }) {
         id="chart"
         name="chart"
         onChange={(e) => handleToggleChart(e.target.value)}
+        data-testid="chart-select"
       >
-        <option id="bar-chart" value="Bar Chart">
+        <option id="bar-chart" value="Bar Chart" data-testid="bar-chart">
           Bar Chart
         </option>
-        <option id="line-chart" value="Line Chart">
+        <option id="line-chart" value="Line Chart" data-testid="line-chart">
           Line Chart
         </option>
       </select>
