@@ -7,15 +7,42 @@ function NotificationBar() {
       className={styles.notificationBar}
       data-testid="error-notification-bar"
     >
-      mathdroid/covid-19-api - a JSON API external dependency that serves data
-      from John Hopkins University CSSE is <b>DOWN</b> at the moment. As a
-      result, we have migrated to another API (covid19api.com).
+      <a
+        href="https://github.com/mathdroid/covid-19-api"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.fontColor}
+      >
+        mathdroid/covid-19-api
+      </a>{" "}
+      - a JSON API external dependency that serves data from{" "}
+      <a
+        href="https://github.com/CSSEGISandData/COVID-19"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.fontColor}
+      >
+        Johns Hopkins University CSSE
+      </a>{" "}
+      is <b>DOWN</b> at the moment. As a result, we have migrated to another API
+      (
+      <a
+        href="https://covid19api.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.fontColor}
+      >
+        covid19api.com
+      </a>
+      ).
       <br />
-      However, as this is a rate-limited API, you might experience some slowness
-      or delays when interacting with the various elements on the homepage 😔
+      However, as covid19api.com is a rate-limited API, you might experience
+      some slowness or delays when interacting with the various elements on the
+      homepage 😔
       <br />
       We apologize for any inconvenience caused. We will continue to monitor the
-      situation and revert back to the original API if the situation improves 😊
+      situation and may revert back to the original API if the situation
+      improves 😊
     </div>
   );
 }
