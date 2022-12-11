@@ -24,8 +24,16 @@ function NotificationBar() {
       >
         Johns Hopkins University CSSE
       </a>{" "}
-      is <b>DOWN</b> at the moment.As a result, we have migrated to another API
-      (
+      is <b>DOWN</b> at the moment.As a result,{" "}
+      <a
+        href="https://github.com/melvincwng/covid19-tracker-app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.fontColor}
+      >
+        we
+      </a>{" "}
+      have <b>migrated</b> to another API (
       <a
         href="https://covid19api.com/"
         target="_blank"
@@ -46,11 +54,13 @@ function NotificationBar() {
         covid19api.com
       </a>{" "}
       is a rate-limited API, you might experience some slowness or delays when
-      selecting countries on the homepage 😔
+      selecting countries on the homepage.
       <br />
-      We apologize for any inconvenience caused. We will continue to monitor the
-      situation and may revert back to the original API if the situation
-      improves 😊
+      Please also take note that the data for some countries might not be
+      available as well. We apologize for any inconvenience caused 😔
+      <br />
+      We will continue to monitor the situation and may revert back to the
+      original API if the situation improves 😊
     </div>
   );
 }

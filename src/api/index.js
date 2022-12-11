@@ -39,7 +39,11 @@ export const fetchGlobalDataViaBackupAPI = async () => {
     return { confirmed, deaths, lastUpdate };
   } catch (err) {
     console.log(err);
-    return {};
+    // Return an object with undefined values if there is an error
+    const confirmed = { value: undefined };
+    const deaths = { value: undefined };
+    const lastUpdate = undefined;
+    return { confirmed, deaths, lastUpdate };
   }
 };
 
@@ -67,7 +71,11 @@ export const fetchCountryDataViaBackupAPI = async (selectedCountry) => {
     return { confirmed, deaths, lastUpdate };
   } catch (err) {
     console.log(err);
-    return {};
+    // Return an object with undefined values if there is an error
+    const confirmed = { value: undefined };
+    const deaths = { value: undefined };
+    const lastUpdate = undefined;
+    return { confirmed, deaths, lastUpdate };
   }
 };
 
