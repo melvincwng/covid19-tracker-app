@@ -10,7 +10,10 @@ HTML, CSS, Javascript, MERN stack (MongoDB, Express, React, Node.js)
 ## Libraries & APIs used: 
 Libraries: Material UI, Bootstrap, react-countup, react-chartjs-2, Formik, react-loader-spinner
 
-APIs used: mathdroid/covid-19-api & melvincwng/covid19-tracker-app-express
+APIs used: 
+  - mathdroid/covid-19-api
+  - covid19api.com (api.covid19api.com)
+  - melvincwng/covid19-tracker-app-express
 
 ## Art & Design:
 Artwork created by Melvin Ng
