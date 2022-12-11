@@ -25,6 +25,7 @@ import EditArticle from "./components/Articles/EditArticle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faItchIo } from "@fortawesome/free-brands-svg-icons";
+import Loader from "react-loader-spinner";
 
 export function openGithubLink() {
   window.open("https://github.com/melvincwng");
@@ -42,6 +43,7 @@ function App() {
   const [data, setData] = useState({});
   const [country, setCountry] = useState("");
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   //useMemo is a react hook which, when the variables user & setUser in the dependency array changes,
   //useMemo will automatically run again to return the new values of user & setUser in an object form
@@ -93,6 +95,7 @@ function App() {
   //what handleSelectedCountry does is that it takes into a parameter country
   //and then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component
   async function handleSelectedCountry(country) {
+    setIsLoading(true);
     let country_data_object = {};
     if (country) {
       country_data_object = await fetchCountryDataViaBackupAPI(country);
@@ -105,6 +108,7 @@ function App() {
     }
     setData(country_data_object);
     setCountry(country);
+    setIsLoading(false);
   }
 
   const atHomePage = window.location.pathname === "/";
@@ -130,22 +134,40 @@ function App() {
                     alt="COVID-19 Header"
                     className={styles.image}
                   ></img>
-                  <Cards
-                    confirmed={data.confirmed}
-                    recovered={data.recovered}
-                    deaths={data.deaths}
-                    lastUpdate={data.lastUpdate}
-                    country={country}
-                  />
+                  {isLoading ? (
+                    <Loader
+                      type="TailSpin"
+                      color="black"
+                      height={80}
+                      width={80}
+                    />
+                  ) : (
+                    <Cards
+                      confirmed={data.confirmed}
+                      recovered={data.recovered}
+                      deaths={data.deaths}
+                      lastUpdate={data.lastUpdate}
+                      country={country}
+                    />
+                  )}
                   <CountryPicker
                     handleSelectedCountry={handleSelectedCountry}
                   />
-                  <Chart
-                    confirmed={data.confirmed}
-                    recovered={data.recovered}
-                    deaths={data.deaths}
-                    country={country}
-                  />
+                  {isLoading ? (
+                    <Loader
+                      type="TailSpin"
+                      color="black"
+                      height={80}
+                      width={80}
+                    />
+                  ) : (
+                    <Chart
+                      confirmed={data.confirmed}
+                      recovered={data.recovered}
+                      deaths={data.deaths}
+                      country={country}
+                    />
+                  )}
                   <footer className={styles.footer}>
                     *As of 4<sup>th</sup> Aug 2021,{" "}
                     <a
