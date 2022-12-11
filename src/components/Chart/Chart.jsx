@@ -37,7 +37,6 @@ function Chart({ confirmed, recovered, deaths, country, chartView }) {
     }
 
     chartView === "Line Chart" && fetchMyAPIForLineChart();
-    //chartView === "Bar Chart" && fetchMyAPIForBarChart();
   }, [country, chartView]);
 
   // Visit react-chart-js on github to view and get a sense of how they implement their graphs
@@ -199,7 +198,7 @@ function Chart({ confirmed, recovered, deaths, country, chartView }) {
     <Loader type="TailSpin" color="black" height={80} width={80} />
   );
 
-  // generate bar chart if confirmed is not an empty object (aka confirmed = {value: some-num, type: example})
+  // Generate bar chart if confirmed is not an empty object (aka confirmed = {value: some-num, type: example})
   const barChart = confirmed ? (
     <Bar data={bar_data} options={bar_options}></Bar>
   ) : (

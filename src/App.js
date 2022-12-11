@@ -93,11 +93,19 @@ function App() {
     );
   }, [user]);
 
+  function resetToggleView() {
+    const toggleChartViewSelectElement = document.getElementById("chart");
+    if (toggleChartViewSelectElement) {
+      toggleChartViewSelectElement.selectedIndex = "0";
+    }
+  }
+
   // Implementing logic for the handleSelectedCountry function here (for CountryPicker component)
   // What handleSelectedCountry does is that it takes into a parameter country
   // And then a) fetches the data for that specific country to b) update 1) cards component & 2) chart component
   async function handleSelectedCountry(country) {
     setIsLoading(true);
+    resetToggleView(); // reset the select HTML element's view to "Bar Chart" when we select a NEW country
     let country_data_object = {};
     if (country) {
       // chartView state change to "Bar Chart" if we select a country
