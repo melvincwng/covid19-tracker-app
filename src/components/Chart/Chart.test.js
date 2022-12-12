@@ -29,7 +29,7 @@ describe("Chart component", () => {
     expect(getByTestId("testing-chart")).toBeInTheDocument();
   });
 
-  it("should render the Chart component again but containing a line chart", () => {
+  it("should render the Chart component again but containing a line chart (Global Data)", () => {
     mockAxios.onGet("https://api.covid19api.com/world").reply(200, chartData);
     const props = {
       confirmed: { value: 50 },
@@ -42,7 +42,7 @@ describe("Chart component", () => {
     expect(getByTestId("testing-chart")).toBeInTheDocument();
   });
 
-  it("should render the Chart component again but containing a bar chart", () => {
+  it("should render the Chart component again but containing a bar chart (For Specific Country)", () => {
     mockAxios
       .onGet("https://api.covid19api.com/total/dayone/country/Malaysia")
       .reply(200, chartData);
@@ -51,6 +51,22 @@ describe("Chart component", () => {
       deaths: { value: 10 },
       country: "Malaysia",
       chartView: "Bar Chart",
+    };
+
+    const { getByTestId } = render(<Chart {...props} />);
+
+    expect(getByTestId("testing-chart")).toBeInTheDocument();
+  });
+
+  it("should render the Chart component again but containing a line chart (For Specific Country)", () => {
+    mockAxios
+      .onGet("https://api.covid19api.com/total/dayone/country/Malaysia")
+      .reply(200, chartData);
+    const props = {
+      confirmed: { value: 50 },
+      deaths: { value: 10 },
+      country: "Malaysia",
+      chartView: "Line Chart",
     };
 
     const { getByTestId } = render(<Chart {...props} />);
