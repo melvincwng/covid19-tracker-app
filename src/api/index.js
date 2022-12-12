@@ -84,7 +84,7 @@ export const fetchDailyData = async () => {
   try {
     const { data } = await axios.get(`${primaryURL}/daily`); //data is an array here
     // line 78-84 is returning an array with new objects containing the info confirmed, deaths, date
-    const modifiedData = data.map((dailyData) => ({
+    const modifiedData = data?.map((dailyData) => ({
       confirmed: dailyData.confirmed.total,
       deaths: dailyData.deaths.total,
       date: dailyData.reportDate,
@@ -161,8 +161,8 @@ export const fetchDailyCountryDataViaBackupAPI = async (country) => {
 export const fetchCountries = async () => {
   try {
     const response = await axios.get(`${primaryURL}/countries`);
-    const countries_data = response.data; //countries_data will contain {countries: Array(192 countries)}
-    const countries_array = countries_data.countries; //countries_arr will contain the array of countries
+    const countries_data = response.data || {}; //countries_data will contain {countries: Array(192 countries)}
+    const countries_array = countries_data.countries || []; //countries_arr will contain the array of countries
     return countries_array.map((country) => country.name);
   } catch (err) {
     console.log(err);

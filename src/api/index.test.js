@@ -210,8 +210,120 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
   });
 });
 
-// Unhappy paths
-describe("Tests for the various API calls in index.js (UNHAPPY PATHS)", () => {
+// Unhappy paths one
+describe("Tests for the various API calls in index.js (UNHAPPY PATHS ONE)", () => {
+  it("should test fetchGlobalDataViaBackupAPI - API success but returns 'response.data === undefined'", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = {
+      confirmed: { value: undefined },
+      deaths: { value: undefined },
+      lastUpdate: undefined,
+    };
+
+    const mockFetchGlobalDataViaBackupAPI = await fetchGlobalDataViaBackupAPI();
+
+    expect(mockFetchGlobalDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountryDataViaBackupAPI - API success but returns 'response.data === undefined", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = {
+      confirmed: { value: undefined },
+      deaths: { value: undefined },
+      lastUpdate: undefined,
+    };
+
+    const mockFetchCountryDataViaBackupAPI = await fetchCountryDataViaBackupAPI(
+      "Thailand"
+    );
+
+    expect(mockFetchCountryDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyData - API success but returns 'response.data === undefined", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = undefined;
+
+    const mockFetchDailyData = await fetchDailyData();
+
+    expect(mockFetchDailyData).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyGlobalDataViaBackupAPI - API success but returns 'response.data === undefined", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [];
+
+    const mockFetchDailyGlobalDataViaBackupAPI =
+      await fetchDailyGlobalDataViaBackupAPI();
+
+    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchDailyCountryDataViaBackupAPI - API success but returns 'response.data === undefined", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [
+      {
+        confirmed: undefined,
+        deaths: undefined,
+        date: undefined,
+      },
+    ];
+
+    const mockFetchDailyCountryDataViaBackupAPI =
+      await fetchDailyCountryDataViaBackupAPI("Thailand");
+
+    expect(mockFetchDailyCountryDataViaBackupAPI).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountries - API success but returns 'response.data === undefined", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [];
+
+    const mockFetchCountries = await fetchCountries();
+
+    expect(mockFetchCountries).toEqual(expectedResponse);
+  });
+
+  it("should test fetchCountriesViaBackupAPI - API success but returns 'response.data === undefined", async () => {
+    const mockResponse = {
+      data: undefined,
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const expectedResponse = [];
+
+    const mockFetchCountriesViaBackupAPI = await fetchCountriesViaBackupAPI();
+
+    expect(mockFetchCountriesViaBackupAPI).toEqual(expectedResponse);
+  });
+});
+
+// Unhappy paths two
+describe("Tests for the various API calls in index.js (UNHAPPY PATHS TWO)", () => {
   it("should test fetchData error", async () => {
     axios.get.mockImplementationOnce(() =>
       Promise.reject(new Error("API failed"))
