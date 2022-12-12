@@ -30,18 +30,31 @@ describe("Chart component", () => {
   });
 
   it("should render the Chart component again but containing a line chart", () => {
-    mockAxios
-      .onGet("https://covid19.mathdro.id/api/daily")
-      .reply(200, chartData);
+    mockAxios.onGet("https://api.covid19api.com/world").reply(200, chartData);
     const props = {
       confirmed: { value: 50 },
       deaths: { value: 10 },
       country: undefined,
     };
 
-    const { getByTestId, debug } = render(<Chart {...props} />);
+    const { getByTestId } = render(<Chart {...props} />);
 
     expect(getByTestId("testing-chart")).toBeInTheDocument();
-    // debug();
+  });
+
+  it("should render the Chart component again but containing a bar chart", () => {
+    mockAxios
+      .onGet("https://api.covid19api.com/total/dayone/country/Malaysia")
+      .reply(200, chartData);
+    const props = {
+      confirmed: { value: 50 },
+      deaths: { value: 10 },
+      country: "Malaysia",
+      chartView: "Bar Chart",
+    };
+
+    const { getByTestId } = render(<Chart {...props} />);
+
+    expect(getByTestId("testing-chart")).toBeInTheDocument();
   });
 });

@@ -14,7 +14,7 @@ jest.mock("axios");
 // Write unit tests for all the functions in the index.js file
 // Happy paths
 describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
-  it("should test fetchData", async () => {
+  it("should test fetchData without a country (Global data)", async () => {
     const mockResponse = {
       data: {
         confirmed: { value: 100 },
@@ -26,6 +26,22 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
     axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
 
     const mockFetchData = await fetchData();
+
+    expect(mockFetchData).toEqual(mockResponse.data);
+  });
+
+  it("should test fetchData with a country (Country-specific data)", async () => {
+    const mockResponse = {
+      data: {
+        confirmed: { value: 100 },
+        recovered: { value: 10 },
+        deaths: { value: 10 },
+        lastUpdate: "2020-04-01T00:00:00Z",
+      },
+    };
+    axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
+
+    const mockFetchData = await fetchData("Cambodia");
 
     expect(mockFetchData).toEqual(mockResponse.data);
   });
@@ -100,7 +116,8 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
   it("should test fetchDailyGlobalDataViaBackupAPI", async () => {
     const mockResponse = {
       data: [
-        { TotalConfirmed: 100, TotalDeaths: 10, Date: "2020-04-01T00:00:00Z" },
+        { TotalConfirmed: 100, TotalDeaths: 10, Date: "2019-04-01T00:00:00Z" },
+        { TotalConfirmed: 200, TotalDeaths: 20, Date: "2020-04-01T00:00:00Z" },
       ],
     };
     axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
@@ -110,6 +127,11 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
         confirmed: mockResponse.data[0].TotalConfirmed,
         deaths: mockResponse.data[0].TotalDeaths,
         date: mockResponse.data[0].Date.slice(0, 10),
+      },
+      {
+        confirmed: mockResponse.data[1].TotalConfirmed,
+        deaths: mockResponse.data[1].TotalDeaths,
+        date: mockResponse.data[1].Date.slice(0, 10),
       },
     ];
 
@@ -121,7 +143,10 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
 
   it("should test fetchDailyCountryDataViaBackupAPI", async () => {
     const mockResponse = {
-      data: [{ Confirmed: 100, Deaths: 10, Date: "2020-04-01T00:00:00Z" }],
+      data: [
+        { Confirmed: 100, Deaths: 10, Date: "2019-04-01T00:00:00Z" },
+        { Confirmed: 200, Deaths: 20, Date: "2020-04-01T00:00:00Z" },
+      ],
     };
     axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
 
@@ -130,6 +155,11 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
         confirmed: mockResponse.data[0].Confirmed,
         deaths: mockResponse.data[0].Deaths,
         date: mockResponse.data[0].Date.slice(0, 10),
+      },
+      {
+        confirmed: mockResponse.data[1].Confirmed,
+        deaths: mockResponse.data[1].Deaths,
+        date: mockResponse.data[1].Date.slice(0, 10),
       },
     ];
 
@@ -161,11 +191,18 @@ describe("Tests for the various API calls in index.js (HAPPY PATHS)", () => {
         { Country: "Malaysia" },
         { Country: "America" },
         { Country: "Bangladesh" },
+        { Country: "Bangladesh" },
       ],
     };
     axios.get.mockImplementationOnce(() => Promise.resolve(mockResponse));
 
-    const expectedResponse = ["America", "Bangladesh", "Malaysia", "Thailand"];
+    const expectedResponse = [
+      "America",
+      "Bangladesh",
+      "Bangladesh",
+      "Malaysia",
+      "Thailand",
+    ];
 
     const mockFetchCountriesViaBackupAPI = await fetchCountriesViaBackupAPI();
 
