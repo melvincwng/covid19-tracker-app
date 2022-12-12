@@ -60,8 +60,8 @@ function NotificationBar() {
       <b>the data for some countries might not be available</b> as well. We
       apologize for any inconvenience caused 😔
       <br />
-      We will continue to monitor the situation and may revert back to the
-      original API if the situation improves 😊
+      We will continue to monitor the situation and may revert to the
+      original API if it's back up 😊
     </div>
   );
 }
