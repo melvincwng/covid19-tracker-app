@@ -7,31 +7,14 @@ function NotificationBar() {
       className={styles.notificationBar}
       data-testid="error-notification-bar"
     >
-      <a
-        href="https://github.com/mathdroid/covid-19-api"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.fontColor}
-      >
-        mathdroid/covid-19-api
-      </a>{" "}
-      - a JSON API that serves data from{" "}
-      <a
-        href="https://github.com/CSSEGISandData/COVID-19"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.fontColor}
-      >
-        Johns Hopkins University CSSE
-      </a>{" "}
-      is <b>DOWN</b> at the moment.As a result,{" "}
+      Update:{" "}
       <a
         href="https://github.com/melvincwng/covid19-tracker-app"
         target="_blank"
         rel="noopener noreferrer"
         className={styles.fontColor}
       >
-        we
+        We
       </a>{" "}
       have <b>migrated</b> to another API (
       <a
@@ -59,9 +42,6 @@ function NotificationBar() {
       Please also take note that{" "}
       <b>the data for some countries might not be available</b> as well. We
       apologize for any inconvenience caused 😔
-      <br />
-      We will continue to monitor the situation and may revert to the
-      original API if it's back up 😊
     </div>
   );
 }
