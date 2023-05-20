@@ -23,13 +23,13 @@ function Cards({ confirmed, recovered, deaths, lastUpdate, country }) {
       },
       {
         style: styles.recovered,
-        text: "Recovered*",
+        text: "Recovered",
         value: recovered.value,
         bottomText: "Number of recovered cases from COVID-19",
       },
       {
         style: styles.active,
-        text: "Active*",
+        text: "Active",
         value: confirmed.value - recovered.value - deaths.value,
         bottomText: "Number of active cases of COVID-19",
       },

@@ -7,13 +7,13 @@ function NotificationBar() {
       className={styles.notificationBar}
       data-testid="error-notification-bar"
     >
-      Update - 20/05/2023: There are currently no publicly available APIs that
-      provide Covid19 related statistics.
+      Update: As of 20/05/2023, there are no publicly available APIs that
+      provide Covid-19 related statistics.
       <br />
-      We are currently working on a fix to get the data from other sources on
-      the web.
+      We have a workaround solution which obtains data from other publicly
+      available sources*.
       <br />
-      Updating of the data will happen once at the end every month 😊
+      Updating of the data will only happen here once per month 😊
     </div>
   );
 }

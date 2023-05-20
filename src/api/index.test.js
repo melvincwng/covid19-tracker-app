@@ -386,7 +386,9 @@ describe("Tests for the various API calls in index.js (UNHAPPY PATHS TWO)", () =
     const mockFetchDailyGlobalDataViaBackupAPI =
       await fetchDailyGlobalDataViaBackupAPI();
 
-    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(covid19GlobalDataForCards);
+    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(
+      covid19GlobalDataForChart
+    );
   });
 
   it("should test fetchDailyCountryDataViaBackupAPI error", async () => {

@@ -119,14 +119,14 @@ function Chart({ confirmed, recovered, deaths, country, chartView }) {
 
   const bar_data = confirmed
     ? {
-        labels: ["Infected", "Recovered*", "Active*", "Deaths"],
+        labels: ["Infected", "Recovered", "Active", "Deaths"],
         datasets: [
           {
             label: "People",
             data: [
               confirmed.value, // this was the part causing errors (line 64)
-              0, // originally this line was 'recovered.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
-              0, // originally this line was 'confirmed.value - recovered.value - deaths.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
+              recovered.value, // originally this line was 'recovered.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
+              confirmed.value - recovered.value - deaths.value, // originally this line was 'confirmed.value - recovered.value - deaths.value' but since JHU CSSE is no longer maintaining recovered/active data, this was removed & changed to 0
               deaths.value,
             ],
             backgroundColor: [

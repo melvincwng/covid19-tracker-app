@@ -196,18 +196,15 @@ function App() {
                     />
                   )}
                   <footer className={styles.footer}>
-                    *As of 4<sup>th</sup> Aug 2021,{" "}
+                    *Data Source:{" "}
                     <a
-                      href="https://github.com/CSSEGISandData/COVID-19"
+                      href="https://www.worldometers.info/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.fontColor}
                     >
-                      Johns Hopkins University CSSE
-                    </a>{" "}
-                    is no longer collecting & maintaining certain COVID-19
-                    related data. Hence, certain features of this web app may
-                    not be available.
+                      Worldometers.info
+                    </a>
                     <br></br>
                     <b>
                       **Medical Disclaimer: All content & information on this
@@ -244,7 +241,7 @@ function App() {
                         data-testid="coffee-icon"
                       />
                     </span>
-                    <div>&copy; 2022 Melvin Ng</div>
+                    <div>&copy; {new Date().getFullYear()} Melvin Ng</div>
                   </footer>
                 </Fragment>
               )}

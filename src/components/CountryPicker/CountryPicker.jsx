@@ -30,7 +30,7 @@ function CountryPicker({ handleSelectedCountry }) {
         onChange={(e) => handleSelectedCountry(e.target.value)}
         className={styles.font}
       >
-        <option value="">Global*</option>
+        <option value="">Global</option>
         {fetchedCountries.map((country) => (
           <option value={country} key={country}>
             {country}
