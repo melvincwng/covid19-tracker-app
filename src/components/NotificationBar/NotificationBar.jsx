@@ -7,20 +7,13 @@ function NotificationBar() {
       className={styles.notificationBar}
       data-testid="error-notification-bar"
     >
-      Update - 20/05/2023:{" "}
-      <a
-        href="https://covid19api.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.fontColor}
-      >
-        covid19api.com
-      </a>{" "}
-      is defunct.
+      Update - 20/05/2023: There are currently no publicly available APIs that
+      provide Covid19 related statistics.
       <br />
-      We are currently working on a fix to get the data from another source.
+      We are currently working on a fix to get the data from other sources on
+      the web.
       <br />
-      We apologize for any inconvenience caused 😔
+      Updating of the data will happen once at the end every month 😊
     </div>
   );
 }

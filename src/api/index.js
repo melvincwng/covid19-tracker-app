@@ -2,8 +2,16 @@
  * As of 10/12/2022:
  * mathdroid/covid-19-api (fetchData/fetchDailyData/fetchCountries) --> API is down since 10/12/2022 (original primary API - reverted to backup API)
  * covid19api.com (fetchGlobalDataViaBackupAPI/fetchCountryDataViaBackupAPI/fetchDailyGlobalDataViaBackupAPI/fetchCountriesViaBackupAPI) --> API is up and running (backup API - now we are using this API as the "primary" API")
+ *
+ * As of 20/05/2023:
+ * covid19api.com is defunct
+ * We are using manually hardcoded JSON data for the data for the Cards and Chart components as a temporary solution till we find a new API
  */
 import axios from "axios";
+import {
+  covid19GlobalDataForCards,
+  covid19GlobalDataForChart,
+} from "./data/covid19Data.js";
 
 const primaryURL = "https://covid19.mathdro.id/api";
 const backupURL = "https://api.covid19api.com";
@@ -38,12 +46,9 @@ export const fetchGlobalDataViaBackupAPI = async () => {
     const lastUpdate = Date;
     return { confirmed, deaths, lastUpdate };
   } catch (err) {
+    // Return local covid19 data if there is an error
     console.log(err);
-    // Return an object with undefined values if there is an error
-    const confirmed = { value: undefined };
-    const deaths = { value: undefined };
-    const lastUpdate = undefined;
-    return { confirmed, deaths, lastUpdate };
+    return covid19GlobalDataForCards;
   }
 };
 
@@ -112,8 +117,9 @@ export const fetchDailyGlobalDataViaBackupAPI = async () => {
     }));
     return modifiedData;
   } catch (err) {
+    // Return local covid19 data if there is an error
     console.log(err);
-    return [];
+    return covid19GlobalDataForChart;
   }
 };
 

@@ -8,6 +8,10 @@ import {
   fetchCountries,
   fetchCountriesViaBackupAPI,
 } from "./index";
+import {
+  covid19GlobalDataForCards,
+  covid19GlobalDataForChart,
+} from "./data/covid19Data.js";
 import axios from "axios";
 jest.mock("axios");
 
@@ -339,15 +343,9 @@ describe("Tests for the various API calls in index.js (UNHAPPY PATHS TWO)", () =
       Promise.reject(new Error("API failed"))
     );
 
-    const expectedResponse = {
-      confirmed: { value: undefined },
-      deaths: { value: undefined },
-      lastUpdate: undefined,
-    };
-
     const mockFetchGlobalDataViaBackupAPI = await fetchGlobalDataViaBackupAPI();
 
-    expect(mockFetchGlobalDataViaBackupAPI).toEqual(expectedResponse);
+    expect(mockFetchGlobalDataViaBackupAPI).toEqual(covid19GlobalDataForCards);
   });
 
   it("should test fetchCountryDataViaBackupAPI error", async () => {
@@ -385,12 +383,10 @@ describe("Tests for the various API calls in index.js (UNHAPPY PATHS TWO)", () =
       Promise.reject(new Error("API failed"))
     );
 
-    const expectedResponse = [];
-
     const mockFetchDailyGlobalDataViaBackupAPI =
       await fetchDailyGlobalDataViaBackupAPI();
 
-    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(expectedResponse);
+    expect(mockFetchDailyGlobalDataViaBackupAPI).toEqual(covid19GlobalDataForCards);
   });
 
   it("should test fetchDailyCountryDataViaBackupAPI error", async () => {
