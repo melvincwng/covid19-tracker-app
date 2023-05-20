@@ -11,6 +11,9 @@ import axios from "axios";
 import {
   covid19GlobalDataForCards,
   covid19GlobalDataForChart,
+  covid19CountriesArray,
+  covid19SingaporeDataForCards,
+  covid19SingaporeDataForChart,
 } from "./data/covid19Data.js";
 
 const primaryURL = "https://covid19.mathdro.id/api";
@@ -76,11 +79,8 @@ export const fetchCountryDataViaBackupAPI = async (selectedCountry) => {
     return { confirmed, deaths, lastUpdate };
   } catch (err) {
     console.log(err);
-    // Return an object with undefined values if there is an error
-    const confirmed = { value: undefined };
-    const deaths = { value: undefined };
-    const lastUpdate = undefined;
-    return { confirmed, deaths, lastUpdate };
+    // Return local covid19 data if there is an error
+    return covid19SingaporeDataForCards;
   }
 };
 
@@ -151,15 +151,9 @@ export const fetchDailyCountryDataViaBackupAPI = async (country) => {
         ];
     return modifiedData;
   } catch (err) {
+    // Return local covid19 data if there is an error
     console.log(err);
-    // Return an array with an object mapped to undefined values if there is an error
-    return [
-      {
-        confirmed: undefined,
-        deaths: undefined,
-        date: undefined,
-      },
-    ];
+    return covid19SingaporeDataForChart;
   }
 };
 
@@ -190,7 +184,8 @@ export const fetchCountriesViaBackupAPI = async () => {
     });
     return countries_array.map((country) => country.Country); // Return an array of sorted country names
   } catch (err) {
+    // Return local covid19 countries array if there is an error
     console.log(err);
-    return [];
+    return covid19CountriesArray;
   }
 };

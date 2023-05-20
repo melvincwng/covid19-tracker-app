@@ -3,6 +3,8 @@
  *    1) https://www.worldometers.info/coronavirus/ (Cards data)
  *    2) https://www.worldometers.info/coronavirus/coronavirus-cases/ (Chart data)
  *    3) https://www.worldometers.info/coronavirus/worldwide-graphs/#daily-deaths (Chart data)
+ *    4) https://www.worldometers.info/coronavirus/country/singapore/ (Country data)
+ *    5) https://covid19.who.int/ (Alternative data source)
  */
 
 export const covid19GlobalDataForCards = {
@@ -55,4 +57,57 @@ export const covid19GlobalDataForChart = [
   { confirmed: 683958112, deaths: 6845764, date: "2023-03-27" },
   { confirmed: 687292964, deaths: 6869007, date: "2023-04-28" },
   { confirmed: 688744515, deaths: 6877602, date: "2023-05-19" },
+];
+
+export const covid19CountriesArray = ["Singapore"];
+
+export const covid19SingaporeDataForCards = {
+  confirmed: { value: 2391248 },
+  recovered: { value: 2149583 },
+  deaths: { value: 1727 },
+  lastUpdate: "2023-05-20T18:00:00",
+};
+
+export const covid19SingaporeDataForChart = [
+  { confirmed: 0, deaths: 0, date: "2020-01-18" },
+  { confirmed: 72, deaths: 0, date: "2020-02-15" },
+  { confirmed: 455, deaths: 0, date: "2020-03-22" },
+  { confirmed: 10141, deaths: 11, date: "2020-04-22" },
+  { confirmed: 31960, deaths: 23, date: "2020-05-25" },
+  { confirmed: 43246, deaths: 26, date: "2020-06-27" },
+  { confirmed: 47912, deaths: 27, date: "2020-07-19" },
+  { confirmed: 56435, deaths: 27, date: "2020-08-25" },
+  { confirmed: 57665, deaths: 27, date: "2020-09-25" },
+  { confirmed: 57987, deaths: 28, date: "2020-10-28" },
+  { confirmed: 58205, deaths: 28, date: "2020-11-28" },
+  { confirmed: 58599, deaths: 29, date: "2020-12-31" },
+  { confirmed: 59366, deaths: 29, date: "2021-01-26" },
+  { confirmed: 59936, deaths: 29, date: "2021-02-28" },
+  { confirmed: 60321, deaths: 30, date: "2021-03-29" },
+  { confirmed: 61063, deaths: 30, date: "2021-04-27" },
+  { confirmed: 62051, deaths: 33, date: "2021-05-31" },
+  { confirmed: 62563, deaths: 36, date: "2021-06-29" },
+  { confirmed: 64861, deaths: 37, date: "2021-07-30" },
+  { confirmed: 67459, deaths: 55, date: "2021-08-30" },
+  { confirmed: 94043, deaths: 93, date: "2021-09-29" },
+  { confirmed: 187851, deaths: 364, date: "2021-10-28" },
+  { confirmed: 264725, deaths: 710, date: "2021-11-30" },
+  { confirmed: 279406, deaths: 828, date: "2021-12-31" },
+  { confirmed: 327602, deaths: 850, date: "2022-01-26" },
+  { confirmed: 727424, deaths: 1019, date: "2022-02-28" },
+  { confirmed: 1085094, deaths: 1254, date: "2022-03-29" },
+  { confirmed: 1184226, deaths: 1331, date: "2022-04-25" },
+  { confirmed: 1434563, deaths: 1383, date: "2022-05-29" },
+  { confirmed: 1434563, deaths: 1411, date: "2022-06-29" },
+  { confirmed: 1708950, deaths: 1494, date: "2022-07-30" },
+  { confirmed: 1837090, deaths: 1592, date: "2022-08-30" },
+  { confirmed: 1907907, deaths: 1618, date: "2022-09-30" },
+  { confirmed: 2091889, deaths: 1672, date: "2022-10-28" },
+  { confirmed: 2164689, deaths: 1702, date: "2022-11-28" },
+  { confirmed: 2200353, deaths: 1711, date: "2022-12-29" },
+  { confirmed: 2215527, deaths: 1720, date: "2023-01-27" },
+  { confirmed: 2230570, deaths: 1722, date: "2023-02-26" },
+  { confirmed: 2298689, deaths: 1727, date: "2023-03-31" },
+  { confirmed: 2391248, deaths: 1727, date: "2023-04-29" },
+  { confirmed: 2391248, deaths: 1727, date: "2023-05-19" },
 ];
