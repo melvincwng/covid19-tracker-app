@@ -122,7 +122,7 @@ function Articles() {
             href="https://www.worldometers.info/"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.fontColor}
+            className={stylesTwo.fontColor}
           >
             Worldometers.info
           </a>
