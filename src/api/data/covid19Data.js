@@ -50,4 +50,9 @@ export const covid19GlobalDataForChart = [
   { confirmed: 635986423, deaths: 6616486, date: "2022-10-29" },
   { confirmed: 646269395, deaths: 6655275, date: "2022-11-25" },
   { confirmed: 663342487, deaths: 6711542, date: "2022-12-27" },
+  { confirmed: 673591500, deaths: 6766725, date: "2023-01-21" },
+  { confirmed: 680480057, deaths: 6819522, date: "2023-02-28" },
+  { confirmed: 683958112, deaths: 6845764, date: "2023-03-27" },
+  { confirmed: 687292964, deaths: 6869007, date: "2023-04-28" },
+  { confirmed: 688744515, deaths: 6877602, date: "2023-05-19" },
 ];
