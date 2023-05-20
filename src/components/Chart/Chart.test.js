@@ -30,9 +30,9 @@ describe("Chart component", () => {
   });
 
   it("should render the Chart component again but containing a line chart (Global Data)", () => {
-    mockAxios.onGet("https://api.covid19api.com/world").reply(200, chartData);
     const props = {
       confirmed: { value: 50 },
+      recovered: { value: 20 },
       deaths: { value: 10 },
       country: undefined,
     };
@@ -43,11 +43,9 @@ describe("Chart component", () => {
   });
 
   it("should render the Chart component again but containing a bar chart (For Specific Country)", () => {
-    mockAxios
-      .onGet("https://api.covid19api.com/total/dayone/country/Malaysia")
-      .reply(200, chartData);
     const props = {
       confirmed: { value: 50 },
+      recovered: { value: 20 },
       deaths: { value: 10 },
       country: "Malaysia",
       chartView: "Bar Chart",
@@ -59,11 +57,9 @@ describe("Chart component", () => {
   });
 
   it("should render the Chart component again but containing a line chart (For Specific Country)", () => {
-    mockAxios
-      .onGet("https://api.covid19api.com/total/dayone/country/Malaysia")
-      .reply(200, chartData);
     const props = {
       confirmed: { value: 50 },
+      recovered: { value: 20 },
       deaths: { value: 10 },
       country: "Malaysia",
       chartView: "Line Chart",

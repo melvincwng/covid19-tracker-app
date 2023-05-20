@@ -15,8 +15,8 @@ test("should display Cards info", () => {
   // getAllByText returns an array, hence to access the individual cards we do
   // [0] for infected card, [1] for recovered card, [2] for active card, [3] for death card
   expect(getByText("Infected")).toBeInTheDocument();
-  expect(getByText("Recovered*")).toBeInTheDocument();
-  expect(getByText("Active*")).toBeInTheDocument();
+  expect(getByText("Recovered")).toBeInTheDocument();
+  expect(getByText("Active")).toBeInTheDocument();
   expect(getByText("Deaths")).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[0]).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[1]).toBeInTheDocument();
@@ -42,8 +42,8 @@ test("should also display Cards info", () => {
   // getAllByText returns an array, hence to access the individual cards we do
   // [0] for infected card, [1] for recovered card, [2] for active card, [3] for death card
   expect(getByText("Infected")).toBeInTheDocument();
-  expect(getByText("Recovered*")).toBeInTheDocument();
-  expect(getByText("Active*")).toBeInTheDocument();
+  expect(getByText("Recovered")).toBeInTheDocument();
+  expect(getByText("Active")).toBeInTheDocument();
   expect(getByText("Deaths")).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[0]).toBeInTheDocument();
   expect(getAllByText("Thu Feb 18 2021")[1]).toBeInTheDocument();
