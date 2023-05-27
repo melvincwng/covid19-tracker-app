@@ -1,12 +1,3 @@
-/**
- * Latest Covid19 Statistics from:
- *    1) https://www.worldometers.info/coronavirus/ (Cards data)
- *    2) https://www.worldometers.info/coronavirus/coronavirus-cases/ (Chart data)
- *    3) https://www.worldometers.info/coronavirus/worldwide-graphs/#daily-deaths (Chart data)
- *    4) https://www.worldometers.info/coronavirus/country/singapore/ (Country data)
- *    5) https://covid19.who.int/ (Alternative data source)
- */
-
 export const covid19GlobalDataForCards = {
   confirmed: { value: 688762502 },
   recovered: { value: 661129835 },

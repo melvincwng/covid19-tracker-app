@@ -90,15 +90,8 @@ function About() {
         <div></div>
       ) : (
         <footer className={stylesTwo.footer}>
-          *Data Source:{" "}
-          <a
-            href="https://www.worldometers.info/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={stylesTwo.fontColor}
-          >
-            Worldometers.info
-          </a>
+          *Due to the lack of publicly available APIs for COVID-19 data, we have
+          ceased updates on this website temporarily till further notice.
           <br></br>
           <b>
             **Medical Disclaimer: All content & information on this website is
