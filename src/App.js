@@ -33,7 +33,7 @@ export function openGithubLink() {
 }
 
 export function openItchLink() {
-  window.open("https://melvinng.itch.io/");
+  window.open("https://melvincwng.itch.io/");
 }
 
 export function openCoffeeLink() {
