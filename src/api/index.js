@@ -3,8 +3,8 @@
  *  - mathdroid/covid-19-api (fetchData/fetchDailyData/fetchCountries) --> API is down since 10/12/2022 (original primary API - reverted to backup API)
  *  - covid19api.com (fetchGlobalDataViaBackupAPI/fetchCountryDataViaBackupAPI/fetchDailyGlobalDataViaBackupAPI/fetchCountriesViaBackupAPI) --> API is up and running (backup API - now we are using this API as the "primary" API")
  *
- * As of 18/08/2023:
- *  - covid19api.com is still defunct
+ * As of 21/09/2023:
+ *  - covid19api.com is OFFICIALLY defunct (refer to their website here for more info: https://covid19api.com/)
  *  - We are using manually hardcoded JSON data for the data for the Cards and Chart components as a temporary solution till we find a new API
  */
 import axios from "axios";
