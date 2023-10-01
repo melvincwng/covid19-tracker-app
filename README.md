@@ -50,3 +50,5 @@ Artwork created by Melvin Ng
 https://covid19-sg.netlify.app/
 
 <img src="https://github.com/melvincwng/covid19-tracker-app/blob/master/src/images/demo.JPG"/>
+<img src="https://github.com/karentong14/covid19-tracker-app/assets/91928954/838899c9-957b-43f9-a18c-2986a031d5e4">
+
