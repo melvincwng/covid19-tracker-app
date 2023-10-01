@@ -25,8 +25,22 @@ APIs used:
 To get started with the COVID-19 Tracker App, follow these steps:
  1. Clone the repository `git clone https://github.com/melvincwng/covid19-tracker-app.git`
  2. Navigate to the repository `cd covid19-tracker-app`
- 3. run npm install && npm start
+ 3. run `npm install && npm start`
  4. Open a new browser to `http://localhost:3000/` to run the app locally
+
+## Contributions:
+ 1. Fork the repository
+ 2. Create a new branch using the command `git checkout -b my-feature-branch`
+ 3. Commit any changes you make using the command `git commit -m 'Add some feature'`
+ 4. Push to the branch using the command `git push origin my-feature-branch`
+ 5. Submit a Pull Request to the original repository
+
+## Features to be added and challenges:
+ - Other countries to the dropdown menu on the home page
+ - Access to more articles and graphs/charts on the data
+ - More sources of information for users to access beyond the application
+ - More statistics on vaccination and other measures like economic class and other demographics
+ - As there is no current public API for COVID-19 data, it is difficult to update the website
 
 ## Art & Design:
 Artwork created by Melvin Ng
