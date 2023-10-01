@@ -14,6 +14,7 @@ It also provides access to medical articles about COVID-19, which users can read
 
 ## Languages/Tools used:
 HTML, CSS, Javascript, MERN stack (MongoDB, Express, React, Node.js)
+Note: the application may not work with node v18, users may be required to use another version such as v16
 
 ## Libraries & APIs used: 
 Libraries: Material UI, Bootstrap, react-countup, react-chartjs-2, Formik, react-loader-spinner
