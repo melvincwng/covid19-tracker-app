@@ -1,8 +1,12 @@
 # COVID-19 Tracker App
 
-This web application showcases various COVID-19 related statistics such as number of infections, number of recoveries, number of active cases and numbers of deaths, both globally and locally (within Singapore). 
+A web application designed to address the spread of health misinformation during the COVID-19 pandemic and beyond by showcasing various COVID-19 related statistics and resources. Only by making this information, including affected cases and medical articles, more available to the public will there be an increase in knowledge and awareness about this critical disease.
 
-It also provides access to medical articles about COVID-19, which users can read to increase their awareness & knowledge about the disease.
+## Features
+1. A homepage with the most recent updates on the number of infections, recoveries, active cases, and deaths, as related to COVID-19 from a global and local perspective (within Singapore).
+2. Sign in page for users
+3. A collection of medical articles related to COVID-19
+4. A chart and table expressing the data for vaccination against COVID-19 per country across a period of time
 
 ## Languages/Tools used
 HTML, CSS, Javascript, MERN stack (MongoDB, Express, React, Node.js)
