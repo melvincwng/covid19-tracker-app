@@ -30,7 +30,15 @@ APIs used:
 ```
    npm install
 ```
-4. Start the application on the local server
+4. Install react-scripts
+```
+   npm react-scripts
+```
+5. Install axios
+```
+   npm install axios
+```
+6. Start the application on the local server
 ```
    npm start
 ```
