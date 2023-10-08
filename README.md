@@ -35,6 +35,50 @@ APIs used:
    npm start
 ```
 
+## Project Structure 
+Listed below is a simplified folder structure to help understand the project's fundamental directories & files:
+```bash
+src/
+├── api/
+├── components/
+│   ├── About/
+│   ├── Admin/
+│   ├── Articles/
+│   ├── Cards/
+│   ├── Chart/
+│   ├── CountryPicker
+│   ├── Extras/
+│   └── LoginForm/
+│   ├── Logout/
+│   └── NavigationBar/
+│   ├── NotificationBar/
+│   └── ToggleBetweenBarChartAndLineChart/
+├── App.js
+└── index.js
+```
+
+### api/
+A collection of files containing COVID-19 related data gathered from various APIs to post onto the website.
+
+### components/
+- `About` - Retrieves data regarding the purpose of COVID-19 Tracker App and advice on how to analyze information given
+- `Admin` - Handles permissions only given to program administrator to add new articles to database
+- `Articles` - Retrieves articles from database to display in collection of resources
+- `Cards` - Responsible for making the individual cards on the Home page showing the type of cases related to COVID-19 (infected, recorded, active, and deaths)
+- `CountryPicker` - Handles the adding of countries by accessing an API to see their corresponding COVID-19 data on the chart and table
+- `Extras` - Determines total functionality of chart and table displaying vaccination data
+- `LoginForm` - Responsible for login logic
+- `Logout` - Responsible for logout logic
+- `NavigationBar` - Manages navigation bar functionality with Home, Login, Articles, About, and Extras tabs
+- `NotificationBar` - Alerts users of any updates that would affect the current data presented
+- `ToggleBetweenBarChartAndLineChart` - Allows users to switch between a bar chart or line chart format to display data of different types of cases
+
+### App.js
+Responsible for combining the functionality of all components of the web application
+
+### index.js
+Calls upon App.js to run the application and acquire the primary content
+
 ## Art & Design
 Artwork created by Melvin Ng
 
