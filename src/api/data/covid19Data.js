@@ -1,8 +1,8 @@
 export const covid19GlobalDataForCards = {
-  confirmed: { value: 695582302 },
-  recovered: { value: 667643517 },
-  deaths: { value: 6918251 },
-  lastUpdate: "2023-09-21T22:00:00",
+  confirmed: { value: 699620241 },
+  recovered: { value: 669393550 },
+  deaths: { value: 6956560 },
+  lastUpdate: "2023-12-16T22:00:00",
 };
 
 export const covid19GlobalDataForChart = [
