@@ -57,10 +57,10 @@ export const covid19GlobalDataForChart = [
 export const covid19CountriesArray = ["Singapore"];
 
 export const covid19SingaporeDataForCards = {
-  confirmed: { value: 2560028 },
-  recovered: { value: 2149583 },
-  deaths: { value: 1875 },
-  lastUpdate: "2023-09-21T22:00:00",
+  confirmed: { value: 2771072 },
+  recovered: { value: 2707350 },
+  deaths: { value: 1933 },
+  lastUpdate: "2023-12-16T22:00:00",
 };
 
 export const covid19SingaporeDataForChart = [
@@ -109,4 +109,7 @@ export const covid19SingaporeDataForChart = [
   { confirmed: 2523913, deaths: 1868, date: "2023-07-20" },
   { confirmed: 2537087, deaths: 1868, date: "2023-08-17" },
   { confirmed: 2560028, deaths: 1875, date: "2023-09-20" },
+  { confirmed: 2679066, deaths: 1906, date: "2023-10-31" },
+  { confirmed: 2752768, deaths: 1933, date: "2023-11-29" },
+  { confirmed: 2771072, deaths: 1933, date: "2023-12-15" },
 ];
