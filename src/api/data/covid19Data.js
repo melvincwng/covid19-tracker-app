@@ -1,8 +1,8 @@
 export const covid19GlobalDataForCards = {
-  confirmed: { value: 700704708 },
-  recovered: { value: 671876638 },
-  deaths: { value: 6962414 },
-  lastUpdate: "2024-01-01T10:00:00",
+  confirmed: { value: 704753890 },
+  recovered: { value: 675877553 },
+  deaths: { value: 7010681 },
+  lastUpdate: "2024-05-15T00:00:00",
 };
 
 export const covid19GlobalDataForChart = [
@@ -65,7 +65,7 @@ export const covid19SingaporeDataForCards = {
   confirmed: { value: 2827115 },
   recovered: { value: 2707350 },
   deaths: { value: 1933 },
-  lastUpdate: "2024-01-01T10:00:00",
+  lastUpdate: "2024-05-15T10:00:00",
 };
 
 export const covid19SingaporeDataForChart = [
