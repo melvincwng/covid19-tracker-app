@@ -118,5 +118,5 @@ export const covid19SingaporeDataForChart = [
   { confirmed: 2752768, deaths: 1933, date: "2023-11-29" },
   { confirmed: 2827115, deaths: 1933, date: "2023-12-26" },
   { confirmed: 2827115, deaths: 1933, date: "2024-01-01" },
-  { confirmed: 3006155, deaths: 2024, date: "2024-05-15" },
+  { confirmed: 3007007, deaths: 2024, date: "2024-05-15" },
 ];
