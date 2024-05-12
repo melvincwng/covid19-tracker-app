@@ -7,7 +7,7 @@ function NotificationBar() {
       className={styles.notificationBar}
       data-testid="error-notification-bar"
     >
-      Update: As of 15/05/2024, there are still no publicly available APIs that
+      Update: As of 12/05/2024, there are still no publicly available APIs that
       provide all the relevant COVID-19 related statistics*.
       <br />
     </div>
