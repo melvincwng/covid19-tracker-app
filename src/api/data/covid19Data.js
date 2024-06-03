@@ -1,8 +1,8 @@
 export const covid19GlobalDataForCards = {
   confirmed: { value: 704753890 },
-  recovered: { value: 675877553 },
+  recovered: { value: 675619811 },
   deaths: { value: 7010681 },
-  lastUpdate: "2024-05-12T00:00:00",
+  lastUpdate: "2024-06-03T00:00:00",
 };
 
 export const covid19GlobalDataForChart = [
@@ -57,15 +57,16 @@ export const covid19GlobalDataForChart = [
   { confirmed: 700380256, deaths: 6960890, date: "2023-12-25" },
   { confirmed: 700703890, deaths: 6962414, date: "2024-01-01" },
   { confirmed: 704753890, deaths: 7010681, date: "2024-05-12" },
+  { confirmed: 704753890, deaths: 7010681, date: "2024-06-03" },
 ];
 
 export const covid19CountriesArray = ["Singapore"];
 
 export const covid19SingaporeDataForCards = {
-  confirmed: { value: 2827115 },
+  confirmed: { value: 3006155 },
   recovered: { value: 2707350 },
-  deaths: { value: 1933 },
-  lastUpdate: "2024-05-12T10:00:00",
+  deaths: { value: 2024 },
+  lastUpdate: "2024-06-03T10:00:00",
 };
 
 export const covid19SingaporeDataForChart = [
@@ -118,5 +119,6 @@ export const covid19SingaporeDataForChart = [
   { confirmed: 2752768, deaths: 1933, date: "2023-11-29" },
   { confirmed: 2827115, deaths: 1933, date: "2023-12-26" },
   { confirmed: 2827115, deaths: 1933, date: "2024-01-01" },
-  { confirmed: 3023560, deaths: 2024, date: "2024-05-12" },
+  { confirmed: 3006155, deaths: 2024, date: "2024-05-12" },
+  { confirmed: 3006155, deaths: 2024, date: "2024-06-03" },
 ];
